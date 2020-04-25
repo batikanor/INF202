@@ -19,7 +19,7 @@ public class LoginController {
 	@FXML
 	private Label status;
 	
-	@FXML
+	
 	private int count = 0;
 	
 	// About MVC
@@ -33,7 +33,9 @@ public class LoginController {
 			feedback = "Statü: giriş başarılı";
 			status.setText(Model.feedback(feedback, count, className));
 			// Load Main window
-			Model.loadWindow(this.getClass(), "Main");
+
+			Model.loadWindow(this.getClass(), "Main", 800, 600);
+			
 			// Hide previous window
 			((Node)event.getSource()).getScene().getWindow().hide();
 			

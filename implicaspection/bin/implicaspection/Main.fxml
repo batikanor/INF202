@@ -9,8 +9,8 @@
 
 <AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.MainController">
    <children>
-      <Button fx:id="buttonRandom" layoutX="8.0" layoutY="538.0" mnemonicParsing="false" onAction="#generateRandom" prefHeight="48.0" prefWidth="679.0" text="Your random number for this session: " />
-      <Label fx:id="labelRandom" layoutX="691.0" layoutY="543.0" prefHeight="38.0" prefWidth="95.0" text="..." textAlignment="CENTER">
+      <Button fx:id="buttonRandom" layoutX="28.0" layoutY="300.0" mnemonicParsing="false" onAction="#generateRandom" prefHeight="50.0" prefWidth="200.0" text="Rastgele sayi oluștur" />
+      <Label fx:id="labelRandom" layoutX="80.0" layoutY="359.0" prefHeight="38.0" prefWidth="95.0" text="..." textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="28.0" />
          </font></Label>
@@ -18,12 +18,15 @@
          <children>
             <TextField fx:id="queryInput" prefHeight="0.0" prefWidth="182.0" promptText="Enter command" />
             <Button mnemonicParsing="false" onAction="#processInput" prefHeight="48.0" prefWidth="797.0" text="Enter Command" />
-            <Label fx:id="queryOutput" prefHeight="161.0" prefWidth="667.0" text="Label">
+            <Label fx:id="queryOutput" prefHeight="116.0" prefWidth="645.0" text="Label">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
          </children>
       </VBox>
+      <Button fx:id="buttonAdmin" layoutX="245.0" layoutY="300.0" mnemonicParsing="false" onAction="#openAdminPanel" prefHeight="50.0" prefWidth="150.0" text="Admin paneli iste" />
+      <Label layoutX="7.0" layoutY="30.0" prefHeight="16.0" prefWidth="801.0" text="Kullanici Bilgileriniz: Yuklenemedi" />
+      <Button layoutX="408.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="364.0" text="Şablondan rapor oluştur" />
    </children>
 </AnchorPane>

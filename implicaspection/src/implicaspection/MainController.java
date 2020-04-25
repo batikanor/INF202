@@ -5,12 +5,9 @@ package implicaspection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -28,6 +25,9 @@ public class MainController {
 	private Label queryOutput;
 	@FXML
 	private int count = 0;
+	
+	// About administration
+	@FXML
 	
 	// About MVC
 	private String className = this.getClass().getSimpleName();
@@ -53,5 +53,9 @@ public class MainController {
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		menuStage.setTitle("Implicaspection - Menu");
 		menuStage.show();
+	}
+	
+	public void openAdminPanel() {
+		Model.loadWindow(this.getClass(), "AdminPanel", 1000, 510);
 	}
 }

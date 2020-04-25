@@ -1,8 +1,10 @@
 package utilities;
 
+// ALTERNATIVE SINGLETON IMPLEMENTATIONS : STATIC HOLDER PATTERN / ENUM
 public final class SessionSingleton {
 	// Singleton pattern: class can only have 1 instance
-	private static SessionSingleton onlyInstance = null;
+	// Volatile. becuase I don't want the JVM to re-order the instructions that happen as a part of "new SessionSingleton(username, adminID);'
+	private static volatile SessionSingleton onlyInstance = null;
     
 	private String username;
     private int adminID = -1; //-1 means not admin
@@ -13,16 +15,23 @@ public final class SessionSingleton {
     }
     
     public static SessionSingleton getInstance(String username, int adminID){
-    	if(onlyInstance == null){
-    		onlyInstance = new SessionSingleton(username, adminID);
-    		if(adminID != -1) {
-    			System.out.println("Admin olarak giris yapildi");
-    		}else {
-    			System.out.println("Personnel olarak giris yapildi");
+    	// Double check locking
+    	if(onlyInstance == null) { // Check
+        	synchronized (SessionSingleton.class) { // Lock
+            	if(onlyInstance == null){ // Check
+            		onlyInstance = new SessionSingleton(username, adminID);
+            		if(adminID != -1) {
+            			System.out.println("Admin olarak giris yapildi");
+            		}else {
+            			System.out.println("Personnel olarak giris yapildi");
+            		}
+            	}else {
+            		System.out.println("Halihazirda giris yapilmis");
+            	}
     		}
-    	}else {
-    		System.out.println("Halihazirda giris yapilmis");
+
     	}
+
     	return onlyInstance;
     }
     

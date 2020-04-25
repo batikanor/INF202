@@ -23,7 +23,7 @@
       </TextField>
       <Label fx:id="status" layoutX="14.0" layoutY="48.0" prefHeight="24.0" prefWidth="485.0" text="Statü: Giriş denemesi yapılmadı" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
          <font>
-            <Font size="19.0" />
+            <Font size="11.0" />
          </font>
       </Label>
       <PasswordField fx:id="txtPassword" layoutX="92.0" layoutY="163.0" prefHeight="26.0" prefWidth="168.0" promptText="Şifre" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="91.0">

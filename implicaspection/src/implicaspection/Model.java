@@ -53,13 +53,14 @@ public class Model {
 		return hash;
 		
 	}
-	public static void loadWindow(Class<?> cl, String toLoad)
+	public static void loadWindow(Class<?> cl, String toLoad, int width, int length)
 	{
 		Stage primaryStage = new Stage();
 		Parent root;
 		try {
+			System.out.println("loading: " + cl.getResource("/implicaspection/" + toLoad + ".fxml"));
 			root = FXMLLoader.load(cl.getResource("/implicaspection/" + toLoad + ".fxml"));
-			Scene scene = new Scene(root, 800, 600);
+			Scene scene = new Scene(root, width, length);
 			primaryStage.setScene(scene);
 			scene.getStylesheets().add(cl.getResource("application.css").toExternalForm());
 			primaryStage.setTitle(toLoad + " - Implicaspection");

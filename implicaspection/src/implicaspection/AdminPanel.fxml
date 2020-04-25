@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="510.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.AdminPanelController">
+   <children>
+      <AnchorPane layoutX="356.0" layoutY="-3.0" prefHeight="527.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane fx:id="paneField" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.rightAnchor="0.0" />
+            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" style="-fx-background-color: darkblue;" visible="false" AnchorPane.rightAnchor="0.0" />
+            <Pane fx:id="paneDB" layoutX="20.0" prefHeight="527.0" prefWidth="663.0" style="-fx-background-color: darkred;" visible="false" AnchorPane.rightAnchor="0.0" />
+            <Pane fx:id="paneRegister" prefHeight="527.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <PasswordField layoutX="181.0" layoutY="60.0" promptText="şifre" />
+                  <TextField layoutX="181.0" layoutY="137.0" promptText="kullanıcı adı" />
+                  <PasswordField layoutX="181.0" layoutY="95.0" promptText="şifre (tekrar)" />
+                  <RadioButton fx:id="rbPersonnel" layoutX="23.0" layoutY="86.0" mnemonicParsing="false" selected="true" text="Personel Hesabı" textFill="WHITE">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="userType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbAdmin" layoutX="23.0" layoutY="128.0" mnemonicParsing="false" text="Admin Hesabı" textFill="WHITE" toggleGroup="$userType" />
+                  <Label layoutX="212.0" layoutY="33.0" text="girilmesi zorunlu" />
+                  <Label layoutX="421.0" layoutY="33.0" text="girilmesi opsiyonel" />
+                  <Button layoutX="421.0" layoutY="225.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="122.0" text="Kaydet" />
+                  <Label layoutX="21.0" layoutY="33.0" text="oluşturulacak hesap" />
+                  <TextField layoutX="397.0" layoutY="60.0" promptText="level" />
+                  <DatePicker layoutX="397.0" layoutY="95.0" promptText="sertifika tarihi" />
+                  <TextField layoutX="397.0" layoutY="137.0" promptText="isim" />
+                  <TextField layoutX="397.0" layoutY="172.0" promptText="soyisim" />
+               </children>
+            </Pane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="-1.0" prefHeight="500.0" prefWidth="223.0" style="-fx-background-color: #2b3633;" AnchorPane.bottomAnchor="0.0">
+         <children>
+            <AnchorPane layoutY="-2.0" prefHeight="500.0" prefWidth="34.0" style="-fx-background-color: darkgray; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+            <Button fx:id="buttonRegister" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="14.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Personel / Admin kaydet" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button fx:id="buttonField" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="179.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Rapor Bölgesi Ekle" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button fx:id="buttonTemplate" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="130.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="NOT DONE Rapor Şablonu Oluştur" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button fx:id="buttonDB" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="61.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Veritabani komutu gir" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
