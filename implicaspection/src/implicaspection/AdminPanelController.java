@@ -1,6 +1,8 @@
 package implicaspection;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,8 +40,48 @@ public class AdminPanelController extends ControllerTemplate{
 	@FXML TextField nameInput;
 	@FXML TextField surnameInput;
 	@FXML TextArea areaOutput;
+	@FXML RadioButton rbRegister;
+	@FXML RadioButton rbChange;
+	@FXML TextField changeInput;
 	
 	
+	
+	public void listPersonnel(ActionEvent event) {
+		ResultSet rs = DatabaseAndSession.returnAllPersonnel();
+		areaOutput.setText("");
+		try {
+			while(rs.next()) {
+				for(int i = 1; i < 8; i++) {
+					areaOutput.appendText(rs.getString(i) + " | ");
+
+				}
+				areaOutput.appendText("\n");
+			}
+		} catch (SQLException e) {
+			System.out.println("Veritabanından alınan elemanlar sıralanamadı");
+			e.printStackTrace();
+		}
+	}
+	public void getPersonnelInfo(ActionEvent event) {
+		rbChange.setSelected(true);
+		count++;
+		ResultSet rs = DatabaseAndSession.returnPersonnel(changeInput.getText());
+		try {
+			if(rs.next()) {
+
+				nameInput.setText(rs.getString(2));
+				System.out.println("TODO...");
+				
+			}else {
+				areaOutput.appendText("Bu kullanıcı adına sahip kişi (personel veya admin) bulunamadı\n");
+			}
+				
+		} catch (SQLException e) {
+			System.out.println("Veritabanından alınan elemanlar sıralanamadı");
+			e.printStackTrace();
+		}
+	}
+		
 	
 	public void saveRegister(ActionEvent event) {
 		count++;
@@ -95,7 +137,17 @@ public class AdminPanelController extends ControllerTemplate{
 		
 		
 		if(inputOK){
-			DatabaseAndSession.register(username, password, level, certificatedate, name, surname, isAdmin);
+			if(rbRegister.isSelected()) {
+				if(DatabaseAndSession.register(username, password, level, certificatedate, name, surname, isAdmin)) {
+					areaOutput.appendText("Hesap başarıyla oluşturuldu.\n");
+				}else {
+					areaOutput.appendText("Hesap oluşturulamadı. (Kullanıcı adı kişiye hastır)\n");			
+				}
+				
+			}else {
+				System.out.println("TODO: change info");
+			}
+			
 			
 			
 		}

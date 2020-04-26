@@ -20,8 +20,8 @@ public class Model {
 	// This is more like a 'Helpers' class, that has all the needed functions for utils and controllers.
 	
 	
-	public static byte[] hashPassword(String password)
-	{
+	
+	public static byte[] hashPassword(String password){
 		// Creating the salt for passwordHash creation (you need to import java.security.SecureRandom)
 		// SecureRandom random = new SecureRandom();
 		// byte[] salt = new byte[16]; //e.g: 101 | 40 | 21 | 17 | -99 | -111 | -9 | -7 | -115 | 4 | -24 | -123 | 37 | 116 | 113 | 21 | 
@@ -53,8 +53,7 @@ public class Model {
 		return hash;
 		
 	}
-	public static void loadWindow(String toLoad, int width, int length)
-	{
+	public static void loadWindow(String toLoad, int width, int length){
 		Stage newStage = new Stage();
 		Parent root;
 		try {
@@ -73,8 +72,7 @@ public class Model {
 		}
 		
 	}
-	public static void loadWindowNoCSS(String toLoad, int width, int length)
-	{
+	public static void loadWindowNoCSS(String toLoad, int width, int length){
 		Stage newStage = new Stage();
 		Parent root;
 		try {
@@ -130,8 +128,8 @@ public class Model {
                 newWindow.show();
 	 */
 	
-	public static String feedback(String fb, int count, String cName)
-	{
+	public static String feedback(String fb, int count, String cName){
+		// TODO
 		// Log this action and put it to a file as final version, make the logging in a "try" block and just nevermind it if it fails
 		// ^ so that a simple logging issue doesn't really affect the functionality of the program.
 		String buff = (cName + " Klasındaki " + Integer.toString(count) + ". işlem şu idi: " + fb);
@@ -140,8 +138,7 @@ public class Model {
 	}
 	
 	
-	public static String generateRandom()
-	{
+	public static String generateRandom(){
 		Random rand = new Random();
 		String randNum = Integer.toString(rand.nextInt(101));
 		feedback("Şu rastgele sayı üretildi: " + randNum, 0, "Model");

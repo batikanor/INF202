@@ -22,7 +22,7 @@
             <Image url="@../images/stripped_login_border.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonPassword" layoutX="28.0" layoutY="364.0" mnemonicParsing="false" onAction="#openAdminPanel" prefHeight="50.0" prefWidth="150.0" text="Şifre değiştir" />
-      <Button fx:id="buttonLogout" layoutX="210.0" layoutY="364.0" mnemonicParsing="false" onAction="#openAdminPanel" prefHeight="50.0" prefWidth="150.0" text="Çıkış yap" />
+      <Button fx:id="buttonPassword" layoutX="28.0" layoutY="364.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Şifre değiştir" />
+      <Button fx:id="buttonLogout" layoutX="210.0" layoutY="364.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Çıkış yap" />
    </children>
 </AnchorPane>

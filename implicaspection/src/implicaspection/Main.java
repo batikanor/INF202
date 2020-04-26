@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utilities.DatabaseAndSession;
 
 
 public class Main extends Application{
@@ -30,17 +29,14 @@ public class Main extends Application{
 	}
 
 	public static void main(String[] args){
-		
-		DatabaseAndSession.printAllPersonnel();
-		
-		
+	
 		//DatabaseAndSession.login("testPersonnel", "2turk2alman9uni");
 		//System.out.println(SessionSingleton.getSession().toString());
 		//DatabaseAndSession.login("testAdmin", "kurtulus0201savasi");
 		launch(args);
 		
 		
-		System.out.println("ENDE !");
+		System.out.println("Program tamamen sonlandırıldı!");
 	} 
 	
 	

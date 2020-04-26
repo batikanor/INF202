@@ -58,7 +58,6 @@ public final class SessionSingleton {
 
     @Override
     public String toString() {
-        return "Kullanıcı bilgileriniz; kullanıcı adı: "+ this.username + " admin numarasi (-1 ise admin değilsiniz) : " + this.adminID;
+        return "Kullanıcı bilgileriniz:        KULLANICI ADI:"+ this.username + "    ADMIN NO:" + this.adminID;
     }
-
 }

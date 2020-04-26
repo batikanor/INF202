@@ -34,23 +34,41 @@ public class DatabaseAndSession {
 		}
 			
 	}
-	// Not necessary, only there for testing
-	public static void printAllPersonnel() {
+	
+	public static ResultSet returnAllPersonnel() {
 		Connection con = connect();
-
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs;
 			rs = stmt.executeQuery("SELECT * FROM PERSONNEL");
+			/*
 			while(rs.next()) {
 				System.out.println(rs.getString("PERSONNELID") + " | " + rs.getString("USERNAME") + " | " + rs.getString("PASSWORDHASH"));
 			}
+			*/
+			return rs;
 		} catch (SQLException e) {
-			System.out.println("E002: Veritabanı'na gönderilen komut hatalı");
+			System.out.println("E000: Veritabanı'na gönderilen sabit komut çalışmadı");
 			e.printStackTrace();
 		}
+			return null;
 		
 	}
+	public static ResultSet returnPersonnel(String username) {
+		Connection con = connect();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM PERSONNEL WHERE USERNAME=?");
+			ResultSet rs;
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			return rs;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+			return null;
+			}
+	}
+	
 	
 	// To logout, do SessionSingleton.resetInstance()
 	public static void logout() {
@@ -83,7 +101,7 @@ public class DatabaseAndSession {
 					// If it doesnt enter this block, it means that the result set only had one block, thus user isnt admin
 					int adminID = Integer.parseInt(rs2.getString("ADMINID"));
 					SessionSingleton.getInstance(username, adminID);
-					Model.loadWindow("AdminPanel", 1000, 510);
+					Model.loadWindow("AdminPanel", 1205, 652);
 			
 				}else {
 					// User isn't admin
@@ -175,13 +193,14 @@ UNIQUE (USERNAME))
 			con.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			return false;
 		}
 		
 		
 		
-		return false;
+		return true;
 	}
 	
 	
