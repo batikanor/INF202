@@ -1,20 +1,17 @@
 package implicaspection;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 
-public class MenuController implements Initializable{
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-	}
+public class MenuController extends ControllerTemplate{
+
+
 
 	public void closeMenu(ActionEvent event) {
+		count++;
+		System.out.println("Program kapatılıyor");
 		Platform.exit(); //exit javafx
 		System.exit(0); //close app
 	}

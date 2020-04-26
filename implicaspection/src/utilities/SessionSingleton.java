@@ -3,7 +3,7 @@ package utilities;
 // ALTERNATIVE SINGLETON IMPLEMENTATIONS : STATIC HOLDER PATTERN / ENUM
 public final class SessionSingleton {
 	// Singleton pattern: class can only have 1 instance
-	// Volatile. becuase I don't want the JVM to re-order the instructions that happen as a part of "new SessionSingleton(username, adminID);'
+	// Volatile. becuase I don't want the JVM to re-order the instructions that happen as a part of "onlyInstance = new SessionSingleton(username, adminID);'
 	private static volatile SessionSingleton onlyInstance = null;
     
 	private String username;
@@ -58,10 +58,7 @@ public final class SessionSingleton {
 
     @Override
     public String toString() {
-        return "Session{" +
-                "username='" + username + '\'' +
-                ", adminID=" + adminID +
-                '}';
+        return "Kullanıcı bilgileriniz; kullanıcı adı: "+ this.username + " admin numarasi (-1 ise admin değilsiniz) : " + this.adminID;
     }
 
 }

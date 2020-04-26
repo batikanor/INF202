@@ -8,18 +8,17 @@ import javafx.stage.Stage;
 import utilities.DatabaseAndSession;
 
 
-
 public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage){
 		try {
-			
 			Parent root = FXMLLoader.load(getClass().getResource("/implicaspection/Login.fxml"));
 			//primaryStage.initStyle(StageStyle.TRANSPARENT);
 			Scene scene = new Scene(root, 400, 500);
 			//scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
 			primaryStage.setScene(scene);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/styling/application.css").toExternalForm());
+			
 			primaryStage.setTitle("Implicaspection - Login");
 			primaryStage.show();
 		} catch (Exception e){
@@ -33,6 +32,7 @@ public class Main extends Application{
 	public static void main(String[] args){
 		
 		DatabaseAndSession.printAllPersonnel();
+		
 		
 		//DatabaseAndSession.login("testPersonnel", "2turk2alman9uni");
 		//System.out.println(SessionSingleton.getSession().toString());

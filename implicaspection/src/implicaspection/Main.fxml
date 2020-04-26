@@ -2,31 +2,27 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.MainController">
+<AnchorPane prefHeight="600" prefWidth="791.0" style="-fx-background-color: #091f3f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.MainController">
    <children>
-      <Button fx:id="buttonRandom" layoutX="28.0" layoutY="300.0" mnemonicParsing="false" onAction="#generateRandom" prefHeight="50.0" prefWidth="200.0" text="Rastgele sayi oluștur" />
-      <Label fx:id="labelRandom" layoutX="80.0" layoutY="359.0" prefHeight="38.0" prefWidth="95.0" text="..." textAlignment="CENTER">
+      <Button fx:id="buttonRandom" layoutX="28.0" layoutY="300.0" mnemonicParsing="false" onAction="#generateRandom" prefHeight="50.0" prefWidth="200.0" text="Rastgele sayı oluştur" />
+      <Label fx:id="labelRandom" layoutX="81.0" layoutY="259.0" prefHeight="38.0" prefWidth="95.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="28.0" />
          </font></Label>
-      <VBox layoutX="72.0" layoutY="67.0" prefHeight="188.0" prefWidth="645.0">
-         <children>
-            <TextField fx:id="queryInput" prefHeight="0.0" prefWidth="182.0" promptText="Enter command" />
-            <Button mnemonicParsing="false" onAction="#processInput" prefHeight="48.0" prefWidth="797.0" text="Enter Command" />
-            <Label fx:id="queryOutput" prefHeight="116.0" prefWidth="645.0" text="Label">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
       <Button fx:id="buttonAdmin" layoutX="245.0" layoutY="300.0" mnemonicParsing="false" onAction="#openAdminPanel" prefHeight="50.0" prefWidth="150.0" text="Admin paneli iste" />
-      <Label layoutX="7.0" layoutY="30.0" prefHeight="16.0" prefWidth="801.0" text="Kullanici Bilgileriniz: Yuklenemedi" />
-      <Button layoutX="408.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="364.0" text="Şablondan rapor oluştur" />
+      <Label fx:id="labelSession" layoutX="7.0" layoutY="30.0" prefHeight="16.0" prefWidth="801.0" text="Kullanici Bilgileriniz: Yuklenemedi" />
+      <Button fx:id="buttonReport" layoutX="408.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="364.0" text="Şablondan rapor oluştur" />
+      <ImageView fitHeight="135.0" fitWidth="808.0" layoutX="114.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@../images/stripped_login_border.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="buttonPassword" layoutX="28.0" layoutY="364.0" mnemonicParsing="false" onAction="#openAdminPanel" prefHeight="50.0" prefWidth="150.0" text="Şifre değiştir" />
+      <Button fx:id="buttonLogout" layoutX="210.0" layoutY="364.0" mnemonicParsing="false" onAction="#openAdminPanel" prefHeight="50.0" prefWidth="150.0" text="Çıkış yap" />
    </children>
 </AnchorPane>

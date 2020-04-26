@@ -53,7 +53,48 @@ public class Model {
 		return hash;
 		
 	}
-	public static void loadWindow(Class<?> cl, String toLoad, int width, int length)
+	public static void loadWindow(String toLoad, int width, int length)
+	{
+		Stage newStage = new Stage();
+		Parent root;
+		try {
+			
+			System.out.println("loading: " + Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
+			root = FXMLLoader.load(Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
+			Scene scene = new Scene(root, width, length);
+			newStage.setScene(scene);
+			scene.getStylesheets().add(Model.class.getResource("/styling/application.css").toExternalForm());
+			newStage.setTitle(toLoad + " - Implicaspection");
+			newStage.show();
+			
+		} catch (IOException e) {
+			System.out.println("E001: Yüklenmeye çalışılan pencere bulunamadı");
+			e.printStackTrace();
+		}
+		
+	}
+	public static void loadWindowNoCSS(String toLoad, int width, int length)
+	{
+		Stage newStage = new Stage();
+		Parent root;
+		try {
+			
+			System.out.println("loading: " + Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
+			root = FXMLLoader.load(Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
+			Scene scene = new Scene(root, width, length);
+			newStage.setScene(scene);
+
+			newStage.setTitle(toLoad + " - Implicaspection");
+			newStage.show();
+			
+		} catch (IOException e) {
+			System.out.println("E001: Yüklenmeye çalışılan pencere bulunamadı");
+			e.printStackTrace();
+		}
+		
+	}
+	/*
+	 * 	public static void loadWindow(Class<?> cl, String toLoad, int width, int length)
 	{
 		Stage primaryStage = new Stage();
 		Parent root;
@@ -71,12 +112,29 @@ public class Model {
 		}
 		
 	}
+	 *]]]]]]]]]]]] 
+	 *            StackPane secondaryLayout = new StackPane();
+                secondaryLayout.getChildren().add(secondLabel);
+ 
+                Scene secondScene = new Scene(secondaryLayout, 230, 100);
+ 
+                // New window (Stage)
+                Stage newWindow = new Stage();
+                newWindow.setTitle("Second Stage");
+                newWindow.setScene(secondScene);
+ 
+                // Set position of second window, related to primary window.
+                newWindow.setX(primaryStage.getX() + 200);
+                newWindow.setY(primaryStage.getY() + 100);
+ 
+                newWindow.show();
+	 */
 	
 	public static String feedback(String fb, int count, String cName)
 	{
 		// Log this action and put it to a file as final version, make the logging in a "try" block and just nevermind it if it fails
 		// ^ so that a simple logging issue doesn't really affect the functionality of the program.
-		String buff = ("The " + Integer.toString(count) + ". query in class " + cName + " is " + fb);
+		String buff = (cName + " Klasındaki " + Integer.toString(count) + ". işlem şu idi: " + fb);
 		System.out.println(buff);
 		return (buff);
 	}
@@ -86,9 +144,19 @@ public class Model {
 	{
 		Random rand = new Random();
 		String randNum = Integer.toString(rand.nextInt(101));
-		feedback("random number was generated: " + randNum, 0, "Model");
+		feedback("Şu rastgele sayı üretildi: " + randNum, 0, "Model");
 		return randNum; //Generates a random number in range [0,100]
 		
+	}
+	public static boolean isPositiveIntegerOrNull(String text) {
+		// negative isnt accepted, value can be zero or null!
+		for(int i = 0; i < text.length(); i++) {
+			char ch = text.charAt(i);
+			if(ch < '0' || ch > '9') {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }

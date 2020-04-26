@@ -1,7 +1,6 @@
 package implicaspection;
 
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import utilities.SessionSingleton;
+import javafx.scene.control.Button;
 
-public class MainController {
+public class MainController extends ControllerTemplate{
 	
 	// Trivia
 	@FXML
@@ -32,7 +33,30 @@ public class MainController {
 	// About MVC
 	private String className = this.getClass().getSimpleName();
 
-	
+
+	@FXML Button buttonRandom;
+
+
+	@FXML Button buttonAdmin;
+
+
+	@FXML Label labelSession;
+
+
+	@FXML Button buttonReport;
+
+
+	@FXML Button buttonPassword;
+
+
+	@FXML Button buttonLogout;
+
+
+	@Override
+	public void initialize() {
+		count++;
+		labelSession.setText(SessionSingleton.getSession().toString());
+	}
 	
 	@FXML
 	public void processInput(ActionEvent event) {
@@ -56,6 +80,14 @@ public class MainController {
 	}
 	
 	public void openAdminPanel() {
-		Model.loadWindow(this.getClass(), "AdminPanel", 1000, 510);
+		if(SessionSingleton.getSession().getAdminID() > -1) {
+			Model.loadWindow("AdminPanel", 1000, 510);
+			System.out.println("Admin panel yükleniyor");
+		}else {
+			System.out.println("Yalnizca adminler buraya ulaşabilir");
+		}
+		
 	}
+
+
 }

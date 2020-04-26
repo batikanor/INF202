@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
@@ -13,18 +14,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="510.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.AdminPanelController">
+<AnchorPane prefHeight="510.0" prefWidth="1000.0" style="-fx-background-color: #091f3f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.AdminPanelController">
    <children>
       <AnchorPane layoutX="356.0" layoutY="-3.0" prefHeight="527.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane fx:id="paneField" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.rightAnchor="0.0" />
-            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" style="-fx-background-color: darkblue;" visible="false" AnchorPane.rightAnchor="0.0" />
-            <Pane fx:id="paneDB" layoutX="20.0" prefHeight="527.0" prefWidth="663.0" style="-fx-background-color: darkred;" visible="false" AnchorPane.rightAnchor="0.0" />
+            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" visible="false" AnchorPane.rightAnchor="0.0" />
+            <Pane fx:id="paneDB" layoutX="20.0" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.rightAnchor="0.0" />
             <Pane fx:id="paneRegister" prefHeight="527.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <PasswordField layoutX="181.0" layoutY="60.0" promptText="şifre" />
-                  <TextField layoutX="181.0" layoutY="137.0" promptText="kullanıcı adı" />
-                  <PasswordField layoutX="181.0" layoutY="95.0" promptText="şifre (tekrar)" />
+                  <PasswordField fx:id="passwordInput" layoutX="181.0" layoutY="115.0" promptText="şifre" />
+                  <TextField fx:id="usernameInput" layoutX="181.0" layoutY="73.0" promptText="kullanıcı adı" />
+                  <PasswordField fx:id="password2Input" layoutX="181.0" layoutY="159.0" promptText="şifre (tekrar)" />
                   <RadioButton fx:id="rbPersonnel" layoutX="23.0" layoutY="86.0" mnemonicParsing="false" selected="true" text="Personel Hesabı" textFill="WHITE">
                      <toggleGroup>
                         <ToggleGroup fx:id="userType" />
@@ -33,12 +34,13 @@
                   <RadioButton fx:id="rbAdmin" layoutX="23.0" layoutY="128.0" mnemonicParsing="false" text="Admin Hesabı" textFill="WHITE" toggleGroup="$userType" />
                   <Label layoutX="212.0" layoutY="33.0" text="girilmesi zorunlu" />
                   <Label layoutX="421.0" layoutY="33.0" text="girilmesi opsiyonel" />
-                  <Button layoutX="421.0" layoutY="225.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="122.0" text="Kaydet" />
+                  <Button layoutX="421.0" layoutY="225.0" mnemonicParsing="false" onAction="#saveRegister" prefHeight="28.0" prefWidth="122.0" text="Kaydet" />
                   <Label layoutX="21.0" layoutY="33.0" text="oluşturulacak hesap" />
-                  <TextField layoutX="397.0" layoutY="60.0" promptText="level" />
-                  <DatePicker layoutX="397.0" layoutY="95.0" promptText="sertifika tarihi" />
-                  <TextField layoutX="397.0" layoutY="137.0" promptText="isim" />
-                  <TextField layoutX="397.0" layoutY="172.0" promptText="soyisim" />
+                  <TextField fx:id="levelInput" layoutX="397.0" layoutY="60.0" promptText="level" />
+                  <DatePicker fx:id="dateInput" layoutX="397.0" layoutY="95.0" promptText="sertifika tarihi" />
+                  <TextField fx:id="nameInput" layoutX="397.0" layoutY="137.0" promptText="isim" />
+                  <TextField fx:id="surnameInput" layoutX="397.0" layoutY="172.0" promptText="soyisim" />
+                  <TextArea fx:id="areaOutput" layoutX="266.0" layoutY="283.0" prefHeight="204.0" prefWidth="343.0" />
                </children>
             </Pane>
          </children>

@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.sql.Date;
 import implicaspection.Model;
 
 public class DatabaseAndSession {
@@ -15,7 +15,7 @@ public class DatabaseAndSession {
     private static final String pwd = "zoe833uwU";
     private static final String url = "jdbc:hsqldb:file:/home/inductiomori/Desktop/inf202/bati-hsqldb/fuer202/";
     
-   
+
     
 	public static Connection connect() {
 		try {
@@ -83,6 +83,7 @@ public class DatabaseAndSession {
 					// If it doesnt enter this block, it means that the result set only had one block, thus user isnt admin
 					int adminID = Integer.parseInt(rs2.getString("ADMINID"));
 					SessionSingleton.getInstance(username, adminID);
+					Model.loadWindow("AdminPanel", 1000, 510);
 			
 				}else {
 					// User isn't admin
@@ -108,10 +109,25 @@ public class DatabaseAndSession {
 		
 		return false;
 	}
+/*
+ 
+CREATE TABLE PUBLIC.PERSONNEL
+(PERSONNELID INTEGER NOT NULL IDENTITY,
+USERNAME VARCHAR(100) NOT NULL,
+PASSWORDHASH BINARY(16) NOT NULL,
+LEVEL INTEGER,
+CERTIFICATEDATE DATE,
+NAME VARCHAR(100),
+SURAME VARCHAR(100),
+PRIMARY KEY (PERSONNELID),
+UNIQUE (USERNAME))
 
-	public static boolean register(String username, String password) {
+
+ */
+	public static boolean register(String username, String password, int level, Date certificatedate, String name, String surname, boolean isAdmin) {
 		// Hash password
 		byte[] hash = Model.hashPassword(password);
+		
 		Connection con = connect();
 		
 		// Check if user exists, because it is faster if the code doesn't require a try-catch block 
@@ -119,14 +135,45 @@ public class DatabaseAndSession {
 		// Create user
 		PreparedStatement ps;
 		try {
-			ps = con.prepareStatement("INSERT INTO PERSONNEL(USERNAME, PASSWORDHASH) VALUES(?, ?);");
+			ps = con.prepareStatement("INSERT INTO PERSONNEL(USERNAME, PASSWORDHASH, LEVEL, CERTIFICATEDATE, NAME, SURNAME) VALUES(?, ?, ?, ?, ?, ?);");
 			ps.setString(1, username);
 			ps.setBytes(2, hash);
+			if(level == -1) {
+				ps.setNull(3, java.sql.Types.INTEGER);
+			}else {
+				ps.setInt(3, level);
+			}
 			
-			int rs2 = ps.executeUpdate();
+			ps.setDate(4, certificatedate);
+			ps.setString(5, name);
+			ps.setString(6, surname);
+			ps.executeUpdate();
 			con.commit();
+			System.out.println("Personel kaydedildi");
+			if(isAdmin) {
+				// Get PERSONNELID
+				
+				ResultSet rs2;
+				ps = con.prepareStatement("SELECT PERSONNELID FROM PERSONNEL WHERE USERNAME=? AND PASSWORDHASH=?;");
+				ps.setString(1, username);
+				ps.setBytes(2, hash);
+				rs2 = ps.executeQuery();
+				if(rs2.next()) {
+					int personnelID = Integer.parseInt(rs2.getString("PERSONNELID"));
+					System.out.println("Yeni kaydedilen personelin ID si: " + personnelID);
+					ps = con.prepareStatement("INSERT INTO ADMIN(PERSONNELID) VALUES(?);");
+					ps.setInt(1, personnelID);
+					ps.executeUpdate();
+					con.commit();
+					System.out.println("Admin kaydedildi");
+				}else {
+					System.out.println("Az önce oluşturulan kullanıcı, admin tablosuna eklenemedi... race conditions?");
+				}
+			}
+			
+			
 			con.close();
-			System.out.println("rowsUpdated: " + rs2);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,0 +1,33 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/* */
+.root{
+	 
+	-fx-background-color: #091f3f;
+
+	-fx-text-fill: white;
+	
+}
+.button{
+	-fx-text-fill: inherit;
+	-fx-background-color: inherit;
+	-fx-border-color: white;
+	
+}
+
+.label{
+	-fx-text-fill: inherit;
+}
+#labelRandom{
+
+	-fx-background-color: inherit;
+	-fx-text-fill: red;
+
+
+}
+
+/*
+-fx-background-color: rgba(255,255,255,.80);
+
+
+
+*/

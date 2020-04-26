@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import utilities.DatabaseAndSession;
 import utilities.SessionSingleton;
 
-public class LoginController {
+public class LoginController extends ControllerTemplate{
 
 	// About login
 	@FXML
@@ -29,12 +29,13 @@ public class LoginController {
 	public void login(ActionEvent event) throws Exception{
 		count++;
 		String feedback;
+		
 		if(DatabaseAndSession.login(txtUsername.getText(), txtPassword.getText())) {
 			feedback = "Statü: giriş başarılı";
 			status.setText(Model.feedback(feedback, count, className));
 			// Load Main window
 
-			Model.loadWindow(this.getClass(), "Main", 800, 600);
+			Model.loadWindow("Main", 800, 600);
 			
 			// Hide previous window
 			((Node)event.getSource()).getScene().getWindow().hide();
