@@ -8,35 +8,36 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application{
+	
+	public static Stage mainStage = new Stage();
+	
 	@Override
 	public void start(Stage primaryStage){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/implicaspection/Login.fxml"));
-			//primaryStage.initStyle(StageStyle.TRANSPARENT);
-			Scene scene = new Scene(root, 400, 500);
-			//scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
-			primaryStage.setScene(scene);
-			scene.getStylesheets().add(getClass().getResource("/styling/application.css").toExternalForm());
-			
-			primaryStage.setTitle("Implicaspection - Login");
-			primaryStage.show();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
-		
-		
 	
+	try {
+		mainStage = primaryStage;
+		Parent root = FXMLLoader.load(getClass().getResource("/implicaspection/Login.fxml"));
+		//primaryStage.initStyle(StageStyle.TRANSPARENT);
+		Scene scene = new Scene(root, 500, 400);
+		
+		//scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+		mainStage.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("/styling/application.css").toExternalForm());
+		mainStage.setTitle("Login - Implicaspection");
+		mainStage.show();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+		/*
+		Model.loadWindow("Login", 500, 400);
+		mainStage = primaryStage;
+		mainStage.show();
+		*/
 	}
 
 	public static void main(String[] args){
-	
-		//DatabaseAndSession.login("testPersonnel", "2turk2alman9uni");
-		//System.out.println(SessionSingleton.getSession().toString());
-		//DatabaseAndSession.login("testAdmin", "kurtulus0201savasi");
 		launch(args);
-		
-		
-		System.out.println("Program tamamen sonlandırıldı!");
+		System.out.println("E003: Program optimal şekilde sonlandırılamadı");
 	} 
 	
 	
@@ -44,18 +45,36 @@ public class Main extends Application{
 
 
 
-/*
-		try {
-			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getResource("/implicaspection/Main.fxml"));
-			Scene scene = new Scene(root, 800, 600);
-			primaryStage.setScene(scene);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle("Implicaspection - Login");
-			primaryStage.show();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+//DatabaseAndSession.login("testPersonnel", "2turk2alman9uni");
+//System.out.println(SessionSingleton.getSession().toString());
+//DatabaseAndSession.login("testAdmin", "kurtulus0201savasi");
 
+/*
+try {
+	//BorderPane root = new BorderPane();
+	Parent root = FXMLLoader.load(getClass().getResource("/implicaspection/Main.fxml"));
+	Scene scene = new Scene(root, 800, 600);
+	primaryStage.setScene(scene);
+	scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+	primaryStage.setTitle("Implicaspection - Login");
+	primaryStage.show();
+} catch (Exception e){
+	e.printStackTrace();
+}
+
+
+try {
+	
+	Parent root = FXMLLoader.load(getClass().getResource("/implicaspection/Login.fxml"));
+	//primaryStage.initStyle(StageStyle.TRANSPARENT);
+	Scene scene = new Scene(root, 500, 400);
+	//scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+	primaryStage.setScene(scene);
+	scene.getStylesheets().add(getClass().getResource("/styling/application.css").toExternalForm());
+	primaryStage.setTitle("Implicaspection - Login");
+	primaryStage.show();
+} catch (Exception e){
+	e.printStackTrace();
+}
 
 */

@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +21,8 @@ public class Model {
 	// At first I didn't declare the functions here as static because I wanted the 'count' attribute to be special for every class that instances this class, but then I wanted to make the connectDB utility static and to enable usage of the functions here possible from there, I also turned this to static
 	// This is more like a 'Helpers' class, that has all the needed functions for utils and controllers.
 	
-	
+	//public static Vector<Stage> stages = new Vector<>();
+	public static HashMap<String, Stage> stages = new HashMap<String, Stage>();
 	
 	public static byte[] hashPassword(String password){
 		// Creating the salt for passwordHash creation (you need to import java.security.SecureRandom)
@@ -64,8 +67,9 @@ public class Model {
 			newStage.setScene(scene);
 			scene.getStylesheets().add(Model.class.getResource("/styling/application.css").toExternalForm());
 			newStage.setTitle(toLoad + " - Implicaspection");
+			stages.put(toLoad, newStage);
+			//stages.add(newStage);
 			newStage.show();
-			
 		} catch (IOException e) {
 			System.out.println("E001: Yüklenmeye çalışılan pencere bulunamadı");
 			e.printStackTrace();
@@ -147,6 +151,9 @@ public class Model {
 	}
 	public static boolean isPositiveIntegerOrNull(String text) {
 		// negative isnt accepted, value can be zero or null!
+		if(text == null) {
+			return true;
+		}
 		for(int i = 0; i < text.length(); i++) {
 			char ch = text.charAt(i);
 			if(ch < '0' || ch > '9') {
@@ -154,6 +161,21 @@ public class Model {
 			}
 		}
 		return true;
+	}
+	
+	public static void closeAll() {
+		Platform.exit();
+		System.out.println("Program tamamen sonlandırıldı!");
+		System.exit(0);
+		
+	}
+	public static void closeAllLoadLogin() {
+
+		Main.mainStage.show();
+		for(Stage st : stages.values()) {
+			st.close();
+		}
+
 	}
 	
 }

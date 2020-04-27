@@ -74,7 +74,7 @@ public class DatabaseAndSession {
 	public static void logout() {
 		SessionSingleton.resetInstance();
 	}
-	public static boolean login(String username, String password) {
+	public static boolean login(String username, String password, boolean justChecking) {
 		// Hash password
 		byte[] hash = Model.hashPassword(password);
 		Connection con = connect();
@@ -88,6 +88,10 @@ public class DatabaseAndSession {
 			rs2 = ps.executeQuery();
 			if(rs2.next()) {
 				// If at least one row came (if a personnel or admin account was recognized)
+				if(justChecking) {
+					// E.g. when changing password
+					return true;
+				}
 				logout();
 				int personnelID = Integer.parseInt(rs2.getString("PERSONNELID"));
 				
@@ -142,6 +146,66 @@ UNIQUE (USERNAME))
 
 
  */
+	
+	
+	public static boolean update(int personnelid, String username, int level, Date certificatedate, String name, String surname, boolean isAdmin) {
+		Connection con = connect();
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement("UPDATE PERSONNEL SET USERNAME=?, LEVEL=?, CERTIFICATEDATE=?, NAME=?, SURNAME=? WHERE PERSONNELID=?");
+			ps.setString(1, username);
+			if(level == -1) {
+				ps.setNull(2, java.sql.Types.INTEGER);
+			}else {
+				ps.setInt(2, level);
+			}
+			ps.setDate(3, certificatedate);
+			ps.setString(4, name);
+			ps.setString(5, surname);
+			ps.setInt(6, personnelid);
+			
+			ps.executeUpdate();
+			con.commit();
+			System.out.println("Personel değiştirildi");
+			ps = null;
+			// Add to or remove from admin table
+			ResultSet rs;
+			ps = con.prepareStatement("SELECT ADMINID FROM ADMIN WHERE PERSONNELID=?;");
+			ps.setInt(1, personnelid);
+			rs = ps.executeQuery();
+			ps = null; // Otherwise I get a resource leak warning...
+			if(rs.next()) {
+				if(isAdmin == false) {
+					// Personnel was admin but shouldn't be anymore
+					System.out.println("Personel'in elinden adminlik yetkisi alınıyor");
+					ps = con.prepareStatement("DELETE FROM ADMIN WHERE PERSONNELID=?");
+					ps.setInt(1, personnelid);
+					ps.executeUpdate();
+					con.commit();
+				}
+			}else if(isAdmin == true){
+				// Personnel wasn`t admin but should be now
+				System.out.println("Personel`e adminlik yetkisi veriliyor");
+				ps = con.prepareStatement("INSERT INTO ADMIN(PERSONNELID) VALUES(?);");
+				ps.setInt(1, personnelid);
+				ps.executeUpdate();
+				con.commit();
+			}
+			
+			
+			con.close();
+			
+		} catch (SQLException e) {
+			System.out.println("Güncelleme işlemi veritabanında gerçekleştirilemedi");
+			e.printStackTrace();
+			return false;
+		}
+		
+
+		return true;
+	}
+	
+	
 	public static boolean register(String username, String password, int level, Date certificatedate, String name, String surname, boolean isAdmin) {
 		// Hash password
 		byte[] hash = Model.hashPassword(password);
@@ -201,6 +265,63 @@ UNIQUE (USERNAME))
 		
 		
 		return true;
+	}
+
+	public static boolean remove(int personnelid) {
+		Connection con = connect();
+		PreparedStatement ps;
+		ResultSet rs;
+		try {
+			ps = con.prepareStatement("SELECT PERSONNELID FROM ADMIN WHERE PERSONNELID=?");
+			ps.setInt(1, personnelid);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				// is admin
+				// Maybe dont let people do this unless they have a specific admin id like 0...
+				System.out.println("Admin yetkili bir personel hesabını siliyorsunuz.");
+				ps = null;
+				ps = con.prepareStatement("DELETE FROM ADMIN WHERE PERSONNELID=?");
+				ps.setInt(1, personnelid);
+				ps.executeUpdate();
+				con.commit();
+			}else {
+				// isn`t admin
+				System.out.println("Normal bir personel hesabını siliyorsunuz.");
+			}
+			
+			// Personnel silme
+			ps = null;
+			ps = con.prepareStatement("DELETE FROM PERSONNEL WHERE PERSONNELID=?");
+			ps.setInt(1, personnelid);
+			ps.executeUpdate();
+			con.commit();
+		} catch (SQLException e) {
+			System.out.println("");
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+
+	public static boolean changePassword(String username, String password) {
+		Connection con = connect();
+		byte[] hash = Model.hashPassword(password);
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement("UPDATE PERSONNEL SET PASSWORDHASH=? WHERE USERNAME=?;");
+			ps.setBytes(1, hash);
+			ps.setString(2, username);
+			ps.executeUpdate();
+			con.commit();
+			con.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Veritabanında şifre değiştirilemedi");
+			e.printStackTrace();
+			return false;
+		}
+	
 	}
 	
 	

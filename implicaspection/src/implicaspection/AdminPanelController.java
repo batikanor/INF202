@@ -3,7 +3,6 @@ package implicaspection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -18,6 +17,8 @@ import javafx.scene.control.TextArea;
 
 public class AdminPanelController extends ControllerTemplate{
 
+	private int personnelid = -1; //id of the personnel we`re working with
+	
 	@FXML private Pane paneField;
 	@FXML private Pane paneTemplate;
 	@FXML private Pane paneDB;
@@ -45,6 +46,39 @@ public class AdminPanelController extends ControllerTemplate{
 	@FXML TextField changeInput;
 	
 	
+
+	@FXML Button buttonRemove;
+	
+	
+	public void modeRegister() {
+		rbRegister.setSelected(true);
+		System.out.println("Yeni kullanıcı kaydetme moduna geçiliyor.");
+		passwordInput.setDisable(false);
+		password2Input.setDisable(false);
+		buttonRemove.setVisible(false);		
+		passwordInput.setText(null);
+		password2Input.setText(null);
+		usernameInput.setText(null);
+		levelInput.setText(null);
+		dateInput.setValue(null);
+		nameInput.setText(null);
+		surnameInput.setText(null);
+		
+
+		
+	}
+	
+	public void removePersonnel(ActionEvent event) {
+		if(DatabaseAndSession.remove(personnelid)) {
+			System.out.println("Hesap başarıyla silindi");
+			areaOutput.appendText("Hesap başarıyla silindi");
+		}else {
+			System.out.println("Hesap silinirken hatayla karşılaşıldı ve silinemedi.");
+			areaOutput.appendText("Hesap silinirken hatayla karşılaşıldı ve silinemedi.");
+			 
+		}
+		modeRegister();
+	}
 	
 	public void listPersonnel(ActionEvent event) {
 		ResultSet rs = DatabaseAndSession.returnAllPersonnel();
@@ -63,14 +97,32 @@ public class AdminPanelController extends ControllerTemplate{
 		}
 	}
 	public void getPersonnelInfo(ActionEvent event) {
-		rbChange.setSelected(true);
 		count++;
+		
+		areaOutput.setText("");
+		areaOutput.appendText("Personel bilgileri getiriliyor\n");
+		System.out.println("Personel bilgileri getiriliyor");
+		rbChange.setSelected(true);
+		passwordInput.setDisable(true);
+		password2Input.setDisable(true);
+		passwordInput.setText("Değiştirilemez");
+		password2Input.setText("Değiştirilemez");
+		
 		ResultSet rs = DatabaseAndSession.returnPersonnel(changeInput.getText());
 		try {
 			if(rs.next()) {
+				personnelid = rs.getInt(1);
+				usernameInput.setText(rs.getString(2));
+				levelInput.setText(rs.getString(4));
+				Date ld =rs.getDate(5);
+				if(ld != null) {
+					dateInput.setValue(ld.toLocalDate());
+				}else {
+					dateInput.setValue(null);
+				}
 
-				nameInput.setText(rs.getString(2));
-				System.out.println("TODO...");
+				nameInput.setText(rs.getString(6));
+				surnameInput.setText(rs.getString(7));
 				
 			}else {
 				areaOutput.appendText("Bu kullanıcı adına sahip kişi (personel veya admin) bulunamadı\n");
@@ -80,6 +132,7 @@ public class AdminPanelController extends ControllerTemplate{
 			System.out.println("Veritabanından alınan elemanlar sıralanamadı");
 			e.printStackTrace();
 		}
+		buttonRemove.setVisible(true);
 	}
 		
 	
@@ -96,13 +149,17 @@ public class AdminPanelController extends ControllerTemplate{
 		int level = -1; // Integer isnt an object, it is a primitive data type and it cant be null.
 		String name = nameInput.getText();
 		String surname = surnameInput.getText();
-		if(name.equals("")) {
-			name = null;
+		if (name != null) {
+			if(name.contentEquals("")) {
+				name = null;
+			}			
 		}
-		if(surname.equals("")) {
-			surname = null;
+		if (surname != null) {
+			if(surname.contentEquals("")) {
+				surname = null;
+			}
+			
 		}
-		
 
 		
 		
@@ -145,11 +202,12 @@ public class AdminPanelController extends ControllerTemplate{
 				}
 				
 			}else {
-				System.out.println("TODO: change info");
+				if(DatabaseAndSession.update(personnelid, username, level, certificatedate, name, surname, isAdmin)) {
+					areaOutput.appendText("Hesap başarıyla güncellendi.\n");
+				}else {
+					areaOutput.appendText("Hesap güncellenemedi (Kullanıcı adı başkası tarafından kullanılıyor olabilir)\n");
+				}
 			}
-			
-			
-			
 		}
 		
 	}

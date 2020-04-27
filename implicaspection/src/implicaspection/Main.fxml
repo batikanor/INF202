@@ -16,13 +16,14 @@
          </font></Label>
       <Button fx:id="buttonAdmin" layoutX="245.0" layoutY="300.0" mnemonicParsing="false" onAction="#openAdminPanel" prefHeight="50.0" prefWidth="150.0" text="Admin paneli iste" />
       <Label fx:id="labelSession" layoutX="7.0" layoutY="30.0" prefHeight="16.0" prefWidth="801.0" text="Kullanici Bilgileriniz: Yuklenemedi" />
-      <Button fx:id="buttonReport" layoutX="408.0" layoutY="300.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="364.0" text="Şablondan rapor oluştur" />
+      <Button fx:id="buttonReport" layoutX="408.0" layoutY="300.0" mnemonicParsing="false" onAction="#createReport" prefHeight="50.0" prefWidth="364.0" text="Şablondan rapor oluştur" />
       <ImageView fitHeight="135.0" fitWidth="808.0" layoutX="114.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <image>
             <Image url="@../images/stripped_login_border.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonPassword" layoutX="28.0" layoutY="364.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Şifre değiştir" />
-      <Button fx:id="buttonLogout" layoutX="210.0" layoutY="364.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Çıkış yap" />
+      <Button fx:id="buttonPassword" layoutX="28.0" layoutY="364.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="50.0" prefWidth="150.0" text="Şifre değiştir" />
+      <Button fx:id="buttonLogout" layoutX="191.0" layoutY="364.0" mnemonicParsing="false" onAction="#logout" prefHeight="50.0" prefWidth="150.0" text="Çıkış yap" />
+      <Button fx:id="buttonEnd" layoutX="357.0" layoutY="364.0" mnemonicParsing="false" onAction="#closeAll" prefHeight="50.0" prefWidth="150.0" text="Program Sonlandir" />
    </children>
 </AnchorPane>
