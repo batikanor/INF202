@@ -10,11 +10,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import utilities.DatabaseAndSession;
 import utilities.SessionSingleton;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 public class MainController extends ControllerTemplate{
