@@ -46,7 +46,7 @@ public class Main extends Application{
 
 
 //DatabaseAndSession.login("testPersonnel", "2turk2alman9uni");
-//System.out.println(SessionSingleton.getSession().toString());
+//System.out.println(UserSingleton.getSession().toString());
 //DatabaseAndSession.login("testAdmin", "kurtulus0201savasi");
 
 /*

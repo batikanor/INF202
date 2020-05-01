@@ -166,7 +166,7 @@ public class AdminPanelController extends ControllerTemplate{
 		if(rbAdmin.isSelected()) {
 			isAdmin = true;
 		}
-		if(password.length() < 2) {
+		if(password.length() < 3) {
 			// They may want to have easier passwords, its a small company anyways...
 			areaOutput.appendText("Lütfen 2 karakterden daha uzun bir şifre giriniz.\n");
 			inputOK = false;

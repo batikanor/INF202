@@ -9,7 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.WindowEvent;
 import utilities.DatabaseAndSession;
-import utilities.SessionSingleton;
+import utilities.UserSingleton;
 
 public class LoginController extends ControllerTemplate{
 
@@ -61,7 +61,7 @@ public void initialize() {
 //			Stage thisStage = (Stage)(thisNode.getScene().getWindow());
 //			thisStage.close();
 			
-			System.out.println(SessionSingleton.getSession().toString());
+			System.out.println(UserSingleton.getSession().toString());
 		} else {
 			feedback = "Statü: giriş başarısız";
 			status.setText(Model.feedback(feedback, count, className));

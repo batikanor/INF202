@@ -12,7 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import utilities.DatabaseAndSession;
-import utilities.SessionSingleton;
+import utilities.UserSingleton;
 import javafx.scene.control.Button;
 
 public class MainController extends ControllerTemplate{
@@ -46,7 +46,7 @@ public class MainController extends ControllerTemplate{
 	public void initialize() {
 		super.initialize();
 		count++;
-		labelSession.setText(SessionSingleton.getSession().toString());
+		labelSession.setText(UserSingleton.getSession().toString());
 	}
 	
 
@@ -62,12 +62,11 @@ public class MainController extends ControllerTemplate{
 	public void generateRandom(ActionEvent event) throws Exception {
 		
 		labelRandom.setText(Model.generateRandom());
-		// Load Menu window
-		Model.loadWindow("Menu", 800, 600);
+
 	}
 	
 	public void openAdminPanel() {
-		if(SessionSingleton.getSession().getAdminID() > -1) {
+		if(UserSingleton.getSession().getAdminID() > -1) {
 			Model.loadWindow("AdminPanel", 1000, 510);
 			System.out.println("Admin panel yükleniyor");
 		}else {
@@ -123,14 +122,14 @@ public class MainController extends ControllerTemplate{
 
 			@Override
 			public void handle(ActionEvent e2) {
-				if(!DatabaseAndSession.login(SessionSingleton.getSession().getUsername(), passOld.getText(), true)) {
+				if(!DatabaseAndSession.login(UserSingleton.getSession().getUsername(), passOld.getText(), true)) {
 					// password isn`t correct
 					lblStatus.setText("Yanlış şifre girdiniz!");
 				}else {
 					if(passPop.getText() != null && passPop.getText().length() > 2) {
 						if(passPop.getText().contentEquals(confirmPop.getText())) {
 							lblStatus.setText("Şifreniz değiştiriliyor");
-							if(DatabaseAndSession.changePassword(SessionSingleton.getSession().getUsername(), passPop.getText())) {
+							if(DatabaseAndSession.changePassword(UserSingleton.getSession().getUsername(), passPop.getText())) {
 								lblStatus.setText("Şifreniz değiştirildi");
 							}else {
 								lblStatus.setText("Şifreniz değiştirilemedi");

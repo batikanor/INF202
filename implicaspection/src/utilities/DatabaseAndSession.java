@@ -75,7 +75,7 @@ public class DatabaseAndSession {
 	
 	// To logout, do SessionSingleton.resetInstance()
 	public static void logout() {
-		SessionSingleton.resetInstance();
+		UserSingleton.resetInstance();
 	}
 	public static boolean login(String username, String password, boolean justChecking) {
 		// Hash password
@@ -107,12 +107,12 @@ public class DatabaseAndSession {
 				if(rs2.next()) {
 					// If it doesnt enter this block, it means that the result set only had one block, thus user isnt admin
 					int adminID = Integer.parseInt(rs2.getString("ADMINID"));
-					SessionSingleton.getInstance(username, adminID);
+					UserSingleton.getInstance(username, adminID);
 					Model.loadWindow("AdminPanel", 1205, 652);
 			
 				}else {
 					// User isn't admin
-					SessionSingleton.getInstance(username, -1);
+					UserSingleton.getInstance(username, -1);
 					
 				}
 				return true;
