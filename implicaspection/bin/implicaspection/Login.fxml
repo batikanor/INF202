@@ -29,7 +29,7 @@
       </PasswordField>
       <ImageView fitHeight="80.0" fitWidth="500.0" layoutX="14.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
    	  <image>
-            <Image url="@../images/stripped_login_border.png" />
+            <Image url="@../images/striped_login_border.png" />
       </image>
       </ImageView>
    </children>
