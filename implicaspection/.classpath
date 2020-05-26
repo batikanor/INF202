@@ -6,9 +6,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/media/EasilyMovable/0_organized_depot/projects_programming/3_Workspaces_of_programms/java-eclipse-workspace/implicaspection/db/hsqldb.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX14"/>
-	<classpathentry kind="lib" path="/media/EasilyMovable/0_organized_depot/projects_programming/3_Workspaces_of_programms/java-eclipse-workspace/implicaspection/poi/poi-4.1.2.jar"/>
-	<classpathentry kind="lib" path="/media/EasilyMovable/0_organized_depot/projects_programming/3_Workspaces_of_programms/java-eclipse-workspace/implicaspection/poi/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/poi-4.1.2"/>
+	<classpathentry kind="lib" path="db/hsqldb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

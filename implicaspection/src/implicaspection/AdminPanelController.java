@@ -19,10 +19,12 @@ import javafx.scene.control.TextArea;
 
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 //..
 
@@ -61,9 +63,10 @@ public class AdminPanelController extends ControllerTemplate{
 	@FXML Button buttonRemove;
 	@FXML Button buttonSelectTemplate;
 	
-	public void selectTemplate(ActionEvent event) {
+	public void selectTemplate(ActionEvent event) throws IOException {
 		FileChooser fc = new FileChooser();
 		// User should only be able to import xlsx files (maybe add possibility to convert xls to xlsx aswell)
+		// maybe let them add multiple files in the future.
 		fc.getExtensionFilters().add( new ExtensionFilter("XLSX dosyalari", "*.xlsx"));
 		File selectedFile = fc.showOpenDialog(null);
 		if (selectedFile != null) {
@@ -71,9 +74,25 @@ public class AdminPanelController extends ControllerTemplate{
 		} else {
 			System.out.println("Dosya secilemedi");
 		}
-		//FileInputStream file = new FileInputStream(new File("/implicaspection/test.xls"));
-		//Workbook wb = new XSSFWorkbook();
-		//wb.getClass()
+		FileInputStream fis = new FileInputStream(selectedFile);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		// We only get the first sheet, If the file has multiple sheets only the first will be imported!!!
+		int sheetNo = wb.getNumberOfSheets();
+		if (sheetNo > 1) {
+			System.out.println("Oluşturduğunuz dosyada birden fazla sheet (sayfa) vardı, sadece ilki kaydedildi.");
+		}
+		XSSFSheet sheet = wb.getSheetAt(0);
+		
+		int lastRowIndex = sheet.getLastRowNum();
+		int noRows = lastRowIndex + 1;
+		System.out.println(noRows + " tane satır içeren dosya yükleniyor.");
+		sheet.getRow(0).getCell(0).setCellValue("mahmute");
+		FileOutputStream fos = new FileOutputStream("./deneme1.xlsx");
+		wb.write(fos);
+		fos.flush();
+		fos.close();
+		wb.close();
+		System.out.println("done");
 		
 	}
 	public void modeRegister() {
