@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+
 public class Main extends Application{
 	
 	public static Stage mainStage = new Stage();
@@ -36,8 +37,11 @@ public class Main extends Application{
 	}
 
 	public static void main(String[] args){
+
+		
 		launch(args);
 		System.out.println("E003: Program optimal şekilde sonlandırılamadı");
+		
 	} 
 	
 	

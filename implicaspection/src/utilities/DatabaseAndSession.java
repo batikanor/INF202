@@ -280,7 +280,7 @@ UNIQUE (USERNAME))
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				// is admin
-				// Maybe dont let people do this unless they have a specific admin id like 0...
+				// Maybe don't let people do this unless they have a specific admin id like 0...
 				System.out.println("Admin yetkili bir personel hesabını siliyorsunuz.");
 				ps = null;
 				ps = con.prepareStatement("DELETE FROM ADMIN WHERE PERSONNELID=?");

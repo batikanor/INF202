@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
@@ -20,7 +21,6 @@
       <AnchorPane layoutX="356.0" layoutY="-3.0" prefHeight="652.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane fx:id="paneField" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="paneDB" layoutX="20.0" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="paneRegister" prefHeight="652.0" prefWidth="711.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -43,7 +43,8 @@
                   <TextArea fx:id="areaOutput" editable="false" layoutX="14.0" layoutY="224.0" prefHeight="204.0" prefWidth="594.0" promptText="Burada sorguların sonucu veya hatalar görünür.">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
-                     </font></TextArea>
+                     </font>
+                  </TextArea>
                   <Button layoutX="626.0" layoutY="274.0" mnemonicParsing="false" onAction="#getPersonnelInfo" prefHeight="28.0" prefWidth="170.0" text="Hesabı Değiştir" />
                   <Button defaultButton="true" layoutX="212.0" layoutY="441.0" mnemonicParsing="false" onAction="#listPersonnel" prefHeight="28.0" prefWidth="182.0" text="Bütün Hesapları Listele" />
                   <Label layoutX="670.0" layoutY="33.0" text="sonuçlandır" />
@@ -57,6 +58,13 @@
                   </RadioButton>
                   <RadioButton fx:id="rbChange" disable="true" layoutX="24.0" layoutY="118.0" mnemonicParsing="false" text="Hesap değiştirme" textFill="WHITE" toggleGroup="$modType" />
                   <Label layoutX="79.0" layoutY="32.0" text="mod" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button layoutX="545.0" layoutY="494.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="197.0" text="import selected file to db" />
+                  <ListView layoutX="324.0" layoutY="479.0" prefHeight="149.0" prefWidth="182.0" />
+                  <Button fx:id="buttonSelectTemplate" layoutX="109.0" layoutY="494.0" mnemonicParsing="false" onAction="#selectTemplate" onMouseClicked="#selectTemplate" prefHeight="100.0" prefWidth="152.0" text="Select the file" />
                </children>
             </Pane>
          </children>

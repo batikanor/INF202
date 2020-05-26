@@ -1,11 +1,14 @@
 package implicaspection;
 
+import java.io.File;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import utilities.DatabaseAndSession;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -14,6 +17,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//..
 
 public class AdminPanelController extends ControllerTemplate{
 
@@ -48,8 +59,23 @@ public class AdminPanelController extends ControllerTemplate{
 	
 
 	@FXML Button buttonRemove;
+	@FXML Button buttonSelectTemplate;
 	
-	
+	public void selectTemplate(ActionEvent event) {
+		FileChooser fc = new FileChooser();
+		// User should only be able to import xlsx files (maybe add possibility to convert xls to xlsx aswell)
+		fc.getExtensionFilters().add( new ExtensionFilter("XLSX dosyalari", "*.xlsx"));
+		File selectedFile = fc.showOpenDialog(null);
+		if (selectedFile != null) {
+			System.out.println(selectedFile.getName() +  " ahah " + selectedFile.getAbsolutePath());
+		} else {
+			System.out.println("Dosya secilemedi");
+		}
+		//FileInputStream file = new FileInputStream(new File("/implicaspection/test.xls"));
+		//Workbook wb = new XSSFWorkbook();
+		//wb.getClass()
+		
+	}
 	public void modeRegister() {
 		rbRegister.setSelected(true);
 		System.out.println("Yeni kullanıcı kaydetme moduna geçiliyor.");
