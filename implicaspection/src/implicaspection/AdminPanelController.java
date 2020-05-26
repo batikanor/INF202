@@ -15,17 +15,19 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Workbook;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.hsqldb.lib.FileUtil;
 //..
 
 public class AdminPanelController extends ControllerTemplate{
@@ -61,39 +63,69 @@ public class AdminPanelController extends ControllerTemplate{
 	
 
 	@FXML Button buttonRemove;
+	
 	@FXML Button buttonSelectTemplate;
+	@FXML Button buttonSaveTemplate;
+	@FXML Label lblFileName;
+	@FXML Label lblSelectedFile;
+	@FXML Label lblFilePath;
+	@FXML Label lblFileSize;
+	@FXML Label lblSheet;
+	
+	private File selectedFile;
+	private XSSFWorkbook wb;
+	private XSSFSheet sheet;
 	
 	public void selectTemplate(ActionEvent event) throws IOException {
 		FileChooser fc = new FileChooser();
 		// User should only be able to import xlsx files (maybe add possibility to convert xls to xlsx aswell)
 		// maybe let them add multiple files in the future.
-		fc.getExtensionFilters().add( new ExtensionFilter("XLSX dosyalari", "*.xlsx"));
-		File selectedFile = fc.showOpenDialog(null);
+		fc.getExtensionFilters().add( new ExtensionFilter("XLSX dosyaları", "*.xlsx"));
+		selectedFile = fc.showOpenDialog(null);
 		if (selectedFile != null) {
-			System.out.println(selectedFile.getName() +  " ahah " + selectedFile.getAbsolutePath());
+			
+			
+			lblSelectedFile.setVisible(false);
+			lblFileName.setText(selectedFile.getName());
+			lblFilePath.setText(selectedFile.getAbsolutePath());
+			//lblFileSize.setText(String.valueOf(selectedFile.getTotalSpace()));
+
+			lblFileSize.setText(Model.getFileSizeKiloByteString(selectedFile));
+			FileInputStream fis = new FileInputStream(selectedFile);
+			wb = new XSSFWorkbook(fis);
+			
+			// We only get the first sheet, If the file has multiple sheets only the first will be imported!!!
+			int sheetNo = wb.getNumberOfSheets();
+			lblSheet.setText(String.valueOf(sheetNo));
+			sheet = wb.getSheetAt(0);
+			buttonSaveTemplate.setDisable(false);
+
+			
 		} else {
 			System.out.println("Dosya secilemedi");
 		}
-		FileInputStream fis = new FileInputStream(selectedFile);
-		XSSFWorkbook wb = new XSSFWorkbook(fis);
-		// We only get the first sheet, If the file has multiple sheets only the first will be imported!!!
-		int sheetNo = wb.getNumberOfSheets();
-		if (sheetNo > 1) {
-			System.out.println("Oluşturduğunuz dosyada birden fazla sheet (sayfa) vardı, sadece ilki kaydedildi.");
+
+	}
+	public void saveTemplate(ActionEvent event) throws IOException {
+		if (lblSelectedFile.isVisible() == false) {
+
+			
+			int lastRowIndex = sheet.getLastRowNum();
+			int noRows = lastRowIndex + 1;
+			System.out.println(noRows + " tane satır içeren dosya kaydediliyor.");
+			sheet.getRow(0).getCell(0).setCellValue("şablondur");
+			FileOutputStream fos = new FileOutputStream("./report-templates/" + selectedFile.getName());
+			wb.write(fos);
+			fos.flush();
+			fos.close();
+			wb.close();
+			buttonSaveTemplate.setDisable(true);
+			
+			System.out.println("Seçili dosya kaydedildi");
+		} else {
+			System.out.println("Önce bir dosya seçiniz");
 		}
-		XSSFSheet sheet = wb.getSheetAt(0);
-		
-		int lastRowIndex = sheet.getLastRowNum();
-		int noRows = lastRowIndex + 1;
-		System.out.println(noRows + " tane satır içeren dosya yükleniyor.");
-		sheet.getRow(0).getCell(0).setCellValue("mahmute");
-		FileOutputStream fos = new FileOutputStream("./deneme1.xlsx");
-		wb.write(fos);
-		fos.flush();
-		fos.close();
-		wb.close();
-		System.out.println("done");
-		
+
 	}
 	public void modeRegister() {
 		rbRegister.setSelected(true);

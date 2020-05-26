@@ -1,5 +1,6 @@
 package implicaspection;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -23,6 +24,12 @@ public class Model {
 	
 	//public static Vector<Stage> stages = new Vector<>();
 	public static HashMap<String, Stage> stages = new HashMap<String, Stage>();
+	
+	public static String getFileSizeKiloByteString(File file) {
+		double len = (double)file.length() / 1024;
+
+		return String.valueOf(len) + " KB";
+	}
 	
 	public static byte[] hashPassword(String password){
 		// Creating the salt for passwordHash creation (you need to import java.security.SecureRandom)
