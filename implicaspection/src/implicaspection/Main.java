@@ -40,6 +40,7 @@ public class Main extends Application{
 
 		
 		launch(args);
+		
 		System.out.println("E003: Program optimal şekilde sonlandırılamadı");
 		
 	} 
