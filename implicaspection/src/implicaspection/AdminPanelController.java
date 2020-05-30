@@ -34,12 +34,12 @@ public class AdminPanelController extends ControllerTemplate{
 
 	private int personnelid = -1; //id of the personnel we`re working with
 	
-	@FXML private Pane paneField;
+	@FXML private Pane paneJobFirma;
 	@FXML private Pane paneTemplate;
 	@FXML private Pane paneDB;
 	@FXML private Pane paneRegister;
 	@FXML private Button buttonRegister;
-	@FXML private Button buttonField;
+	@FXML private Button buttonJobFirma;
 	@FXML private Button buttonTemplate;
 	@FXML private Button buttonDB;
 	
@@ -297,32 +297,32 @@ public class AdminPanelController extends ControllerTemplate{
 		if(event.getSource() == buttonRegister) {
 			paneRegister.toFront();
 			
-			paneField.setVisible(false);
+			paneJobFirma.setVisible(false);
 			paneDB.setVisible(false);
 			paneTemplate.setVisible(false);
 			paneRegister.setVisible(true);
 		}
-		else if(event.getSource() == buttonField) {
-			paneField.toFront();
+		else if(event.getSource() == buttonJobFirma) {
+			paneJobFirma.toFront();
 			
 			paneDB.setVisible(false);
 			paneTemplate.setVisible(false);
 			paneRegister.setVisible(false);
-			paneField.setVisible(true);
+			paneJobFirma.setVisible(true);
 		}
 		else if(event.getSource() == buttonDB) {
 			paneDB.toFront();
 			
 			paneTemplate.setVisible(false);
 			paneRegister.setVisible(false);
-			paneField.setVisible(false);
+			paneJobFirma.setVisible(false);
 			paneDB.setVisible(true);
 		}
 		else if(event.getSource() == buttonTemplate) {
 			paneTemplate.toFront();
 			
 			paneRegister.setVisible(false);
-			paneField.setVisible(false);
+			paneJobFirma.setVisible(false);
 			paneDB.setVisible(false);
 			paneTemplate.setVisible(true);
 		}

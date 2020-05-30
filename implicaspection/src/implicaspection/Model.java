@@ -157,7 +157,7 @@ public class Model {
 		
 	}
 	public static boolean isPositiveIntegerOrNull(String text) {
-		// negative isnt accepted, value can be zero or null!
+		// negative isn't accepted, value can be zero or null!
 		if(text == null) {
 			return true;
 		}

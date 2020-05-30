@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -19,8 +21,8 @@
    <children>
       <AnchorPane layoutX="356.0" layoutY="-3.0" prefHeight="652.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane fx:id="paneField" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="paneDB" layoutX="20.0" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="paneJobFirma" prefHeight="527.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="paneRegister" prefHeight="652.0" prefWidth="711.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <PasswordField fx:id="passwordInput" layoutX="181.0" layoutY="114.0" promptText="şifre" />
@@ -59,9 +61,9 @@
                   <Label layoutX="79.0" layoutY="32.0" text="mod" />
                </children>
             </Pane>
-            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="buttonSaveTemplate" disable="true" layoutX="325.0" layoutY="269.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="100.0" prefWidth="158.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="buttonSaveTemplate" disable="true" layoutX="626.0" layoutY="507.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="100.0" prefWidth="158.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="buttonSelectTemplate" layoutX="328.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectTemplate" onMouseClicked="#selectTemplate" prefHeight="100.0" prefWidth="152.0" text="Dosya seç" />
                   <Label fx:id="lblSelectedFile" layoutX="309.0" layoutY="121.0" text="Henüz hiçbir dosya seçilmedi" />
                   <Label layoutX="54.0" layoutY="177.0" prefHeight="3.0" prefWidth="102.0" text="Dosya konumu:" />
@@ -76,6 +78,17 @@
                   <Label fx:id="lblFilePath" layoutX="167.0" layoutY="177.0" prefHeight="16.0" prefWidth="643.0" text="-" />
                   <Label fx:id="lblFileSize" layoutX="156.0" layoutY="204.0" prefHeight="16.0" prefWidth="594.0" text="-" />
                   <Label fx:id="lblSheet" layoutX="450.0" layoutY="230.0" prefHeight="16.0" prefWidth="281.0" text="-" />
+                  <TableView layoutX="105.0" layoutY="286.0" prefHeight="204.0" prefWidth="504.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="69.0" layoutY="264.0" text="Şablonda halihazırda kayıtlı bölgeler:" />
+                  <Button layoutX="94.0" layoutY="612.0" mnemonicParsing="false" text="Bölge Ekle" />
+                  <TextField layoutX="33.0" layoutY="501.0" prefHeight="26.0" prefWidth="209.0" promptText="bölge adı" />
+                  <TextField layoutX="33.0" layoutY="534.0" prefHeight="30.0" prefWidth="209.0" promptText="default değeri" />
+                  <TextField layoutX="33.0" layoutY="571.0" prefHeight="30.0" prefWidth="209.0" promptText="Hücre Konumu (örneğin C5)" />
                </children>
             </Pane>
          </children>
@@ -98,7 +111,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonField" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="179.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Rapor Bölgesi Ekle" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+            <Button fx:id="buttonJobFirma" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="220.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Rapor Bölgesi (Field) Ekle" textFill="WHITE" AnchorPane.leftAnchor="1.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -106,7 +119,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonTemplate" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="118.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="NOT DONE Rapor Şablonu Oluştur" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+            <Button fx:id="buttonTemplate" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="163.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Rapor Şablonu Kaydet" textFill="WHITE" AnchorPane.leftAnchor="1.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -114,7 +127,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonDB" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="71.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Veritabani komutu gir" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+            <Button fx:id="buttonDB" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="310.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Veritabani komutu gir" textFill="WHITE" AnchorPane.leftAnchor="1.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

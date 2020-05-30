@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 import implicaspection.Model;
+import javafx.scene.control.ComboBox;
 
 public class DatabaseAndSession {
 	private static final String Driver = "org.hsqldb.jdbcDriver";
@@ -38,6 +39,25 @@ public class DatabaseAndSession {
 			
 	}
 	
+	public static ComboBox<String> returnComboBoxValues(String fieldName) {
+		Connection con = connect();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT FIELDCONTENT FROM FIELDMULTI WHERE FIELDNAME=?");
+			ResultSet rs;
+			ComboBox<String> buff = new ComboBox<String>();
+			ps.setString(1, fieldName);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String content = rs.getString("FIELDCONTENT");
+				buff.getItems().add(content);
+			}
+			return buff;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+			return null;
+			}
+	}
 	public static ResultSet returnAllPersonnel() {
 		Connection con = connect();
 		try {
