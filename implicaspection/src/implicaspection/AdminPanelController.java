@@ -29,6 +29,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.hsqldb.lib.FileUtil;
 //..
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.TableView;
 
 public class AdminPanelController extends ControllerTemplate{
 
@@ -75,12 +77,22 @@ public class AdminPanelController extends ControllerTemplate{
 	private File selectedFile;
 	private XSSFWorkbook wb;
 	private XSSFSheet sheet;
+
+	@FXML ToggleGroup fieldType;
+
+	@FXML TableView fieldsTable;
+	
+	
+	private void updateTable() {
+		//tableView.add
+
+	}
 	
 	public void selectTemplate(ActionEvent event) throws IOException {
 		FileChooser fc = new FileChooser();
 		// User should only be able to import xlsx files (maybe add possibility to convert xls to xlsx aswell)
 		// maybe let them add multiple files in the future.
-		fc.getExtensionFilters().add( new ExtensionFilter("XLSX dosyaları", "*.xlsx"));
+		fc.getExtensionFilters().add(new ExtensionFilter("XLSX dosyaları", "*.xlsx"));
 		selectedFile = fc.showOpenDialog(null);
 		if (selectedFile != null) {
 			
@@ -108,12 +120,13 @@ public class AdminPanelController extends ControllerTemplate{
 	}
 	public void saveTemplate(ActionEvent event) throws IOException {
 		if (lblSelectedFile.isVisible() == false) {
-
+			
 			
 			int lastRowIndex = sheet.getLastRowNum();
 			int noRows = lastRowIndex + 1;
 			System.out.println(noRows + " tane satır içeren dosya kaydediliyor.");
-			sheet.getRow(0).getCell(0).setCellValue("şablondur");
+			//sheet.getRow(0).getCell(0).setCellValue("şablondur");
+			// Maybe add something before the file name to show that its a template
 			FileOutputStream fos = new FileOutputStream("./report-templates/" + selectedFile.getName());
 			wb.write(fos);
 			fos.flush();

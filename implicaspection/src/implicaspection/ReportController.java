@@ -3,13 +3,22 @@ package implicaspection;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Comment;
+import org.apache.poi.xssf.model.CommentsTable;
+import org.apache.poi.xssf.usermodel.XSSFComment;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTComment;
+
+import com.microsoft.schemas.vml.CTShape;
 
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
@@ -60,9 +69,12 @@ public class ReportController extends ControllerTemplate{
 		selectedFile = fc.showOpenDialog(null);
 		if (selectedFile != null) {
 			FileInputStream fis = new FileInputStream(selectedFile);
+			
+			String fileName = selectedFile.getName();
 			wb = new XSSFWorkbook(fis);
 			// We only get the first sheet, If the file has multiple sheets only the first will be imported!!!
 			sheet = wb.getSheetAt(0);
+			
 			
 			int rowCount = sheet.getLastRowNum();
 			int rowsUsed = 0;
@@ -76,6 +88,7 @@ public class ReportController extends ControllerTemplate{
 						
 						if ((sheet.getRow(i).getCell(j).getCellComment() != null)){
 							String comment = sheet.getRow(i).getCell(j).getCellComment().getString().toString();
+			
 							//System.out.println(comment);
 							if (comment.startsWith("???")){
 								comment = comment.substring(3);
@@ -84,13 +97,14 @@ public class ReportController extends ControllerTemplate{
 								VBox celly;
 								Label meaning;
 								TextField textContent;
+								Label cell = new Label("Sütun: " + (j + 1) + " Satır: " + (i + 1));
 								ComboBox<String> comboContent;
 								Spinner<Integer> percentage;
 								if (commentParts[0].contentEquals("default")) {
 									celly = new VBox();
 									meaning = new Label(commentParts[1]);
 									textContent = new TextField(commentParts[2]);
-									celly.getChildren().addAll(meaning, textContent);
+									celly.getChildren().addAll(cell, meaning, textContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 								} else if (commentParts[0].contentEquals("percent")) {
 									celly = new VBox();
@@ -99,7 +113,7 @@ public class ReportController extends ControllerTemplate{
 									
 									percentage = new Spinner<Integer>();
 									percentage.setValueFactory(percVals);
-									celly.getChildren().addAll(meaning, percentage);
+									celly.getChildren().addAll(cell, meaning, percentage);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 								} else if (commentParts[0].contentEquals("combo")) {
 									celly = new VBox();
@@ -110,7 +124,7 @@ public class ReportController extends ControllerTemplate{
 									// You may need to set it to a default value in some occasions, an if check here could do it
 									
 									
-									celly.getChildren().addAll(meaning, comboContent);
+									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 									
 								}
@@ -132,9 +146,26 @@ public class ReportController extends ControllerTemplate{
 				if (rowUsed) {
 					rowsUsed++;
 				}
+
+			
+
 				
 			}
-			
+			//XSSFComment commentExported = sheet.getRow(0).getCell(0).getCellComment();
+			//commentExported.setString("exported");
+			//^doesnt work if null
+
+
+			//sheet.getRow(0).getCell(0).setCellValue("exported");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HH:mm:ss");  
+		    Date date = new Date();
+		    String dateStr = formatter.format(date);
+					FileOutputStream fos = new FileOutputStream("./report-exports/" + fileName.substring(0, fileName.lastIndexOf(".")) + dateStr + ".xlsx");
+					wb.write(fos);
+					fos.flush();
+					fos.close();
+					wb.close();
+					
 		} else {
 			System.out.println("Dosya açılamadı");
 		}

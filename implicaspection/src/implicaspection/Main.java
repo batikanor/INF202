@@ -1,5 +1,8 @@
 package implicaspection;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,8 +40,10 @@ public class Main extends Application{
 	}
 
 	public static void main(String[] args){
-
-		
+; 
+		String yo = "istanbul";
+		String yopart[] = yo.split("/");
+		System.out.println(yopart[0]);
 		launch(args);
 		
 		System.out.println("E003: Program optimal şekilde sonlandırılamadı");
