@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.Date;
 import implicaspection.Model;
 import implicaspection.ReportController;
@@ -51,8 +52,19 @@ public class DatabaseAndSession {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				decisiveName = rs.getString("DECISIVENAME");
-				ReportController.dependenceMap.put(decisiveName, dependantName);
-				// Get field content (from the map that updates every tıme an input changes)
+				
+				ArrayList<String> bufflist = ReportController.dependenceMap.get(decisiveName);
+		
+				if (bufflist == null) {
+					bufflist = new ArrayList<String>();
+					System.out.println("bufflist was null");
+				} 
+				if (!bufflist.contains(dependantName)) {
+					bufflist.add(dependantName);
+					ReportController.dependenceMap.put(decisiveName, bufflist);
+				}
+
+				// Get field content (from the map that updates every time an input changes)
 				String decisiveContent = ReportController.contentsMap.get(decisiveName);
 				if (decisiveContent == null) {
 					System.out.println("Bu alan için mümkün bir değer bulunmamaktadır. Lütfen önce seçenek ekleyiniz veya " + decisiveName + "alanindaki seçiminizi değiştiriniz.");

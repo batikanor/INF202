@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,33 +48,49 @@ public class ReportController extends ControllerTemplate{
 	public static HashMap<String, String> locationsMap = new HashMap<String, String>();
 	
 	// String decisiveName, String dependantName
-	// HER DECISIVE ICIN BIRDEN COK DEPENDANT OLABILIR O YUZDEN 2.YI LISTE YAP
-	public static HashMap<String, String> dependenceMap = new HashMap<String, String>();
+	// There may be multiple dependants to a decisive field.
+	public static HashMap<String, ArrayList<String>> dependenceMap = new HashMap<String, ArrayList<String>>();
 	
 	// Grid locations of dependants
+
+
 	
-	
-	private void updateDependantIfExists(String decisiveName) {
+	private void updateDependants(String decisiveName) {
+		System.out.println(1);
 		if (dependenceMap.keySet().contains(decisiveName)) {
-			String dependantName = dependenceMap.get(decisiveName);
-			
-			for (Node m : gridPane.getChildren()) {
-				if (dependantName.equals(m.getUserData())) {
-					VBox cellToUpdate = (VBox) m;
-					VBox newVBox = new VBox();
-					newVBox.setUserData(dependantName);
-					newVBox.getChildren().addAll(cellToUpdate.getChildren());
-					gridPane.getChildren().remove(m);
-					newVBox.getChildren().remove(2);
-					ComboBox<String> newCombo = DatabaseAndSession.returnDependantValues(dependantName);
-					newVBox.getChildren().add(newCombo);
-					gridPane.add(newVBox, 0, 1);
-					contentsMap.put(dependantName, null);
-					newCombo.valueProperty().addListener( (v, oldValue, newValue) -> {
-						System.out.println("şu bölgede: " + dependantName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
-						contentsMap.put(dependantName, newValue);
-					});
-					break;
+			System.out.println(decisiveName);
+			ArrayList<String> dependantNames = dependenceMap.get(decisiveName);
+			if (dependantNames != null) {
+				for(String dependantName : dependantNames) {
+					System.out.println(3);
+					System.out.println(dependantName);
+					for (Node m : gridPane.getChildren()) {
+						System.out.println(4);
+						System.out.println(dependantName);
+						System.out.println(m.getUserData());
+						if (dependantName.equals(m.getUserData())) {
+							VBox cellToUpdate = (VBox) m;
+							VBox newVBox = new VBox();
+							newVBox.setUserData(dependantName);
+							System.out.println(9);
+							newVBox.getChildren().addAll(cellToUpdate.getChildren());
+							gridPane.getChildren().remove(m);
+							newVBox.getChildren().remove(2);
+							ComboBox<String> newCombo = DatabaseAndSession.returnDependantValues(dependantName);
+							System.out.println(4);
+							newVBox.getChildren().add(newCombo);
+							gridPane.add(newVBox, 0, 1);
+							
+							contentsMap.put(dependantName, null);
+							
+							newCombo.valueProperty().addListener( (v, oldValue, newValue) -> {
+								System.out.println("şu bölgede: " + dependantName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+								contentsMap.put(dependantName, newValue);
+							});
+							System.out.println(99);
+							break;
+						}
+					}
 				}
 			}
 			
@@ -145,6 +162,7 @@ public class ReportController extends ControllerTemplate{
 								
 								if (commentParts[0].contentEquals("default")) {
 									celly = new VBox();
+									//celly.setUserData(fieldName);
 									strContent = commentParts[3];
 									textContent = new TextField(strContent);
 									contentsMap.put(fieldName, strContent);
@@ -154,13 +172,13 @@ public class ReportController extends ControllerTemplate{
 									textContent.textProperty().addListener( (v, oldValue, newValue) -> {
 										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 										contentsMap.put(fieldName, newValue);
-										updateDependantIfExists(fieldName);
+										updateDependants(fieldName);
 									});
 									
 								} else if (commentParts[0].contentEquals("percent")) {
 									celly = new VBox();
 							
-									
+									//celly.setUserData(fieldName);
 									strContent = commentParts[3];
 									intContent = Integer.parseInt(strContent);
 									SpinnerValueFactory<Integer> percVals = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, intContent);
@@ -178,6 +196,7 @@ public class ReportController extends ControllerTemplate{
 									
 								} else if (commentParts[0].contentEquals("combo")) {
 									celly = new VBox();
+									//celly.setUserData(fieldName);
 									// Get data from DB and load them to combobox
 									comboContent = DatabaseAndSession.returnComboBoxValues(fieldName);
 									// You may need to set it to a default value in some occasions, an if check here could do it
@@ -194,7 +213,7 @@ public class ReportController extends ControllerTemplate{
 									comboContent.valueProperty().addListener( (v, oldValue, newValue) -> {
 										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 										contentsMap.put(fieldName, newValue);
-										updateDependantIfExists(fieldName);
+										updateDependants(fieldName);
 									});
 					
 									
@@ -202,6 +221,7 @@ public class ReportController extends ControllerTemplate{
 								} else if (commentParts[0].contentEquals("depend")) {
 									celly = new VBox();
 									celly.setUserData(fieldName);
+									
 									// Get data from DB and load them to combobox
 									comboContent = DatabaseAndSession.returnDependantValues(fieldName);
 									// You may need to set it to a default value in some occasions, an if check here could do it
@@ -210,7 +230,7 @@ public class ReportController extends ControllerTemplate{
 										System.out.println("alan doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi");
 										continue;
 									}
-									comboContent.setUserData("combo");
+									//comboContent.setUserData("combo");
 									
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
