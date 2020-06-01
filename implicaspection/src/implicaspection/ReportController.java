@@ -61,14 +61,19 @@ public class ReportController extends ControllerTemplate{
 			System.out.println(decisiveName);
 			ArrayList<String> dependantNames = dependenceMap.get(decisiveName);
 			if (dependantNames != null) {
+				
 				for(String dependantName : dependantNames) {
-					System.out.println(3);
 					System.out.println(dependantName);
+					
 					for (Node m : gridPane.getChildren()) {
-						System.out.println(4);
+
+						
 						System.out.println(dependantName);
 						System.out.println(m.getUserData());
 						if (dependantName.equals(m.getUserData())) {
+							
+							int row = GridPane.getRowIndex(m);
+							int col = gridPane.getColumnIndex(m);
 							VBox cellToUpdate = (VBox) m;
 							VBox newVBox = new VBox();
 							newVBox.setUserData(dependantName);
@@ -79,8 +84,7 @@ public class ReportController extends ControllerTemplate{
 							ComboBox<String> newCombo = DatabaseAndSession.returnDependantValues(dependantName);
 							System.out.println(4);
 							newVBox.getChildren().add(newCombo);
-							gridPane.add(newVBox, 0, 1);
-							
+							gridPane.add(newVBox, col, row);
 							contentsMap.put(dependantName, null);
 							
 							newCombo.valueProperty().addListener( (v, oldValue, newValue) -> {
