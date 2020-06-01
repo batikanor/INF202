@@ -1,7 +1,6 @@
 package implicaspection;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +39,8 @@ public class Main extends Application{
 	}
 
 	public static void main(String[] args){
-; 
+ 		System.out.println(Model.GetExcelColumnString(1));
+ 		System.out.println(Model.GetExcelColumnString(30));
 		String yo = "istanbul";
 		String yopart[] = yo.split("/");
 		System.out.println(yopart[0]);

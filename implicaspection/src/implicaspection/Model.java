@@ -24,7 +24,21 @@ public class Model {
 	
 	//public static Vector<Stage> stages = new Vector<>();
 	public static HashMap<String, Stage> stages = new HashMap<String, Stage>();
-	
+	public static String GetExcelColumnString(int columnNo){
+	    int dividend = columnNo;
+	    
+	    String columnStr = "";
+	    int mod;
+
+	    while (dividend > 0)
+	    {
+	        mod = (dividend - 1) % 26;
+	        columnStr += (char)(65 + mod);
+	        dividend = (int)((dividend - mod) / 26);
+	    } 
+
+	    return columnStr;
+	}
 	public static String getFileSizeKiloByteString(File file) {
 		double len = (double)file.length() / 1024;
 

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 import implicaspection.Model;
+import implicaspection.ReportController;
 import javafx.scene.control.ComboBox;
 
 public class DatabaseAndSession {
@@ -38,7 +39,32 @@ public class DatabaseAndSession {
 		}
 			
 	}
-	
+	public static ComboBox<String> returnDependantValues(String fieldName) {
+		Connection con = connect();
+		try {
+			
+			// Get field content (from the map that updates every tıme an input changes)
+			
+			String fieldContent = ReportController.contentsMap.get("fieldName");
+			if (fieldContent == null) {
+				System.out.println("Bu alan için mümkün bir değer bulunmamaktadır. Lütfen önce ekleyiniz veya " + fieldName + "alanindaki seçiminizi değiştiriniz.");
+			}
+			PreparedStatement ps = con.prepareStatement("SELECT DEPENDANTCONTENT FROM FIELDDEPEND WHERE FIELDCONTENT=?");
+			ResultSet rs;
+			ComboBox<String> buff = new ComboBox<String>();
+			ps.setString(1, fieldContent);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String content = rs.getString("DEPENDANTCONTENT");
+				buff.getItems().add(content);
+			}
+			return buff;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+			return null;
+			}
+	}
 	public static ComboBox<String> returnComboBoxValues(String fieldName) {
 		Connection con = connect();
 		try {

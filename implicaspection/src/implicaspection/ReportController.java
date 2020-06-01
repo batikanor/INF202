@@ -8,35 +8,24 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Comment;
-import org.apache.poi.xssf.model.CommentsTable;
-import org.apache.poi.xssf.usermodel.XSSFComment;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTComment;
-
-import com.microsoft.schemas.vml.CTShape;
 
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
+
 import utilities.DatabaseAndSession;
+
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 
@@ -47,7 +36,12 @@ public class ReportController extends ControllerTemplate{
 	private XSSFWorkbook wb;
 	private XSSFSheet sheet;
 	@FXML GridPane gridPane;
-	//public static HashMap<String, ComboBox> stages = new HashMap<String, ComboBox>();
+	// String fieldName, String fieldContent
+	public static HashMap<String, String> contentsMap = new HashMap<String, String>();
+	// As soon as a field has been updated, update the contentsMap with listeners aswell!!! 
+	// String fieldName, int fieldLocation
+	public static HashMap<String, Integer> locationsMap = new HashMap<String, Integer>();
+	
 	
 	public void openTemplate(ActionEvent event) throws IOException {
 	   // ColumnConstraints colConstraint = new ColumnConstraints(120);
@@ -95,27 +89,59 @@ public class ReportController extends ControllerTemplate{
 								String commentParts[] = comment.split("\\?\\?\\?");
 								// commentsParts[0] should be type of entry
 								VBox celly;
-								Label meaning;
+								String fieldName;
+								String meaningStr = commentParts[1];
+								Label meaning = new Label(meaningStr);
 								TextField textContent;
-								Label cell = new Label("Sütun: " + (j + 1) + " Satır: " + (i + 1));
+								String strContent;
+								int intContent;
+								Label cell = new Label("Sütun: " + Model.GetExcelColumnString(j + 1) + " Satır: " + (i + 1));
 								ComboBox<String> comboContent;
 								Spinner<Integer> percentage;
+								
 								if (commentParts[0].contentEquals("default")) {
 									celly = new VBox();
-									meaning = new Label(commentParts[1]);
-									textContent = new TextField(commentParts[2]);
+								
+									
+									fieldName= commentParts[2];
+									strContent = commentParts[3];
+									textContent = new TextField(strContent);
+									contentsMap.put(fieldName, strContent);
+									textContent.textProperty().addListener( (v, oldValue, newValue) -> {
+										System.out.println("on " + meaningStr + " " + oldValue + " is now " + newValue);
+										contentsMap.put(fieldName, newValue);
+									});
 									celly.getChildren().addAll(cell, meaning, textContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
+									
 								} else if (commentParts[0].contentEquals("percent")) {
 									celly = new VBox();
-									meaning = new Label(commentParts[1]);
-									SpinnerValueFactory<Integer> percVals = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100,Integer.parseInt(commentParts[2]));
-									
+							
+									fieldName= commentParts[2];
+									strContent = commentParts[3];
+									intContent = Integer.parseInt(strContent);
+									SpinnerValueFactory<Integer> percVals = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, intContent);
 									percentage = new Spinner<Integer>();
 									percentage.setValueFactory(percVals);
+									contentsMap.put(fieldName, strContent);
+									percentage.valueProperty().addListener( (v, oldValue, newValue) -> {
+										System.out.println("on " + meaningStr + " " + oldValue + " is now " + newValue);
+										contentsMap.put(fieldName, newValue.toString());
+										// Assumption : Other fields do not depend on percent fields!!!!
+									});
 									celly.getChildren().addAll(cell, meaning, percentage);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
+									
+									
 								} else if (commentParts[0].contentEquals("combo")) {
+									celly = new VBox();
+									// Get data from DB and load them to combobox
+									comboContent = DatabaseAndSession.returnComboBoxValues(commentParts[2]);
+									// You may need to set it to a default value in some occasions, an if check here could do it
+									celly.getChildren().addAll(cell, meaning, comboContent);
+									gridPane.add(celly, cellsUsedInRow , rowsUsed);
+									
+								} else if (commentParts[0].contentEquals("depend")) {
 									celly = new VBox();
 									meaning = new Label(commentParts[1]);
 									
@@ -127,6 +153,7 @@ public class ReportController extends ControllerTemplate{
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 									
+									// If combobox is opened again. refresh these !
 								}
 								
 								cellsUsedInRow++;
@@ -175,6 +202,9 @@ public class ReportController extends ControllerTemplate{
 	}
 
 	public void closeEverythıng(ActionEvent event) {
+		for(Map.Entry<String, String> entry : contentsMap.entrySet()) {
+			System.out.println("field name: " + entry.getKey() + " __ field content: " + entry.getValue());
+		}
 		count++;
 		Model.closeAll();
 	}
