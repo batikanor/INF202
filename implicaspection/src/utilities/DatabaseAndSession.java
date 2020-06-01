@@ -39,26 +39,46 @@ public class DatabaseAndSession {
 		}
 			
 	}
-	public static ComboBox<String> returnDependantValues(String fieldName) {
+	public static ComboBox<String> returnDependantValues(String dependantName) {
 		Connection con = connect();
 		try {
 			
-			// Get field content (from the map that updates every tıme an input changes)
-			
-			String fieldContent = ReportController.contentsMap.get("fieldName");
-			if (fieldContent == null) {
-				System.out.println("Bu alan için mümkün bir değer bulunmamaktadır. Lütfen önce ekleyiniz veya " + fieldName + "alanindaki seçiminizi değiştiriniz.");
-			}
-			PreparedStatement ps = con.prepareStatement("SELECT DEPENDANTCONTENT FROM FIELDDEPEND WHERE FIELDCONTENT=?");
+			// Get the name of the field that the dependant depends on (i.e. decisive field)
+			String decisiveName;
+			PreparedStatement ps = con.prepareStatement("SELECT TOP 1 DECISIVENAME FROM FIELDDEPEND WHERE DEPENDANTNAME = ?");
 			ResultSet rs;
-			ComboBox<String> buff = new ComboBox<String>();
-			ps.setString(1, fieldContent);
+			ps.setString(1, dependantName);
 			rs = ps.executeQuery();
-			while (rs.next()) {
-				String content = rs.getString("DEPENDANTCONTENT");
-				buff.getItems().add(content);
+			if (rs.next()) {
+				decisiveName = rs.getString("DECISIVENAME");
+				ReportController.dependenceMap.put(decisiveName, dependantName);
+				// Get field content (from the map that updates every tıme an input changes)
+				String decisiveContent = ReportController.contentsMap.get(decisiveName);
+				if (decisiveContent == null) {
+					System.out.println("Bu alan için mümkün bir değer bulunmamaktadır. Lütfen önce seçenek ekleyiniz veya " + decisiveName + "alanindaki seçiminizi değiştiriniz.");
+				}
+				
+				PreparedStatement ps2 = con.prepareStatement("SELECT DEPENDANTCONTENT FROM FIELDDEPEND WHERE DECISIVENAME = ? AND DEPENDANTNAME = ? AND DECISIVECONTENT = ?");
+				ResultSet rs2;
+				ComboBox<String> buff = new ComboBox<String>();
+				ps2.setString(1, decisiveName);
+				ps2.setString(2, dependantName);
+				ps2.setString(3, decisiveContent);
+				rs2 = ps2.executeQuery();
+				while (rs2.next()) {
+					String content = rs2.getString("DEPENDANTCONTENT");
+					buff.getItems().add(content);
+				}
+				return buff;
+			} else {
+				System.out.println(dependantName + " in bagli oldugu bir hucre yok, ama bagimli hucre olarak gosterilmis");
+				// e.g. return null and control it on receiving side
+
+				return null;
 			}
-			return buff;
+			
+			
+
 		}catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
@@ -73,9 +93,11 @@ public class DatabaseAndSession {
 			ComboBox<String> buff = new ComboBox<String>();
 			ps.setString(1, fieldName);
 			rs = ps.executeQuery();
+			System.out.println("-----------------------------------" + fieldName + fieldName.length());
 			while (rs.next()) {
 				String content = rs.getString("FIELDCONTENT");
 				buff.getItems().add(content);
+			
 			}
 			return buff;
 		}catch (SQLException e) {

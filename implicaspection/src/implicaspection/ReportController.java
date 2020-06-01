@@ -3,6 +3,7 @@ package implicaspection;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import utilities.DatabaseAndSession;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -32,17 +34,51 @@ import javafx.scene.layout.VBox;
 
 public class ReportController extends ControllerTemplate{
 	
+	String fileName;
 	private File selectedFile;
 	private XSSFWorkbook wb;
 	private XSSFSheet sheet;
+	private FileOutputStream fos;
 	@FXML GridPane gridPane;
 	// String fieldName, String fieldContent
 	public static HashMap<String, String> contentsMap = new HashMap<String, String>();
 	// As soon as a field has been updated, update the contentsMap with listeners aswell!!! 
-	// String fieldName, int fieldLocation
-	public static HashMap<String, Integer> locationsMap = new HashMap<String, Integer>();
+	// String fieldName, String fieldLocation (rowNo???cellNo)
+	public static HashMap<String, String> locationsMap = new HashMap<String, String>();
+	
+	// String decisiveName, String dependantName
+	// HER DECISIVE ICIN BIRDEN COK DEPENDANT OLABILIR O YUZDEN 2.YI LISTE YAP
+	public static HashMap<String, String> dependenceMap = new HashMap<String, String>();
+	
+	// Grid locations of dependants
 	
 	
+	private void updateDependantIfExists(String decisiveName) {
+		if (dependenceMap.keySet().contains(decisiveName)) {
+			String dependantName = dependenceMap.get(decisiveName);
+			
+			for (Node m : gridPane.getChildren()) {
+				if (dependantName.equals(m.getUserData())) {
+					VBox cellToUpdate = (VBox) m;
+					VBox newVBox = new VBox();
+					newVBox.setUserData(dependantName);
+					newVBox.getChildren().addAll(cellToUpdate.getChildren());
+					gridPane.getChildren().remove(m);
+					newVBox.getChildren().remove(2);
+					ComboBox<String> newCombo = DatabaseAndSession.returnDependantValues(dependantName);
+					newVBox.getChildren().add(newCombo);
+					gridPane.add(newVBox, 0, 1);
+					contentsMap.put(dependantName, null);
+					newCombo.valueProperty().addListener( (v, oldValue, newValue) -> {
+						System.out.println("şu bölgede: " + dependantName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+						contentsMap.put(dependantName, newValue);
+					});
+					break;
+				}
+			}
+			
+		}
+	}
 	public void openTemplate(ActionEvent event) throws IOException {
 	   // ColumnConstraints colConstraint = new ColumnConstraints(120);
 	   //colConstraint.setHalignment(HPos.LEFT);
@@ -64,7 +100,7 @@ public class ReportController extends ControllerTemplate{
 		if (selectedFile != null) {
 			FileInputStream fis = new FileInputStream(selectedFile);
 			
-			String fileName = selectedFile.getName();
+			fileName = selectedFile.getName();
 			wb = new XSSFWorkbook(fis);
 			// We only get the first sheet, If the file has multiple sheets only the first will be imported!!!
 			sheet = wb.getSheetAt(0);
@@ -89,8 +125,16 @@ public class ReportController extends ControllerTemplate{
 								String commentParts[] = comment.split("\\?\\?\\?");
 								// commentsParts[0] should be type of entry
 								VBox celly;
-								String fieldName;
+								
 								String meaningStr = commentParts[1];
+								String fieldName = commentParts[2];
+								String fieldLocation = i + "???" + j;
+							
+								int len = commentParts.length;
+								commentParts[len - 1] = commentParts[len - 1].stripTrailing();
+								
+								
+								locationsMap.put(fieldName, fieldLocation);
 								Label meaning = new Label(meaningStr);
 								TextField textContent;
 								String strContent;
@@ -101,67 +145,95 @@ public class ReportController extends ControllerTemplate{
 								
 								if (commentParts[0].contentEquals("default")) {
 									celly = new VBox();
-								
-									
-									fieldName= commentParts[2];
 									strContent = commentParts[3];
 									textContent = new TextField(strContent);
 									contentsMap.put(fieldName, strContent);
-									textContent.textProperty().addListener( (v, oldValue, newValue) -> {
-										System.out.println("on " + meaningStr + " " + oldValue + " is now " + newValue);
-										contentsMap.put(fieldName, newValue);
-									});
 									celly.getChildren().addAll(cell, meaning, textContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
+									
+									textContent.textProperty().addListener( (v, oldValue, newValue) -> {
+										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										contentsMap.put(fieldName, newValue);
+										updateDependantIfExists(fieldName);
+									});
 									
 								} else if (commentParts[0].contentEquals("percent")) {
 									celly = new VBox();
 							
-									fieldName= commentParts[2];
+									
 									strContent = commentParts[3];
 									intContent = Integer.parseInt(strContent);
 									SpinnerValueFactory<Integer> percVals = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, intContent);
 									percentage = new Spinner<Integer>();
 									percentage.setValueFactory(percVals);
-									contentsMap.put(fieldName, strContent);
-									percentage.valueProperty().addListener( (v, oldValue, newValue) -> {
-										System.out.println("on " + meaningStr + " " + oldValue + " is now " + newValue);
-										contentsMap.put(fieldName, newValue.toString());
-										// Assumption : Other fields do not depend on percent fields!!!!
-									});
+									contentsMap.put(fieldName, strContent + "%");
 									celly.getChildren().addAll(cell, meaning, percentage);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 									
+									percentage.valueProperty().addListener( (v, oldValue, newValue) -> {
+										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										contentsMap.put(fieldName, newValue.toString());
+										// Assumption : Other fields do not depend on percent fields!!!!
+									});
 									
 								} else if (commentParts[0].contentEquals("combo")) {
 									celly = new VBox();
 									// Get data from DB and load them to combobox
-									comboContent = DatabaseAndSession.returnComboBoxValues(commentParts[2]);
+									comboContent = DatabaseAndSession.returnComboBoxValues(fieldName);
 									// You may need to set it to a default value in some occasions, an if check here could do it
+									boolean comboWithDefault = false;
+									if(comboWithDefault) {
+										// set initial val with default val
+									} else {
+										// put null into the hash table as val, so that it is forced to change before exporting
+										contentsMap.put(fieldName, "Deneme");
+									}
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
+									
+									comboContent.valueProperty().addListener( (v, oldValue, newValue) -> {
+										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										contentsMap.put(fieldName, newValue);
+										updateDependantIfExists(fieldName);
+									});
+					
+									
 									
 								} else if (commentParts[0].contentEquals("depend")) {
 									celly = new VBox();
-									meaning = new Label(commentParts[1]);
-									
+									celly.setUserData(fieldName);
 									// Get data from DB and load them to combobox
-									comboContent = DatabaseAndSession.returnComboBoxValues(commentParts[2]);
+									comboContent = DatabaseAndSession.returnDependantValues(fieldName);
 									// You may need to set it to a default value in some occasions, an if check here could do it
 									
+									if (comboContent == null) {
+										System.out.println("alan doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi");
+										continue;
+									}
+									comboContent.setUserData("combo");
 									
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
-									
-									// If combobox is opened again. refresh these !
+
+									comboContent.valueProperty().addListener( (v, oldValue, newValue) -> {
+										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										contentsMap.put(fieldName, newValue);
+									});
+									/*
+									 * contentsMap.values(). // If a decisive field's value is entered again,
+									 * refresh these ! somehowAnEventListener(){ comboContent =
+									 * DatabaseAndSession.returnDependantValues(fieldName); if (comboContent ==
+									 * null) { System.out.
+									 * println("alan doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi"
+									 * ); continue; } }
+									 */
 								}
 								
 								cellsUsedInRow++;
 								rowUsed = true;
 										
 							} else {
-								
-								// this cell has a comment that isnt coded for this programm
+								// this cell has a comment that starts with "???"
 							}
 						} else {
 							// this cel doesnt have a comment
@@ -178,35 +250,61 @@ public class ReportController extends ControllerTemplate{
 
 				
 			}
-			//XSSFComment commentExported = sheet.getRow(0).getCell(0).getCellComment();
-			//commentExported.setString("exported");
-			//^doesnt work if null
 
-
-			//sheet.getRow(0).getCell(0).setCellValue("exported");
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HH:mm:ss");  
-		    Date date = new Date();
-		    String dateStr = formatter.format(date);
-					FileOutputStream fos = new FileOutputStream("./report-exports/" + fileName.substring(0, fileName.lastIndexOf(".")) + dateStr + ".xlsx");
-					wb.write(fos);
-					fos.flush();
-					fos.close();
-					wb.close();
 					
 		} else {
 			System.out.println("Dosya açılamadı");
 		}
 
 		
-		// Traverse all rows on sheet, for every row make a slidable list of items, draw the items depending on what TYPE of field they are...
+		// Traverse all rows on sheet, for every row make a slideable list of items, draw the items depending on what TYPE of field they are...
 	}
 
-	public void closeEverythıng(ActionEvent event) {
+	@FXML
+	public boolean exportXLSX() throws IOException {
+		// require import  
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HH:mm:ss");  
+	    Date date = new Date();
+	    String dateStr = formatter.format(date);
+
+				
 		for(Map.Entry<String, String> entry : contentsMap.entrySet()) {
-			System.out.println("field name: " + entry.getKey() + " __ field content: " + entry.getValue());
+			String fieldName =  entry.getKey();
+			String fieldContent = entry.getValue();
+			
+			if(fieldContent == null) {
+				System.out.println("Doldurulmasi gereken seçmeli değerlerden " + fieldName + " doldurulamadı");
+				return false;
+			}
+			
+			//System.out.println("field name: " + myKey + " __ field content: " + myVal);
+			
+			// Get location of the field
+			String fieldLocation[] = locationsMap.get(fieldName).split("\\?\\?\\?");
+			int i = Integer.parseInt(fieldLocation[0]);
+			int j = Integer.parseInt(fieldLocation[1]);
+			// put the content to the cell at given location
+			sheet.getRow(i).getCell(j).setCellValue(fieldContent);
+			
+
 		}
+		
+		
+		fos = new FileOutputStream("./report-exports/" + fileName.substring(0, fileName.lastIndexOf(".")) + dateStr + ".xlsx");
+		wb.write(fos);
+		fos.flush();
+		fos.close();
+		
+		System.out.println("Doldurma işlemi başarıyla tamamlandı.");
+		return false;
+	}
+	public void closeEverythıng(ActionEvent event) throws IOException {
+		//exportXLSX();
+
+		wb.close();
 		count++;
 		Model.closeAll();
+		
 	}
 }
 //System.out.println((sheet.getRow(i).getCell(j).getCellType().toString()));
