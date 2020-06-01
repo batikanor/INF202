@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.ReportController">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@../styling/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.ReportController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>

@@ -8,12 +8,23 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import utilities.DatabaseAndSession;
 import utilities.UserSingleton;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 
 public class MainController extends ControllerTemplate{
 	
@@ -41,6 +52,8 @@ public class MainController extends ControllerTemplate{
 	@FXML Button buttonPassword;
 	@FXML Button buttonLogout;
 
+	@FXML AnchorPane mainAnchorPane;
+
 
 	@Override
 	public void initialize() {
@@ -67,7 +80,7 @@ public class MainController extends ControllerTemplate{
 	
 	public void openAdminPanel() {
 		if(UserSingleton.getSession().getAdminID() > -1) {
-			Model.loadWindow("AdminPanel", 1000, 510);
+			Model.loadWindow("AdminPanel", 1300, 800);
 			System.out.println("Admin panel yükleniyor");
 		}else {
 			System.out.println("Yalnizca adminler buraya ulaşabilir");
@@ -77,7 +90,7 @@ public class MainController extends ControllerTemplate{
 	
 	public void createReport() {
 		// TODO
-		Model.loadWindow("Report", 1000, 700);
+		Model.loadWindow("Report", 1100, 700);
 	}
 	
 	public void closeAll() {
@@ -104,15 +117,24 @@ public class MainController extends ControllerTemplate{
 		fpPop.setPadding(new Insets(20));
 		fpPop.setVgap(50);
 		fpPop.getChildren().addAll(passOld, passPop, confirmPop, btnPop, btnClose, lblStatus);
-
+		BoxBlur blur = new BoxBlur(3, 3, 3);
+		mainAnchorPane.setEffect(blur);
+		fpPop.setBlendMode(BlendMode.SRC_ATOP);
+		fpPop.setBackground(new Background(new BackgroundFill(Color.DARKSLATEGRAY, null, null)));
+		fpPop.setBorder(new Border(new BorderStroke(Color.BLACK, 
+	            BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		
+		
 		Popup poppy = new Popup();
 		
-		
+		poppy.centerOnScreen();
+
 		EventHandler<ActionEvent> goBack = new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
 				poppy.hide();
+				mainAnchorPane.setEffect(null);
 			}
 			
 		};

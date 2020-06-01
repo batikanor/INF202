@@ -188,7 +188,7 @@ public class DatabaseAndSession {
 					// If it doesnt enter this block, it means that the result set only had one block, thus user isnt admin
 					int adminID = Integer.parseInt(rs2.getString("ADMINID"));
 					UserSingleton.getInstance(username, adminID);
-					Model.loadWindow("AdminPanel", 1205, 652);
+					//Model.loadWindow("AdminPanel", 1205, 652);
 			
 				}else {
 					// User isn't admin

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="652.0" prefWidth="1205.0" style="-fx-background-color: #091f3f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.AdminPanelController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.AdminPanelController">
    <children>
       <AnchorPane layoutX="356.0" layoutY="-3.0" prefHeight="652.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -61,7 +61,7 @@
                   <Label layoutX="79.0" layoutY="32.0" text="mod" />
                </children>
             </Pane>
-            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="517.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="662.0" prefWidth="888.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-45.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="buttonSaveTemplate" disable="true" layoutX="659.0" layoutY="588.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="48.0" prefWidth="170.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="buttonSelectTemplate" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectTemplate" onMouseClicked="#selectTemplate" prefHeight="48.0" prefWidth="108.0" text="Dosya seç" />
@@ -82,22 +82,23 @@
                     <columns>
                       <TableColumn fx:id="locationColumn" prefWidth="185.0" text="Bölge Konumu" />
                       <TableColumn fx:id="codeColumn" minWidth="0.0" prefWidth="394.0" text="Bölge Kodu" />
+                        <TableColumn fx:id="typeColumn" minWidth="0.0" prefWidth="394.0" text="Bölge Tipi" />
                     </columns>
                   </TableView>
                   <Label layoutX="167.0" layoutY="145.0" text="Şablonda halihazırda kayıtlı bölgeler:" />
-                  <Button layoutX="74.0" layoutY="622.0" mnemonicParsing="false" text="Bölge(ye) ekle" />
-                  <TextField layoutX="33.0" layoutY="475.0" prefHeight="26.0" prefWidth="209.0" promptText="bölge adı" />
-                  <TextField layoutX="33.0" layoutY="507.0" prefHeight="30.0" prefWidth="209.0" promptText="değeri" />
-                  <TextField layoutX="33.0" layoutY="543.0" prefHeight="30.0" prefWidth="209.0" promptText="Hücre Konumu (örneğin C5)" />
-                  <RadioButton layoutX="46.0" layoutY="404.0" mnemonicParsing="false" text="tek seçenekli bölge (default)" textFill="WHITE">
+                  <Button disable="true" layoutX="80.0" layoutY="618.0" mnemonicParsing="false" text="Bölge(ye) ekle" />
+                  <TextField disable="true" layoutX="33.0" layoutY="475.0" prefHeight="26.0" prefWidth="209.0" promptText="bölge adı" />
+                  <TextField disable="true" layoutX="33.0" layoutY="507.0" prefHeight="30.0" prefWidth="209.0" promptText="değeri" />
+                  <TextField disable="true" layoutX="33.0" layoutY="543.0" prefHeight="30.0" prefWidth="209.0" promptText="Hücre Konumu (örneğin C5)" />
+                  <RadioButton layoutX="46.0" layoutY="404.0" mnemonicParsing="false" selected="true" text="tek seçenekli bölge (default)" textFill="WHITE">
                      <toggleGroup>
                         <ToggleGroup fx:id="fieldType" />
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton layoutX="45.0" layoutY="439.0" mnemonicParsing="false" text="bağımlı bölge (tek veya çok seçenekli) (depend)" textFill="WHITE" toggleGroup="$fieldType" />
                   <RadioButton layoutX="45.0" layoutY="422.0" mnemonicParsing="false" text="çok seçenekli bölge (multi)" textFill="WHITE" toggleGroup="$fieldType" />
-                  <TextField layoutX="33.0" layoutY="582.0" prefHeight="30.0" prefWidth="209.0" promptText="Bağımlı olduğu bölge adı (halihazırda tabloda gözüken bir isim olmalı" />
-                  <Button layoutX="276.0" layoutY="376.0" mnemonicParsing="false" onAction="#updateTable" text="Listeyi güncelle" />
+                  <TextField disable="true" layoutX="33.0" layoutY="582.0" prefHeight="30.0" prefWidth="209.0" promptText="Bağımlı olduğu bölge adı (halihazırda tabloda gözüken bir isim olmalı" />
+                  <Button disable="true" layoutX="276.0" layoutY="376.0" mnemonicParsing="false" onAction="#updateTable" text="Listeyi güncelle" />
                </children>
             </Pane>
          </children>
@@ -105,9 +106,14 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="-1.0" prefHeight="500.0" prefWidth="223.0" style="-fx-background-color: #2b3633;" AnchorPane.bottomAnchor="0.0">
+      <AnchorPane layoutX="-1.0" prefHeight="500.0" prefWidth="223.0" style="-fx-background-color: #393939;" AnchorPane.bottomAnchor="0.0">
          <children>
-            <AnchorPane layoutY="-2.0" prefHeight="500.0" prefWidth="34.0" style="-fx-background-color: darkgray; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane layoutX="322.0" layoutY="-2.0" prefHeight="500.0" prefWidth="34.0" style="-fx-background-radius: 1em;" styleClass="root" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+            <AnchorPane prefHeight="500.0" prefWidth="34.0" style="-fx-background-radius: 1em;" styleClass="root" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <effect>
                   <DropShadow />
                </effect>

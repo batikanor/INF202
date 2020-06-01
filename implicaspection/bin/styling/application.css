@@ -2,9 +2,13 @@
 /* */
 .root{
 	 
-	-fx-background-color: #091f3f;
+	-fx-background-color: #091f11;
 
 	-fx-text-fill: white;
+	-fx-border-style: solid;
+	-fx-border-width: 3;
+	-fx-border-color: #696969;
+	
 	
 }
 .button{
@@ -13,7 +17,10 @@
 	-fx-border-color: white;
 	
 }
-
+.button:pressed {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
 .label{
 	-fx-text-fill: inherit;
 }

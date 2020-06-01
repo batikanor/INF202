@@ -63,26 +63,23 @@ public class ReportController extends ControllerTemplate{
 			if (dependantNames != null) {
 				
 				for(String dependantName : dependantNames) {
-					System.out.println(dependantName);
 					
 					for (Node m : gridPane.getChildren()) {
 
-						
-						System.out.println(dependantName);
-						System.out.println(m.getUserData());
+
 						if (dependantName.equals(m.getUserData())) {
 							
 							int row = GridPane.getRowIndex(m);
-							int col = gridPane.getColumnIndex(m);
+							int col = GridPane.getColumnIndex(m);
 							VBox cellToUpdate = (VBox) m;
 							VBox newVBox = new VBox();
 							newVBox.setUserData(dependantName);
-							System.out.println(9);
+			
 							newVBox.getChildren().addAll(cellToUpdate.getChildren());
 							gridPane.getChildren().remove(m);
 							newVBox.getChildren().remove(2);
 							ComboBox<String> newCombo = DatabaseAndSession.returnDependantValues(dependantName);
-							System.out.println(4);
+		
 							newVBox.getChildren().add(newCombo);
 							gridPane.add(newVBox, col, row);
 							contentsMap.put(dependantName, null);
@@ -91,7 +88,7 @@ public class ReportController extends ControllerTemplate{
 								System.out.println("şu bölgede: " + dependantName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 								contentsMap.put(dependantName, newValue);
 							});
-							System.out.println(99);
+						
 							break;
 						}
 					}
