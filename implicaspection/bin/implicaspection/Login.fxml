@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="100.0" minWidth="100.0" prefHeight="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.LoginController">
+<AnchorPane fx:id="rootPane" minHeight="100.0" minWidth="100.0" prefHeight="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.LoginController">
    <children>
       <VBox alignment="CENTER" layoutX="5.0" layoutY="7.0" prefHeight="320.0" prefWidth="500.0" spacing="10.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>

@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.WindowEvent;
 import utilities.DatabaseAndSession;
 import utilities.UserSingleton;
@@ -20,7 +21,8 @@ public class LoginController extends ControllerTemplate{
 	private PasswordField txtPassword;
 	@FXML
 	private Label status;
-	
+	@FXML
+	private AnchorPane rootPane;
 	
 	private int count = 0;
 	
@@ -64,6 +66,7 @@ public void initialize() {
 			System.out.println(UserSingleton.getSession().toString());
 		} else {
 			feedback = "Statü: giriş başarısız";
+			Model.createPopup(feedback, rootPane);
 			status.setText(Model.feedback(feedback, count, className));
 		}
 		

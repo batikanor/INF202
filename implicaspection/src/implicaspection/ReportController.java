@@ -321,8 +321,10 @@ public class ReportController extends ControllerTemplate{
 	}
 	public void closeEverythıng(ActionEvent event) throws IOException {
 		//exportXLSX();
-
-		wb.close();
+		if(wb != null) {
+			wb.close();
+		}
+		
 		count++;
 		Model.closeAll();
 		

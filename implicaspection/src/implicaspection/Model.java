@@ -12,9 +12,27 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 
@@ -115,6 +133,45 @@ public class Model {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static void createPopup(String popupStr, Pane rootPane) {
+		// TODO Auto-generated method stub
+		Label lblStatus = new Label(popupStr);
+		Button btnClose = new Button("Geri dön");
+		btnClose.setPrefHeight(50);
+		FlowPane fpPop = new FlowPane();
+		fpPop.setPadding(new Insets(30,30,30,30));
+		fpPop.setVgap(20);
+		fpPop.setHgap(20);
+		fpPop.autosize();
+		fpPop.getChildren().addAll(btnClose, lblStatus);
+		BoxBlur blur = new BoxBlur(4, 4, 4);
+		rootPane.setEffect(blur);
+		fpPop.setBlendMode(BlendMode.SRC_ATOP);
+		//fpPop.setBackground(new Background(new BackgroundFill(Color.DARKGREY, null, null)));
+		//fpPop.setBorder(new Border(new BorderStroke(Color.BLACK, 
+	          //  BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THICK)));
+		
+		
+		Popup poppy = new Popup();
+		
+		poppy.centerOnScreen();
+
+		EventHandler<ActionEvent> goBack = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				poppy.hide();
+				rootPane.setEffect(null);
+			}
+			
+		};
+		btnClose.setOnAction(goBack);
+		poppy.getContent().add(fpPop);
+		poppy.show((Stage)(rootPane.getScene().getWindow()));
+		
+
 	}
 	/*
 	 * 	public static void loadWindow(Class<?> cl, String toLoad, int width, int length)
