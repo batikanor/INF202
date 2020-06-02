@@ -2,6 +2,8 @@ package implicaspection;
 
 
 
+import java.util.logging.Level;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,13 +43,13 @@ public class Main extends Application{
 	}
 
 	public static void main(String[] args){
- 		System.out.println(Model.GetExcelColumnString(1));
- 		System.out.println(Model.GetExcelColumnString(30));
-
+		Model.initLogger();
+		
+		// SEVERE WARNING INFO FINEST should suffice
+		Model.log.finest("Program başlatılıyor");
 		launch(args);
 		
-		System.out.println("E003: Program optimal şekilde sonlandırılamadı");
-		
+		Model.log.fine("E003: Program optimal şekilde sonlandırılamadı\n");
 	} 
 	
 	

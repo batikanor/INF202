@@ -2,14 +2,27 @@ package implicaspection;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.System.LoggerFinder;
+import java.lang.management.ManagementFactory;
+import java.lang.management.PlatformLoggingMXBean;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
+import com.sun.javafx.util.Logging;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -43,6 +56,10 @@ public class Model {
 	
 	//public static Vector<Stage> stages = new Vector<>();
 	public static HashMap<String, Stage> stages = new HashMap<String, Stage>();
+	
+	public static Logger log = Logger.getLogger(Model.class.getName());
+
+	
 	public static String GetExcelColumnString(int columnNo){
 	    int dividend = columnNo;
 	    
@@ -169,12 +186,16 @@ public class Model {
 			public void handle(ActionEvent e) {
 				poppy.hide();
 				rootPane.setEffect(null);
+				
+				
+				// Maybe do something with the now maybe altered otherNode here
 			}
 			
 		};
 		btnClose.setOnAction(goBack);
 		poppy.getContent().add(fpPop);
 		poppy.show((Stage)(rootPane.getScene().getWindow()));
+		
 		
 
 	}
@@ -259,6 +280,60 @@ public class Model {
 			st.close();
 		}
 
+	}
+	
+	public static void initLogger() {
+		Logger root = Logger.getLogger(Model.class.getName());
+		FileHandler logFile = null;
+		
+		
+		try {
+			// Change to Logs.txt after actual deployment
+			logFile = new FileHandler("logs/developmentLogs.txt", true);
+			
+		} catch (IOException | SecurityException e) {
+			e.printStackTrace();
+		}
+		root.setLevel(Level.ALL);
+		//com.sun.javafx.Logging.getCSSLogger().setLevel(Level.OFF);
+		//System.out.println(Logging.getCSSLogger().toString());
+	  
+		List<String> loggerNames = ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class).getLoggerNames();
+		for (String logged : loggerNames) {
+			System.out.println(logged);
+		}
+	
+		//ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class).setLoggerLevel("styling/application.css", "OFF");
+		logFile.setFormatter(new Formatter() {
+			@Override
+			public String format(LogRecord rec) {
+				// TODO Auto-generated method stub
+				String ret = "";
+				if (rec.getLevel().intValue() >= Level.WARNING.intValue()) {
+					ret += "\r\n";
+					ret += "ÖNEMLİ: ";
+				}
+				ret += rec.getLevel() + " ";
+				SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				Date d = new Date(rec.getMillis());
+				ret += df.format(d) + " ";
+				ret += this.formatMessage(rec);
+				
+				if (rec.getLevel().intValue() < Level.WARNING.intValue()) {
+					ret += " -> ";
+				}
+				return ret;
+				
+			}
+		});
+		root.addHandler(logFile);
+	}
+	
+	public static void logMessage(String s) {
+		// TODO Auto-generated method stub
+		
+		//Log log = new Log("log.txt");
+		
 	}
 	
 }
