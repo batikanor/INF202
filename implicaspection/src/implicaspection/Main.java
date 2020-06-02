@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	
+	
+	
 	public static Stage mainStage = new Stage();
 	
 	@Override

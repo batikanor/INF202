@@ -15,8 +15,8 @@
 	-fx-background-color:
 		#595959,
 		rgba(0,0,0,0.02),
-        linear-gradient(#11ccca, #c77770),
-        linear-gradient(#19f2d6 0%, #091211 20%, #e6c75d 80%, #224445 100%),
+        linear-gradient(red, blue),
+        /*linear-gradient(#19f2d6 0%, #091211 20%, #e6c75d 80%, #224445 100%),*/
         linear-gradient(darkGray, lightYellow);
     -fx-background-insets: 0,9 9 4 4,4,4,4;
     -fx-background-radius: 40;
@@ -30,6 +30,11 @@
 	
 }
 .button:pressed {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,1) , 10,0,0,1 ); 
+
+    -fx-background-color: lightGreen;
+}
+.button:active {
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,1) , 10,0,0,1 ); 
     -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
 }

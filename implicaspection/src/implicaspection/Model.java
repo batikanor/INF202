@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -135,8 +136,9 @@ public class Model {
 		
 	}
 	
-	public static void createPopup(String popupStr, Pane rootPane) {
+	public static void createPopup(Pane rootPane, String popupStr, Node otherNode) {
 		// TODO Auto-generated method stub
+
 		Label lblStatus = new Label(popupStr);
 		Button btnClose = new Button("Geri dön");
 		btnClose.setPrefHeight(50);
@@ -146,6 +148,9 @@ public class Model {
 		fpPop.setHgap(20);
 		fpPop.autosize();
 		fpPop.getChildren().addAll(btnClose, lblStatus);
+		if (otherNode != null) {
+		fpPop.getChildren().add(otherNode);	
+		}
 		BoxBlur blur = new BoxBlur(4, 4, 4);
 		rootPane.setEffect(blur);
 		fpPop.setBlendMode(BlendMode.SRC_ATOP);
