@@ -37,6 +37,13 @@
 .button:active {
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,1) , 10,0,0,1 ); 
     -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+    -fx-background-color: DarkBlue;
+}
+
+.button:focused {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,1) , 10,0,0,1 ); 
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+    -fx-background-color: #f5c542;
 }
 .label{
 	-fx-text-fill: inherit;

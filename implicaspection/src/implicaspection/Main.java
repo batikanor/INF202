@@ -2,7 +2,6 @@ package implicaspection;
 
 
 
-import java.util.logging.Level;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -44,8 +43,7 @@ public class Main extends Application{
 
 	public static void main(String[] args){
 		Model.initLogger();
-		
-		// SEVERE WARNING INFO FINEST should suffice
+
 		Model.log.finest("Program başlatılıyor");
 		launch(args);
 		

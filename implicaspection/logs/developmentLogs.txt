@@ -1,3 +1,21 @@
 FINEST 02/06/2020 22:08:31 Program başlatılıyor -> FINE 02/06/2020 22:08:37 E003: Program optimal şekilde sonlandırılamadı
  -> FINEST 02/06/2020 22:08:56 Program başlatılıyor -> FINE 02/06/2020 22:08:58 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 02/06/2020 22:17:38 Program başlatılıyor -> FINE 02/06/2020 22:19:30 Program düzgün şekilde sonlandırıldı
+ -> FINEST 02/06/2020 22:27:29 Program başlatılıyor -> FINE 02/06/2020 22:27:42 Program düzgün şekilde sonlandırıldı
+ -> FINEST 02/06/2020 22:27:50 Program başlatılıyor -> FINE 02/06/2020 22:28:37 Program düzgün şekilde sonlandırıldı
+ -> FINEST 02/06/2020 22:33:51 Program başlatılıyor -> FINE 02/06/2020 22:34:00 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 02/06/2020 22:34:20 Program başlatılıyor -> FINE 02/06/2020 22:34:28 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 02/06/2020 22:34:43 Program başlatılıyor -> FINE 02/06/2020 22:34:46 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 02/06/2020 22:35:37 Program başlatılıyor -> FINE 02/06/2020 22:36:02 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 02/06/2020 22:36:24 Program başlatılıyor -> FINE 02/06/2020 22:36:36 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 02/06/2020 22:37:01 Program başlatılıyor -> FINE 02/06/2020 22:37:32 Program düzgün şekilde sonlandırıldı
+ -> FINEST 02/06/2020 22:37:39 Program başlatılıyor -> FINE 03/06/2020 00:51:59 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 00:53:04 Program başlatılıyor -> FINE 03/06/2020 00:53:06 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 00:53:54 Program başlatılıyor -> FINE 03/06/2020 01:21:18 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 01:22:53 Program başlatılıyor -> FINE 03/06/2020 01:23:28 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 01:58:09 Program başlatılıyor -> FINE 03/06/2020 01:58:34 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 02:14:18 Program başlatılıyor -> FINE 03/06/2020 02:14:46 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 02:31:01 Program başlatılıyor -> FINE 03/06/2020 02:31:17 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 02:32:53 Program başlatılıyor -> FINE 03/06/2020 02:32:55 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 02:32:57 Program başlatılıyor -> FINE 03/06/2020 02:32:59 E003: Program optimal şekilde sonlandırılamadı
  -> 

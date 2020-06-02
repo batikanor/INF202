@@ -144,7 +144,7 @@ public class ReportController extends ControllerTemplate{
 								// commentsParts[0] should be type of entry
 								VBox celly;
 								
-								String meaningStr = commentParts[1];
+								final String meaningStr = commentParts[1];
 								String fieldName = commentParts[2];
 								String fieldLocation = i + "???" + j;
 							
@@ -178,7 +178,7 @@ public class ReportController extends ControllerTemplate{
 									
 								} else if (commentParts[0].contentEquals("percent")) {
 									celly = new VBox();
-							
+									meaning.setText(meaning.getText() + " (%)");
 									//celly.setUserData(fieldName);
 									strContent = commentParts[3];
 									intContent = Integer.parseInt(strContent);

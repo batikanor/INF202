@@ -61,23 +61,23 @@
                   <Label layoutX="79.0" layoutY="32.0" text="mod" />
                </children>
             </Pane>
-            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="662.0" prefWidth="888.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-45.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="662.0" prefWidth="888.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="buttonSaveTemplate" disable="true" layoutX="659.0" layoutY="588.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="48.0" prefWidth="170.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="buttonSelectTemplate" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectTemplate" onMouseClicked="#selectTemplate" prefHeight="48.0" prefWidth="108.0" text="Dosya seç" />
                   <Label fx:id="lblSelectedFile" layoutX="147.0" layoutY="30.0" text="Henüz hiçbir dosya seçilmedi" />
-                  <Label layoutX="29.0" layoutY="84.0" prefHeight="3.0" prefWidth="102.0" text="Dosya konumu:" />
-                  <Label layoutX="29.0" layoutY="100.0" prefHeight="3.0" prefWidth="102.0" text="Dosya boyutu" />
-                  <Label layoutX="29.0" layoutY="68.0" prefHeight="16.0" prefWidth="368.0" text="Dosya adı (aynı isimde dosya kayıtlıysa üstüne yazar):" />
-                  <Label layoutX="29.0" layoutY="116.0" prefHeight="16.0" prefWidth="412.0" text="Sayfa (Sheet) sayisi (Not: Sadece ilk sayfa kaydedilecektir!): " />
-                  <Label fx:id="lblFileName" layoutX="390.0" layoutY="68.0" prefHeight="16.0" prefWidth="468.0" text="-">
+                  <Label layoutX="12.0" layoutY="84.0" prefHeight="3.0" prefWidth="102.0" text="Dosya konumu:" />
+                  <Label layoutX="12.0" layoutY="100.0" prefHeight="3.0" prefWidth="102.0" text="Dosya boyutu" />
+                  <Label layoutX="12.0" layoutY="68.0" prefHeight="16.0" prefWidth="368.0" text="Dosya adı (aynı isimde dosya kayıtlıysa üstüne yazar):" />
+                  <Label layoutX="12.0" layoutY="116.0" prefHeight="16.0" prefWidth="412.0" text="Sayfa (Sheet) sayisi (Not: Sadece ilk sayfa kaydedilecektir!): " />
+                  <Label fx:id="lblFileName" layoutX="373.0" layoutY="68.0" prefHeight="16.0" prefWidth="704.0" text="-">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblFilePath" layoutX="138.0" layoutY="84.0" prefHeight="16.0" prefWidth="782.0" text="-" />
-                  <Label fx:id="lblFileSize" layoutX="128.0" layoutY="100.0" prefHeight="16.0" prefWidth="594.0" text="-" />
-                  <Label fx:id="lblSheet" layoutX="426.0" layoutY="116.0" prefHeight="16.0" prefWidth="396.0" text="-" />
+                  <Label fx:id="lblFilePath" layoutX="121.0" layoutY="84.0" prefHeight="16.0" prefWidth="902.0" text="-" />
+                  <Label fx:id="lblFileSize" layoutX="111.0" layoutY="100.0" prefHeight="16.0" prefWidth="863.0" text="-" />
+                  <Label fx:id="lblSheet" layoutX="409.0" layoutY="116.0" prefHeight="16.0" prefWidth="300.0" text="-" />
                   <TableView fx:id="fieldsTable" layoutX="14.0" layoutY="161.0" prefHeight="204.0" prefWidth="902.0">
                     <columns>
                       <TableColumn fx:id="locationColumn" prefWidth="185.0" text="Bölge Konumu" />
@@ -87,16 +87,16 @@
                   </TableView>
                   <Label layoutX="167.0" layoutY="145.0" text="Şablonda halihazırda kayıtlı bölgeler:" />
                   <Button disable="true" layoutX="90.0" layoutY="713.0" mnemonicParsing="false" text="Bölge(ye) ekle" />
-                  <TextField disable="true" layoutX="43.0" layoutY="570.0" prefHeight="26.0" prefWidth="209.0" promptText="bölge adı" />
+                  <TextField disable="true" layoutX="43.0" layoutY="505.0" prefHeight="26.0" prefWidth="209.0" promptText="bölge adı" />
                   <TextField disable="true" layoutX="43.0" layoutY="602.0" prefHeight="30.0" prefWidth="209.0" promptText="değeri" />
                   <TextField disable="true" layoutX="43.0" layoutY="638.0" prefHeight="30.0" prefWidth="209.0" promptText="Hücre Konumu (örneğin C5)" />
-                  <RadioButton layoutX="46.0" layoutY="404.0" mnemonicParsing="false" selected="true" text="tek seçenekli bölge (default)" textFill="WHITE">
+                  <RadioButton layoutX="38.0" layoutY="409.0" mnemonicParsing="false" selected="true" text="tek seçenekli bölge (default)" textFill="WHITE">
                      <toggleGroup>
                         <ToggleGroup fx:id="fieldType" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="45.0" layoutY="439.0" mnemonicParsing="false" text="bağımlı bölge (tek veya çok seçenekli) (depend)" textFill="WHITE" toggleGroup="$fieldType" />
-                  <RadioButton layoutX="45.0" layoutY="422.0" mnemonicParsing="false" text="çok seçenekli bölge (multi)" textFill="WHITE" toggleGroup="$fieldType" />
+                  <RadioButton layoutX="37.0" layoutY="462.0" mnemonicParsing="false" text="bağımlı bölge (tek veya çok seçenekli) (depend)" textFill="WHITE" toggleGroup="$fieldType" />
+                  <RadioButton layoutX="37.0" layoutY="434.0" mnemonicParsing="false" text="çok seçenekli bölge (multi)" textFill="WHITE" toggleGroup="$fieldType" />
                   <TextField disable="true" layoutX="43.0" layoutY="677.0" prefHeight="30.0" prefWidth="209.0" promptText="Bağımlı olduğu bölge adı (halihazırda tabloda gözüken bir isim olmalı" />
                   <Button disable="true" layoutX="381.0" layoutY="376.0" mnemonicParsing="false" onAction="#updateTable" prefHeight="26.0" prefWidth="121.0" text="Listeyi güncelle" />
                </children>
@@ -118,7 +118,7 @@
                   <DropShadow />
                </effect>
             </AnchorPane>
-            <Button fx:id="buttonRegister" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="14.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Personel / Admin kaydet, değiştir veya sil" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+            <Button fx:id="buttonRegister" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="143.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="Personel / Admin kaydet, değiştir veya sil" textFill="WHITE" AnchorPane.leftAnchor="28.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -126,7 +126,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonJobFirma" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="220.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Rapor Bölgesi (Field) Ekle" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+            <Button fx:id="buttonJobFirma" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="283.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="Rapor Bölgesi (Field) Ekle" textFill="WHITE" AnchorPane.leftAnchor="28.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -134,7 +134,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonTemplate" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="163.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Rapor Şablonu Kaydet" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+            <Button fx:id="buttonTemplate" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="210.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="Rapor Şablonu Kaydet" textFill="WHITE" AnchorPane.leftAnchor="28.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -142,7 +142,15 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonDB" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="1.0" layoutY="310.0" mnemonicParsing="false" onAction="#changePane" prefHeight="30.0" prefWidth="355.0" text="Veritabani komutu gir" textFill="WHITE" AnchorPane.leftAnchor="1.0">
+            <Button fx:id="buttonDB" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="352.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="Veritabani komutu gir" textFill="WHITE" AnchorPane.leftAnchor="28.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="735.0" mnemonicParsing="false" onAction="#closeAll" prefHeight="45.0" prefWidth="300.0" text="Bütün programı sonlandır" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

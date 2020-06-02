@@ -415,5 +415,8 @@ public class AdminPanelController extends ControllerTemplate {
 			paneTemplate.setVisible(true);
 		}
 	}
+	public void closeAll() {
+		Model.closeAll();
+	}
 
 }

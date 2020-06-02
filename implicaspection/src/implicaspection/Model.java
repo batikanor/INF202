@@ -268,8 +268,9 @@ public class Model {
 	}
 	
 	public static void closeAll() {
+		
 		Platform.exit();
-		System.out.println("Program tamamen sonlandırıldı!");
+		Model.log.fine("Program düzgün şekilde sonlandırıldı\n");
 		System.exit(0);
 		
 	}
@@ -281,11 +282,30 @@ public class Model {
 		}
 
 	}
-	
+	/*
+	static Level	ALL
+	ALL indicates that all messages should be logged.
+	static Level	CONFIG
+	CONFIG is a message level for static configuration messages.
+	static Level	FINE
+	FINE is a message level providing tracing information.
+	static Level	FINER
+	FINER indicates a fairly detailed tracing message.
+	static Level	FINEST
+	FINEST indicates a highly detailed tracing message.
+	static Level	INFO
+	INFO is a message level for informational messages.
+	static Level	OFF
+	OFF is a special level that can be used to turn off logging.
+	static Level	SEVERE
+	SEVERE is a message level indicating a serious failure.
+	static Level	WARNING
+	WARNING is a message level indicating a potential problem.
+	*/
 	public static void initLogger() {
 		Logger root = Logger.getLogger(Model.class.getName());
 		FileHandler logFile = null;
-		
+		//BasicConfigurator.configure();
 		
 		try {
 			// Change to Logs.txt after actual deployment
@@ -329,11 +349,6 @@ public class Model {
 		root.addHandler(logFile);
 	}
 	
-	public static void logMessage(String s) {
-		// TODO Auto-generated method stub
-		
-		//Log log = new Log("log.txt");
-		
-	}
+
 	
 }

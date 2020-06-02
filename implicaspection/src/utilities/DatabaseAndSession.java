@@ -17,6 +17,7 @@ public class DatabaseAndSession {
     private static final String user = "bati-202";
     private static final String pwd = "zoe833uwU";
     private static final String dbPath = "/home/inductiomori/Desktop/inf202/bati-hsqldb/fuer202/";
+    //private static final String dbPath = "~/dbImplicaspection";
     private static final String url = "jdbc:hsqldb:file:" + dbPath;
     // Should I use relative path or define system variables ? see : 
     // http://hsqldb.org/doc/2.0/guide/dbproperties-chapt.html#dpc_variables_url
