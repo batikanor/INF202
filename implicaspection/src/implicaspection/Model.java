@@ -317,7 +317,7 @@ public class Model {
 
 		
 		Platform.exit();
-		Model.log.fine("Program düzgün şekilde sonlandırıldı\n");
+		Model.log.finest("Program düzgün şekilde sonlandırıldı\n");
 		System.exit(0);
 		
 	}

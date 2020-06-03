@@ -59,7 +59,7 @@ public class ReportController extends ControllerTemplate{
 
 	
 	private void updateDependants(String decisiveName) {
-		System.out.println(1);
+
 		if (dependenceMap.keySet().contains(decisiveName)) {
 			System.out.println(decisiveName);
 			ArrayList<String> dependantNames = dependenceMap.get(decisiveName);
@@ -81,8 +81,10 @@ public class ReportController extends ControllerTemplate{
 							newVBox.getChildren().addAll(cellToUpdate.getChildren());
 							gridPane.getChildren().remove(m);
 							newVBox.getChildren().remove(2);
+							
 							ComboBox<String> newCombo = DatabaseAndSession.returnDependantValues(dependantName);
 		
+							
 							newVBox.getChildren().add(newCombo);
 							gridPane.add(newVBox, col, row);
 							contentsMap.put(dependantName, null);
@@ -145,7 +147,7 @@ public class ReportController extends ControllerTemplate{
 								comment = comment.substring(3);
 								String commentParts[] = comment.split("\\?\\?\\?");
 								// commentsParts[0] should be type of entry
-								VBox celly;
+								VBox celly = new VBox();
 								
 								final String fieldType = commentParts[0];
 								final String meaningStr = commentParts[1];
@@ -166,7 +168,7 @@ public class ReportController extends ControllerTemplate{
 								Spinner<Integer> percentage;
 								
 								if (fieldType.contentEquals("default")) {
-									celly = new VBox();
+									//celly = new VBox();
 									//celly.setUserData(fieldName);
 									strContent = commentParts[3];
 									textContent = new TextField(strContent);
@@ -181,7 +183,7 @@ public class ReportController extends ControllerTemplate{
 									});
 									
 								} else if (fieldType.contentEquals("percent")) {
-									celly = new VBox();
+									//celly = new VBox();
 									meaning.setText(meaning.getText() + " (%)");
 									//celly.setUserData(fieldName);
 									strContent = commentParts[3];
@@ -200,7 +202,7 @@ public class ReportController extends ControllerTemplate{
 									});
 									
 								} else if (commentParts[0].contentEquals("combo")) {
-									celly = new VBox();
+									//celly = new VBox();
 									//celly.setUserData(fieldName);
 									// Get data from DB and load them to combobox
 									comboContent = DatabaseAndSession.returnComboBoxValues(fieldName);
@@ -224,10 +226,11 @@ public class ReportController extends ControllerTemplate{
 									
 									
 								} else if (fieldType.contentEquals("depend")) {
-									celly = new VBox();
+									// Assumption : fields do not depend on percent or special fields!!!!
+									//celly = new VBox();
 									celly.setUserData(fieldName);
 									
-									// Get data from DB and load them to combobox
+									// Get data from DB and load them to combobox, user data of newCombo is also set to the decisiveName with the line below
 									comboContent = DatabaseAndSession.returnDependantValues(fieldName);
 									// You may need to set it to a default value in some occasions, an if check here could do it
 									
@@ -235,8 +238,8 @@ public class ReportController extends ControllerTemplate{
 										System.out.println("alan doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi");
 										continue;
 									}
-									//comboContent.setUserData("combo");
 									
+									meaning.setText(meaningStr + " --(baglidir)--> " + comboContent.getUserData() );
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 
@@ -253,11 +256,13 @@ public class ReportController extends ControllerTemplate{
 									 * ); continue; } }
 									 */
 								} else if (fieldType.contentEquals("special")) {
+									// Assumption : Other fields do not depend on special fields!!!!
 									// Special fields will be handled here, e.g. the client wants the report no. in a certain format.
-									celly = new VBox();
-									meaning.setText(meaning.getText() + " (yyyyMMdd??)");
+									
+									
 									
 									if (fieldName.contentEquals("rapor-no")) {
+										meaning.setText(meaning.getText() + " (yyyyMMdd??)");
 										final int reportNoLength = 10;
 										SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");  
 									    Date date = new Date();
@@ -277,6 +282,7 @@ public class ReportController extends ControllerTemplate{
 												
 												String changeProblem;
 												if (newContent.length() != reportNoLength) {
+													contentsMap.put(fieldName, null);
 													changeProblem = fieldName + " bölgesindeki " + newValue + " 10 haneli bir pozitif sayı olmalıdır";
 													Model.createPopup(rootPane, changeProblem, null, Level.WARNING);
 												} else {
@@ -286,42 +292,25 @@ public class ReportController extends ControllerTemplate{
 														
 														contentsMap.put(fieldName, newContent);
 														Model.log.info("şu bölgede: " + fieldName + " yeni değer şu değer oldu: " + newContent);
-													} catch(NumberFormatException nfe) {
+													} catch (NumberFormatException nfe) {
+														contentsMap.put(fieldName, null);
 														changeProblem = fieldName + " bölgesindeki " + newContent + " pozitif bir sayı olmalıdır";
 														Model.createErrorPopup(rootPane, changeProblem, null, nfe);
 													} 
 												}
 											}
-
-											
-											
-											
-											
 										});
-										/*
-										 * textContent.textProperty().addListener( (v, oldValue, newValue) -> {
-										 * 
-										 * String changeProblem; if (newValue.length() != reportNoLength) {
-										 * changeProblem = fieldName + " bölgesindeki " + newValue +
-										 * " 10 haneli bir pozitif sayı olmalıdır"; Model.createPopup(rootPane,
-										 * changeProblem, null, Level.WARNING); } else { try { Thread.sleep(3000);
-										 * Integer.parseUnsignedInt(newValue); 
-										 * contentsMap.put(fieldName, newValue); Model.log.info("şu bölgede: " +
-										 * fieldName + " şu değer: " + oldValue + " şu değer oldu: " + newValue); }
-										 * catch(NumberFormatException nfe) { changeProblem = fieldName +
-										 * " bölgesindeki " + newValue + " pozitif bir sayı olmalıdır";
-										 * Model.createErrorPopup(rootPane, changeProblem, null, nfe); } catch
-										 * (InterruptedException e) { // TODO Auto-generated catch block
-										 * e.printStackTrace(); } }
-										 * 
-										 * 
-										 * 
-										 * 
-										 * });
-										 */
-										
-									    
-									    
+									}
+									
+									else if (fieldName.contentEquals("rapor-tarihi")) {
+										SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/YYYY");  
+									    Date date = new Date();
+									    String dateStr = formatter.format(date);
+									    System.out.println(dateStr);
+									    Label dateLabel = new Label(dateStr);
+									    celly.getChildren().addAll(cell, meaning, dateLabel);
+										gridPane.add(celly, cellsUsedInRow , rowsUsed);
+										contentsMap.put(fieldName, dateStr);
 									}
 									
 								}

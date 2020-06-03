@@ -82,6 +82,10 @@ public class DatabaseAndSession {
 					String content = rs2.getString("DEPENDANTCONTENT");
 					buff.getItems().add(content);
 				}
+				buff.setUserData(decisiveName);
+				if (buff.getItems().size() == 1) {
+					buff.getSelectionModel().selectFirst();
+				}
 				return buff;
 			} else {
 				System.out.println(dependantName + " in bagli oldugu bir hucre yok, ama bagimli hucre olarak gosterilmis");
@@ -111,6 +115,9 @@ public class DatabaseAndSession {
 				String content = rs.getString("FIELDCONTENT");
 				buff.getItems().add(content);
 			
+			}
+			if (buff.getItems().size() == 1) {
+				buff.getSelectionModel().selectFirst();
 			}
 			return buff;
 		}catch (SQLException e) {
