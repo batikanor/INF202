@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import java.util.logging.Level;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -254,6 +255,7 @@ public class ReportController extends ControllerTemplate{
 								} else if (fieldType.contentEquals("special")) {
 									// Special fields will be handled here, e.g. the client wants the report no. in a certain format.
 									celly = new VBox();
+									meaning.setText(meaning.getText() + " (yyyyMMdd??)");
 									
 									if (fieldName.contentEquals("rapor-no")) {
 										final int reportNoLength = 10;
@@ -269,29 +271,54 @@ public class ReportController extends ControllerTemplate{
 										
 									    celly.getChildren().addAll(cell, meaning, textContent);
 										gridPane.add(celly, cellsUsedInRow , rowsUsed);
-										
-										textContent.textProperty().addListener( (v, oldValue, newValue) -> {
-											
-											String changeProblem;
-											if (newValue.length() != reportNoLength) {
-												changeProblem = fieldName + " bölgesindeki " + newValue + " 10 haneli bir pozitif sayı olmalıdır";
-												Model.createPopup(rootPane, changeProblem, null, Level.WARNING);
-											} else {
-												try {
-													Integer.parseUnsignedInt(newValue);
-													String newContent = newValue;
-													contentsMap.put(fieldName, newContent);
-													Model.log.info("şu bölgede: " + fieldName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
-												} catch(NumberFormatException nfe) {
-													changeProblem = fieldName + " bölgesindeki " + newValue + " pozitif bir sayı olmalıdır";
-													Model.createErrorPopup(rootPane, changeProblem, null, nfe);
+										textContent.focusedProperty().addListener( (v, oldValue, newValue) -> {
+											if (newValue == false) {
+												String newContent = textContent.getText();
+												
+												String changeProblem;
+												if (newContent.length() != reportNoLength) {
+													changeProblem = fieldName + " bölgesindeki " + newValue + " 10 haneli bir pozitif sayı olmalıdır";
+													Model.createPopup(rootPane, changeProblem, null, Level.WARNING);
+												} else {
+													try {
+														
+														Integer.parseUnsignedInt(newContent);
+														
+														contentsMap.put(fieldName, newContent);
+														Model.log.info("şu bölgede: " + fieldName + " yeni değer şu değer oldu: " + newContent);
+													} catch(NumberFormatException nfe) {
+														changeProblem = fieldName + " bölgesindeki " + newContent + " pozitif bir sayı olmalıdır";
+														Model.createErrorPopup(rootPane, changeProblem, null, nfe);
+													} 
 												}
 											}
+
 											
 											
 											
 											
 										});
+										/*
+										 * textContent.textProperty().addListener( (v, oldValue, newValue) -> {
+										 * 
+										 * String changeProblem; if (newValue.length() != reportNoLength) {
+										 * changeProblem = fieldName + " bölgesindeki " + newValue +
+										 * " 10 haneli bir pozitif sayı olmalıdır"; Model.createPopup(rootPane,
+										 * changeProblem, null, Level.WARNING); } else { try { Thread.sleep(3000);
+										 * Integer.parseUnsignedInt(newValue); 
+										 * contentsMap.put(fieldName, newValue); Model.log.info("şu bölgede: " +
+										 * fieldName + " şu değer: " + oldValue + " şu değer oldu: " + newValue); }
+										 * catch(NumberFormatException nfe) { changeProblem = fieldName +
+										 * " bölgesindeki " + newValue + " pozitif bir sayı olmalıdır";
+										 * Model.createErrorPopup(rootPane, changeProblem, null, nfe); } catch
+										 * (InterruptedException e) { // TODO Auto-generated catch block
+										 * e.printStackTrace(); } }
+										 * 
+										 * 
+										 * 
+										 * 
+										 * });
+										 */
 										
 									    
 									    
