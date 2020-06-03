@@ -18,4 +18,192 @@ FINEST 02/06/2020 22:08:31 Program başlatılıyor -> FINE 02/06/2020 22:08:37 E
  -> FINEST 03/06/2020 02:31:01 Program başlatılıyor -> FINE 03/06/2020 02:31:17 Program düzgün şekilde sonlandırıldı
  -> FINEST 03/06/2020 02:32:53 Program başlatılıyor -> FINE 03/06/2020 02:32:55 E003: Program optimal şekilde sonlandırılamadı
  -> FINEST 03/06/2020 02:32:57 Program başlatılıyor -> FINE 03/06/2020 02:32:59 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 09:27:05 Program başlatılıyor -> FINE 03/06/2020 09:28:03 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 09:28:14 Program başlatılıyor -> FINE 03/06/2020 09:33:54 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 09:44:46 Program başlatılıyor -> FINE 03/06/2020 09:46:40 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 09:47:59 Program başlatılıyor -> INFO 03/06/2020 09:48:08 şu bölgede: musteri-adi şu değer: null şu değer oldu: DENEME MÜŞTERİSİ -> INFO 03/06/2020 09:48:09 şu bölgede: musteri-adi şu değer: DENEME MÜŞTERİSİ şu değer oldu: TAG GEMİ -> INFO 03/06/2020 09:48:11 şu bölgede: proje-adi şu değer: null şu değer oldu: DENEME PROJESİ -> INFO 03/06/2020 09:48:12 şu bölgede: test-yeri şu değer: null şu değer oldu: İZMİT/KOCAELİ -> FINE 03/06/2020 09:49:10 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 10:57:41 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 10:57:56 rapor-no bölgesindeki 20200603?10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:57:56 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 10:57:58 rapor-no bölgesindeki 20200603?\pozitif bir sayı olmalıdırINFO 03/06/2020 10:57:58 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603?\ -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:01 rapor-no bölgesindeki 20200603?10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:01 şu bölgede: rapor-no şu değer: 20200603?\ şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:06 rapor-no bölgesindeki 2020060310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:06 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:07 rapor-no bölgesindeki 20200603310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:07 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 202006033 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:09 rapor-no bölgesindeki 202006033dpozitif bir sayı olmalıdırINFO 03/06/2020 10:58:09 şu bölgede: rapor-no şu değer: 202006033 şu değer oldu: 202006033d -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:30 rapor-no bölgesindeki 202006033d310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:30 şu bölgede: rapor-no şu değer: 202006033d şu değer oldu: 202006033d3 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:30 rapor-no bölgesindeki 202006033dpozitif bir sayı olmalıdırINFO 03/06/2020 10:58:30 şu bölgede: rapor-no şu değer: 202006033d3 şu değer oldu: 202006033d -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:32 rapor-no bölgesindeki 20200603310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:32 şu bölgede: rapor-no şu değer: 202006033d şu değer oldu: 202006033 -> INFO 03/06/2020 10:58:32 şu bölgede: rapor-no şu değer: 202006033 şu değer oldu: 2020060333 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:34 rapor-no bölgesindeki 2020060333310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:34 şu bölgede: rapor-no şu değer: 2020060333 şu değer oldu: 20200603333 -> INFO 03/06/2020 10:58:35 şu bölgede: rapor-no şu değer: 20200603333 şu değer oldu: 2020060333 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:37 rapor-no bölgesindeki 2020060333310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:37 şu bölgede: rapor-no şu değer: 2020060333 şu değer oldu: 20200603333 -> INFO 03/06/2020 10:58:38 şu bölgede: rapor-no şu değer: 20200603333 şu değer oldu: 2020060333 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:39 rapor-no bölgesindeki 2020060333310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:39 şu bölgede: rapor-no şu değer: 2020060333 şu değer oldu: 20200603333 -> INFO 03/06/2020 10:58:40 şu bölgede: rapor-no şu değer: 20200603333 şu değer oldu: 2020060333 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:40 rapor-no bölgesindeki 2020060333310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:40 şu bölgede: rapor-no şu değer: 2020060333 şu değer oldu: 20200603333 -> INFO 03/06/2020 10:58:41 şu bölgede: rapor-no şu değer: 20200603333 şu değer oldu: 2020060333 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:41 rapor-no bölgesindeki 2020060333310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:41 şu bölgede: rapor-no şu değer: 2020060333 şu değer oldu: 20200603333 -> INFO 03/06/2020 10:58:42 şu bölgede: rapor-no şu değer: 20200603333 şu değer oldu: 2020060333 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:43 rapor-no bölgesindeki 2020060333310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:43 şu bölgede: rapor-no şu değer: 2020060333 şu değer oldu: 20200603333 -> INFO 03/06/2020 10:58:43 şu bölgede: rapor-no şu değer: 20200603333 şu değer oldu: 2020060333 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:44 rapor-no bölgesindeki 20200603310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:44 şu bölgede: rapor-no şu değer: 2020060333 şu değer oldu: 202006033 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:45 rapor-no bölgesindeki 2020060310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:45 şu bölgede: rapor-no şu değer: 202006033 şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:46 rapor-no bölgesindeki 202006010 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:46 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 2020060 -> 
+ÖNEMLİ: WARNING 03/06/2020 10:58:46 rapor-no bölgesindeki 2020060310 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 10:58:46 şu bölgede: rapor-no şu değer: 2020060 şu değer oldu: 20200603 -> FINE 03/06/2020 11:05:28 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:07:35 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 11:07:49 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:07:49 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 11:07:51 For input string: "20200603?2"INFO 03/06/2020 11:07:51 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603?2 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:07:56 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:07:56 şu bölgede: rapor-no şu değer: 20200603?2 şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 11:07:57 rapor-no bölgesindeki 20200603 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:07:57 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:07:57 rapor-no bölgesindeki 202006031 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:07:57 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 202006031 -> INFO 03/06/2020 11:07:58 şu bölgede: rapor-no şu değer: 202006031 şu değer oldu: 2020060311 -> FINE 03/06/2020 11:08:01 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:12:18 Program başlatılıyor -> INFO 03/06/2020 11:12:31 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> 
+ÖNEMLİ: WARNING 03/06/2020 11:12:34 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:12:34 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 11:12:34 rapor-no bölgesindeki 20200603 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:12:34 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:12:34 rapor-no bölgesindeki 202006032 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:12:34 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 202006032 -> INFO 03/06/2020 11:12:35 şu bölgede: rapor-no şu değer: 202006032 şu değer oldu: 2020060322 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:12:40 rapor-no bölgesindeki 20200603223 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:12:40 şu bölgede: rapor-no şu değer: 2020060322 şu değer oldu: 20200603223 -> INFO 03/06/2020 11:12:42 şu bölgede: rapor-no şu değer: 20200603223 şu değer oldu: 2020060322 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:12:42 rapor-no bölgesindeki 2020060322d 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:12:42 şu bölgede: rapor-no şu değer: 2020060322 şu değer oldu: 2020060322d -> INFO 03/06/2020 11:12:43 şu bölgede: rapor-no şu değer: 2020060322d şu değer oldu: 2020060322 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:12:43 rapor-no bölgesindeki 202006032 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:12:43 şu bölgede: rapor-no şu değer: 2020060322 şu değer oldu: 202006032 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:12:44 [Ljava.lang.StackTraceElement;@2c827287INFO 03/06/2020 11:12:44 şu bölgede: rapor-no şu değer: 202006032 şu değer oldu: 202006032f -> FINE 03/06/2020 11:12:49 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:16:03 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 11:16:15 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:16:15 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 11:16:16 rapor-no bölgesindeki 20200603 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:16:16 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:16:17 rapor-no bölgesindeki 202006033 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:16:17 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 202006033 -> 
+ÖNEMLİ: SEVERE 03/06/2020 11:16:18 rapor-no bölgesindeki 202006033d pozitif bir sayı olmalıdırINFO 03/06/2020 11:16:18 şu bölgede: rapor-no şu değer: 202006033 şu değer oldu: 202006033d -> FINE 03/06/2020 11:16:21 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:24:31 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 11:24:43 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:24:43 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 11:24:43 rapor-no bölgesindeki 20200603 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:24:43 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:24:44 rapor-no bölgesindeki 202006033 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:24:44 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 202006033 -> INFO 03/06/2020 11:24:45 şu bölgede: rapor-no şu değer: 202006033 şu değer oldu: 2020060335 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:24:45 rapor-no bölgesindeki 202006033 10 haneli bir pozitif sayı olmalıdırINFO 03/06/2020 11:24:45 şu bölgede: rapor-no şu değer: 2020060335 şu değer oldu: 202006033 -> 
+ÖNEMLİ: SEVERE 03/06/2020 11:24:46 rapor-no bölgesindeki 202006033f pozitif bir sayı olmalıdırINFO 03/06/2020 11:24:46 şu bölgede: rapor-no şu değer: 202006033 şu değer oldu: 202006033f -> FINE 03/06/2020 11:24:49 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:27:42 Program başlatılıyor -> FINE 03/06/2020 11:27:45 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 11:30:44 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 11:30:55 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:30:55 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 11:30:57 rapor-no bölgesindeki 20200603 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:30:57 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:30:58 rapor-no bölgesindeki 20200603f 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:30:58 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 20200603f -> 
+ÖNEMLİ: WARNING 03/06/2020 11:31:00 rapor-no bölgesindeki 20200603f 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:31:00 şu bölgede: rapor-no şu değer: 20200603ff şu değer oldu: 20200603f -> 
+ÖNEMLİ: WARNING 03/06/2020 11:31:01 rapor-no bölgesindeki 20200603f 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:31:01 şu bölgede: rapor-no şu değer: 20200603ff şu değer oldu: 20200603f -> FINE 03/06/2020 11:31:11 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:32:14 Program başlatılıyor -> INFO 03/06/2020 11:32:26 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> INFO 03/06/2020 11:32:30 şu bölgede: proje-adi şu değer: null şu değer oldu: KAYNAKÇI TESTİ -> 
+ÖNEMLİ: WARNING 03/06/2020 11:32:33 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:32:33 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: WARNING 03/06/2020 11:32:33 rapor-no bölgesindeki 20200603 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:32:33 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:32:35 rapor-no bölgesindeki 202006032 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:32:35 şu bölgede: rapor-no şu değer: 20200603 şu değer oldu: 202006032 -> INFO 03/06/2020 11:32:36 şu bölgede: rapor-no şu değer: 202006032 şu değer oldu: 2020060323 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:32:37 rapor-no bölgesindeki 202006032 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:32:37 şu bölgede: rapor-no şu değer: 2020060323 şu değer oldu: 202006032 -> 
+ÖNEMLİ: WARNING 03/06/2020 11:32:38 rapor-no bölgesindeki 202006032 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:32:38 şu bölgede: rapor-no şu değer: 202006032f şu değer oldu: 202006032 -> FINE 03/06/2020 11:34:14 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:37:57 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 11:38:09 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:38:09 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: SEVERE 03/06/2020 11:38:10 [Ljava.lang.StackTraceElement;@6f80e6d3 -> INFO 03/06/2020 11:38:10 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603?f -> FINE 03/06/2020 11:38:12 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:44:15 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 11:44:18 Giriş denemesi başarısız -> 
+ÖNEMLİ: WARNING 03/06/2020 11:44:31 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:44:31 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: SEVERE 03/06/2020 11:44:32 rapor-no bölgesindeki 20200603?d pozitif bir sayı olmalıdırjava.lang.NumberFormatException: For input string: "20200603?d"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Long.parseLong(Long.java:692)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:834)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:928)
+	at implicaspection.ReportController.lambda$5(ReportController.java:283)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$Generic.fireValueChangedEvent(ExpressionHelper.java:360)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.controls/javafx.scene.control.TextInputControl$TextProperty.fireValueChangedEvent(TextInputControl.java:1438)
+	at javafx.controls/javafx.scene.control.TextInputControl$TextProperty.markInvalid(TextInputControl.java:1442)
+	at javafx.controls/javafx.scene.control.TextInputControl$TextProperty.controlContentHasChanged(TextInputControl.java:1381)
+	at javafx.controls/javafx.scene.control.TextInputControl.lambda$new$0(TextInputControl.java:144)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$SingleInvalidation.fireValueChangedEvent(ExpressionHelper.java:136)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.controls/javafx.scene.control.TextField$TextFieldContent.insert(TextField.java:91)
+	at javafx.controls/javafx.scene.control.TextInputControl.replaceText(TextInputControl.java:1247)
+	at javafx.controls/javafx.scene.control.TextInputControl.updateContent(TextInputControl.java:569)
+	at javafx.controls/javafx.scene.control.TextInputControl.replaceText(TextInputControl.java:561)
+	at javafx.controls/javafx.scene.control.skin.TextFieldSkin.replaceText(TextFieldSkin.java:450)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.TextFieldBehavior.replaceText(TextFieldBehavior.java:210)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.TextInputControlBehavior.defaultKeyTyped(TextInputControlBehavior.java:403)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.TextInputControlBehavior.lambda$keyMapping$62(TextInputControlBehavior.java:333)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.process(Scene.java:4098)
+	at javafx.graphics/javafx.scene.Scene.processKeyEvent(Scene.java:2157)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2625)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:217)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:149)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleKeyEvent$1(GlassViewEventHandler.java:248)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:412)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:247)
+	at javafx.graphics/com.sun.glass.ui.View.handleKeyEvent(View.java:547)
+	at javafx.graphics/com.sun.glass.ui.View.notifyKey(View.java:971)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+ -> INFO 03/06/2020 11:44:32 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603?d -> FINE 03/06/2020 11:47:08 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:47:53 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 03/06/2020 11:48:03 rapor-no bölgesindeki 20200603? 10 haneli bir pozitif sayı olmalıdır -> INFO 03/06/2020 11:48:03 şu bölgede: rapor-no şu değer: 20200603?? şu değer oldu: 20200603? -> 
+ÖNEMLİ: SEVERE 03/06/2020 11:48:03 rapor-no bölgesindeki 20200603?f pozitif bir sayı olmalıdır tam sebep: 
+ ---hata detayı---java.lang.NumberFormatException: For input string: "20200603?f"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Long.parseLong(Long.java:692)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:834)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:928)
+	at implicaspection.ReportController.lambda$5(ReportController.java:283)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$Generic.fireValueChangedEvent(ExpressionHelper.java:360)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.controls/javafx.scene.control.TextInputControl$TextProperty.fireValueChangedEvent(TextInputControl.java:1438)
+	at javafx.controls/javafx.scene.control.TextInputControl$TextProperty.markInvalid(TextInputControl.java:1442)
+	at javafx.controls/javafx.scene.control.TextInputControl$TextProperty.controlContentHasChanged(TextInputControl.java:1381)
+	at javafx.controls/javafx.scene.control.TextInputControl.lambda$new$0(TextInputControl.java:144)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$SingleInvalidation.fireValueChangedEvent(ExpressionHelper.java:136)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.controls/javafx.scene.control.TextField$TextFieldContent.insert(TextField.java:91)
+	at javafx.controls/javafx.scene.control.TextInputControl.replaceText(TextInputControl.java:1247)
+	at javafx.controls/javafx.scene.control.TextInputControl.updateContent(TextInputControl.java:569)
+	at javafx.controls/javafx.scene.control.TextInputControl.replaceText(TextInputControl.java:561)
+	at javafx.controls/javafx.scene.control.skin.TextFieldSkin.replaceText(TextFieldSkin.java:450)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.TextFieldBehavior.replaceText(TextFieldBehavior.java:210)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.TextInputControlBehavior.defaultKeyTyped(TextInputControlBehavior.java:403)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.TextInputControlBehavior.lambda$keyMapping$62(TextInputControlBehavior.java:333)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.process(Scene.java:4098)
+	at javafx.graphics/javafx.scene.Scene.processKeyEvent(Scene.java:2157)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2625)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:217)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:149)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleKeyEvent$1(GlassViewEventHandler.java:248)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:412)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:247)
+	at javafx.graphics/com.sun.glass.ui.View.handleKeyEvent(View.java:547)
+	at javafx.graphics/com.sun.glass.ui.View.notifyKey(View.java:971)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+---hata detayı---
+ -> INFO 03/06/2020 11:48:03 şu bölgede: rapor-no şu değer: 20200603? şu değer oldu: 20200603?f -> FINE 03/06/2020 11:48:07 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 11:53:06 Program başlatılıyor -> FINE 03/06/2020 11:53:08 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 11:53:26 Program başlatılıyor -> FINE 03/06/2020 11:53:30 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 12:00:51 Program başlatılıyor -> FINEST 03/06/2020 12:00:53 Giriş başarılı -> FINE 03/06/2020 12:03:11 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 03/06/2020 12:04:27 Program başlatılıyor -> FINEST 03/06/2020 12:04:31 Giriş başarılı -> FINEST 03/06/2020 12:04:41 Şu rastgele sayı üretildi: 33 -> FINEST 03/06/2020 12:04:41 Şu rastgele sayı üretildi: 96 -> FINEST 03/06/2020 12:04:42 Şu rastgele sayı üretildi: 18 -> FINEST 03/06/2020 12:04:42 Şu rastgele sayı üretildi: 64 -> FINEST 03/06/2020 12:04:42 Şu rastgele sayı üretildi: 44 -> FINEST 03/06/2020 12:04:42 Şu rastgele sayı üretildi: 32 -> FINEST 03/06/2020 12:04:42 Şu rastgele sayı üretildi: 40 -> FINE 03/06/2020 12:04:53 Program düzgün şekilde sonlandırıldı
  -> 

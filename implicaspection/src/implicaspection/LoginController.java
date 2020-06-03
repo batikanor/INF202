@@ -1,12 +1,13 @@
 package implicaspection;
 
+import java.util.logging.Level;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.WindowEvent;
@@ -25,10 +26,10 @@ public class LoginController extends ControllerTemplate{
 	@FXML
 	private AnchorPane rootPane;
 	
-	private int count = 0;
+	//private int count = 0;
 	
-	// About MVC
-	private String className = this.getClass().getSimpleName();
+	
+	//private String className = this.getClass().getSimpleName();
 	
 	@FXML
 	
@@ -52,8 +53,8 @@ public void initialize() {
 		String feedback;
 		
 		if(DatabaseAndSession.login(txtUsername.getText(), txtPassword.getText(), false)) {
-			feedback = "Statü: giriş başarılı";
-			status.setText(Model.feedback(feedback, count, className));
+			feedback = "Giriş başarılı";
+			Model.createPopup(rootPane, feedback, null, Level.FINEST);
 			// Load Main window
 
 			Model.loadWindow("Main", 800, 600);
@@ -66,10 +67,10 @@ public void initialize() {
 			
 			System.out.println(UserSingleton.getSession().toString());
 		} else {
-			feedback = "Statü: giriş başarısız";
-			Model.createPopup(rootPane, feedback, null);
+			feedback = "Giriş denemesi başarısız";
+			Model.createPopup(rootPane, feedback, null, Level.WARNING);
 			//Model.createPopup(rootPane, feedback, new TextArea("yooo!"));
-			status.setText(Model.feedback(feedback, count, className));
+			status.setText(feedback);
 		}
 		
 	}

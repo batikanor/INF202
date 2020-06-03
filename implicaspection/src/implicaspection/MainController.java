@@ -41,8 +41,8 @@ public class MainController extends ControllerTemplate{
 	private int count = 0;
 
 	
-	// About MVC
-	private String className = this.getClass().getSimpleName();
+
+	//private String className = this.getClass().getSimpleName();
 
 
 	@FXML Button buttonRandom;
@@ -68,7 +68,7 @@ public class MainController extends ControllerTemplate{
 	public void processInput(ActionEvent event) {
 		count++;
 		String input = queryInput.getText();
-		queryOutput.setText(Model.feedback(input, count, className));
+		queryOutput.setText(input);
 		
 	}
 

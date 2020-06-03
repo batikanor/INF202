@@ -3,7 +3,6 @@ package implicaspection;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -30,11 +30,12 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 
 
 
 public class ReportController extends ControllerTemplate{
-	
+
 	String fileName;
 	private File selectedFile;
 	private XSSFWorkbook wb;
@@ -50,6 +51,7 @@ public class ReportController extends ControllerTemplate{
 	// String decisiveName, String dependantName
 	// There may be multiple dependants to a decisive field.
 	public static HashMap<String, ArrayList<String>> dependenceMap = new HashMap<String, ArrayList<String>>();
+	@FXML BorderPane rootPane;
 	
 	// Grid locations of dependants
 
@@ -85,7 +87,7 @@ public class ReportController extends ControllerTemplate{
 							contentsMap.put(dependantName, null);
 							
 							newCombo.valueProperty().addListener( (v, oldValue, newValue) -> {
-								System.out.println("şu bölgede: " + dependantName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+								Model.log.info("şu bölgede: " + dependantName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 								contentsMap.put(dependantName, newValue);
 							});
 						
@@ -144,6 +146,7 @@ public class ReportController extends ControllerTemplate{
 								// commentsParts[0] should be type of entry
 								VBox celly;
 								
+								final String fieldType = commentParts[0];
 								final String meaningStr = commentParts[1];
 								String fieldName = commentParts[2];
 								String fieldLocation = i + "???" + j;
@@ -161,7 +164,7 @@ public class ReportController extends ControllerTemplate{
 								ComboBox<String> comboContent;
 								Spinner<Integer> percentage;
 								
-								if (commentParts[0].contentEquals("default")) {
+								if (fieldType.contentEquals("default")) {
 									celly = new VBox();
 									//celly.setUserData(fieldName);
 									strContent = commentParts[3];
@@ -171,12 +174,12 @@ public class ReportController extends ControllerTemplate{
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 									
 									textContent.textProperty().addListener( (v, oldValue, newValue) -> {
-										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										Model.log.info("şu bölgede: " + fieldName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 										contentsMap.put(fieldName, newValue);
 										updateDependants(fieldName);
 									});
 									
-								} else if (commentParts[0].contentEquals("percent")) {
+								} else if (fieldType.contentEquals("percent")) {
 									celly = new VBox();
 									meaning.setText(meaning.getText() + " (%)");
 									//celly.setUserData(fieldName);
@@ -190,7 +193,7 @@ public class ReportController extends ControllerTemplate{
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 									
 									percentage.valueProperty().addListener( (v, oldValue, newValue) -> {
-										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										Model.log.info("şu bölgede: " + fieldName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 										contentsMap.put(fieldName, newValue.toString());
 										// Assumption : Other fields do not depend on percent fields!!!!
 									});
@@ -212,14 +215,14 @@ public class ReportController extends ControllerTemplate{
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 									
 									comboContent.valueProperty().addListener( (v, oldValue, newValue) -> {
-										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										Model.log.info("şu bölgede: " + fieldName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 										contentsMap.put(fieldName, newValue);
 										updateDependants(fieldName);
 									});
 					
 									
 									
-								} else if (commentParts[0].contentEquals("depend")) {
+								} else if (fieldType.contentEquals("depend")) {
 									celly = new VBox();
 									celly.setUserData(fieldName);
 									
@@ -237,7 +240,7 @@ public class ReportController extends ControllerTemplate{
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 
 									comboContent.valueProperty().addListener( (v, oldValue, newValue) -> {
-										System.out.println("şu bölgede: " + meaningStr + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+										Model.log.info("şu bölgede: " + fieldName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
 										contentsMap.put(fieldName, newValue);
 									});
 									/*
@@ -248,6 +251,52 @@ public class ReportController extends ControllerTemplate{
 									 * println("alan doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi"
 									 * ); continue; } }
 									 */
+								} else if (fieldType.contentEquals("special")) {
+									// Special fields will be handled here, e.g. the client wants the report no. in a certain format.
+									celly = new VBox();
+									
+									if (fieldName.contentEquals("rapor-no")) {
+										final int reportNoLength = 10;
+										SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");  
+									    Date date = new Date();
+									    String dateStr = formatter.format(date);
+									    // 'rapor isterleri nin ne oldugunu bilmedigimden son 2 haneyi manuel istiyorum'
+									    strContent = dateStr + "??";
+									    textContent = new TextField(strContent);
+										
+									    // cuz ?? is not a number
+									    contentsMap.put(fieldName, null);
+										
+									    celly.getChildren().addAll(cell, meaning, textContent);
+										gridPane.add(celly, cellsUsedInRow , rowsUsed);
+										
+										textContent.textProperty().addListener( (v, oldValue, newValue) -> {
+											
+											String changeProblem;
+											if (newValue.length() != reportNoLength) {
+												changeProblem = fieldName + " bölgesindeki " + newValue + " 10 haneli bir pozitif sayı olmalıdır";
+												Model.createPopup(rootPane, changeProblem, null, Level.WARNING);
+											} else {
+												try {
+													Integer.parseUnsignedInt(newValue);
+													String newContent = newValue;
+													contentsMap.put(fieldName, newContent);
+													Model.log.info("şu bölgede: " + fieldName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+												} catch(NumberFormatException nfe) {
+													changeProblem = fieldName + " bölgesindeki " + newValue + " pozitif bir sayı olmalıdır";
+													Model.createErrorPopup(rootPane, changeProblem, null, nfe);
+												}
+											}
+											
+											
+											
+											
+										});
+										
+									    
+									    
+									}
+									
 								}
 								
 								cellsUsedInRow++;
@@ -292,9 +341,10 @@ public class ReportController extends ControllerTemplate{
 		for(Map.Entry<String, String> entry : contentsMap.entrySet()) {
 			String fieldName =  entry.getKey();
 			String fieldContent = entry.getValue();
-			
+			System.out.println(fieldContent);
 			if(fieldContent == null) {
-				System.out.println("Doldurulmasi gereken seçmeli değerlerden " + fieldName + " doldurulamadı");
+				String warnPop = "Doldurulmasi gereken seçmeli değerlerden " + fieldName + " doldurulamadı";
+				Model.createPopup(rootPane, warnPop, null, Level.WARNING);
 				return false;
 			}
 			
@@ -315,8 +365,10 @@ public class ReportController extends ControllerTemplate{
 		wb.write(fos);
 		fos.flush();
 		fos.close();
+		String infoPop = "Doldurma işlemi başarıyla tamamlandı";
+		Model.log.info(infoPop);
 		
-		System.out.println("Doldurma işlemi başarıyla tamamlandı.");
+
 		return false;
 	}
 	public void closeEverythıng(ActionEvent event) throws IOException {

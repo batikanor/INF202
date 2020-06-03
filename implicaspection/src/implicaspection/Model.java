@@ -2,7 +2,8 @@ package implicaspection;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.System.LoggerFinder;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.management.ManagementFactory;
 import java.lang.management.PlatformLoggingMXBean;
 import java.security.NoSuchAlgorithmException;
@@ -22,8 +23,6 @@ import java.util.logging.Logger;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-import com.sun.javafx.util.Logging;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,16 +35,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -57,12 +48,11 @@ public class Model {
 	//public static Vector<Stage> stages = new Vector<>();
 	public static HashMap<String, Stage> stages = new HashMap<String, Stage>();
 	
-	public static Logger log = Logger.getLogger(Model.class.getName());
-
+	public static Logger log = Logger.getLogger(Model.class.getPackageName());
+	
 	
 	public static String GetExcelColumnString(int columnNo){
 	    int dividend = columnNo;
-	    
 	    String columnStr = "";
 	    int mod;
 
@@ -97,8 +87,10 @@ public class Model {
 		try {
 			factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 		} catch (NoSuchAlgorithmException e) {
+			String eStr = "E000: Şifreleri saklamak için kullandığımız java standart kütüphanesindeki şifreleme algoritması bulunamadı...";
 			
-			System.out.println("E000: Şifreleri saklamak için kullandığımız java standart kütüphanesindeki şifreleme algoritması bulunamadı...");
+			createErrorPopup(null, eStr, null, e);
+			
 			e.printStackTrace();
 		
 		
@@ -147,15 +139,18 @@ public class Model {
 			newStage.show();
 			
 		} catch (IOException e) {
-			System.out.println("E001: Yüklenmeye çalışılan pencere bulunamadı");
+			System.out.println("E001: Yüklenmeye çalışılaan pencere bulunamadı");
 			e.printStackTrace();
 		}
 		
 	}
-	
-	public static void createPopup(Pane rootPane, String popupStr, Node otherNode) {
+	public static void createErrorPopup(Pane rootPane, String popupStr, Node otherNode, Exception e ) {
 		// TODO Auto-generated method stub
-
+		
+		StringWriter errors = new StringWriter();
+		e.printStackTrace(new PrintWriter(errors));
+		Model.log.log(Level.SEVERE,popupStr + " tam sebep: \r\n ---hata detayı--- \n\r" + errors.toString() + "---hata detayı---\r\n", e);
+		
 		Label lblStatus = new Label(popupStr);
 		Button btnClose = new Button("Geri dön");
 		btnClose.setPrefHeight(50);
@@ -170,6 +165,57 @@ public class Model {
 		}
 		BoxBlur blur = new BoxBlur(4, 4, 4);
 		rootPane.setEffect(blur);
+		fpPop.setBlendMode(BlendMode.RED);
+		//fpPop.setBackground(new Background(new BackgroundFill(Color.DARKGREY, null, null)));
+		//fpPop.setBorder(new Border(new BorderStroke(Color.BLACK, 
+	          //  BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THICK)));
+		
+		
+		Popup poppy = new Popup();
+		
+		poppy.centerOnScreen();
+
+		EventHandler<ActionEvent> goBack = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				poppy.hide();
+				rootPane.setEffect(null);
+				
+				
+				// Maybe do something with the now maybe altered otherNode here
+			}
+			
+		};
+		btnClose.setOnAction(goBack);
+		poppy.getContent().add(fpPop);
+		poppy.show((Stage)(rootPane.getScene().getWindow()));
+		
+		
+
+	}
+	public static void createPopup(Pane rootPane, String popupStr, Node otherNode, Level logLevel) {
+		// TODO Auto-generated method stub
+		
+		Model.log.log(logLevel, popupStr);
+		Label lblStatus = new Label(popupStr);
+		Button btnClose = new Button("Geri dön");
+		btnClose.setPrefHeight(50);
+		FlowPane fpPop = new FlowPane();
+		fpPop.setPadding(new Insets(30,30,30,30));
+		fpPop.setVgap(20);
+		fpPop.setHgap(20);
+		fpPop.autosize();
+		fpPop.getChildren().addAll(btnClose, lblStatus);
+		if (otherNode != null) {
+		fpPop.getChildren().add(otherNode);	
+		}
+		BoxBlur blur = new BoxBlur(4, 4, 4);
+		
+		if (rootPane != null) {
+			rootPane.setEffect(blur);
+		}
+		
 		fpPop.setBlendMode(BlendMode.SRC_ATOP);
 		//fpPop.setBackground(new Background(new BackgroundFill(Color.DARKGREY, null, null)));
 		//fpPop.setBorder(new Border(new BorderStroke(Color.BLACK, 
@@ -235,21 +281,21 @@ public class Model {
  
                 newWindow.show();
 	 */
-	
-	public static String feedback(String fb, int count, String cName){
-		// TODO
-		// Log this action and put it to a file as final version, make the logging in a "try" block and just nevermind it if it fails
-		// ^ so that a simple logging issue doesn't really affect the functionality of the program.
-		String buff = (cName + " Klasındaki " + Integer.toString(count) + ". işlem şu idi: " + fb);
-		System.out.println(buff);
-		return (buff);
-	}
+	/*
+	 * public static String feedback(String fb, int count, String cName){ // TODO //
+	 * Log this action and put it to a file as final version, make the logging in a
+	 * "try" block and just nevermind it if it fails // ^ so that a simple logging
+	 * issue doesn't really affect the functionality of the program. String buff =
+	 * (cName + " Klasındaki " + Integer.toString(count) + ". işlem şu idi: " + fb);
+	 * System.out.println(buff); return (buff); }
+	 */
 	
 	
 	public static String generateRandom(){
 		Random rand = new Random();
 		String randNum = Integer.toString(rand.nextInt(101));
-		feedback("Şu rastgele sayı üretildi: " + randNum, 0, "Model");
+
+		Model.log.finest("Şu rastgele sayı üretildi: " + randNum);
 		return randNum; //Generates a random number in range [0,100]
 		
 	}
@@ -268,6 +314,7 @@ public class Model {
 	}
 	
 	public static void closeAll() {
+
 		
 		Platform.exit();
 		Model.log.fine("Program düzgün şekilde sonlandırıldı\n");
@@ -303,16 +350,19 @@ public class Model {
 	WARNING is a message level indicating a potential problem.
 	*/
 	public static void initLogger() {
-		Logger root = Logger.getLogger(Model.class.getName());
+		Logger root = Logger.getLogger(Model.class.getPackageName());
+		//root = Logger.getLogger(ReportController.class.getName());
 		FileHandler logFile = null;
 		//BasicConfigurator.configure();
 		
 		try {
 			// Change to Logs.txt after actual deployment
 			logFile = new FileHandler("logs/developmentLogs.txt", true);
+			logFile.setLevel(Level.ALL);
 			
 		} catch (IOException | SecurityException e) {
 			e.printStackTrace();
+			// Couldn't initialize logger, then what?
 		}
 		root.setLevel(Level.ALL);
 		//com.sun.javafx.Logging.getCSSLogger().setLevel(Level.OFF);
@@ -320,7 +370,7 @@ public class Model {
 	  
 		List<String> loggerNames = ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class).getLoggerNames();
 		for (String logged : loggerNames) {
-			System.out.println(logged);
+			System.out.println("loggerlerden biri : " + logged);
 		}
 	
 		//ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class).setLoggerLevel("styling/application.css", "OFF");
@@ -339,10 +389,11 @@ public class Model {
 				ret += df.format(d) + " ";
 				ret += this.formatMessage(rec);
 				
-				if (rec.getLevel().intValue() < Level.WARNING.intValue()) {
-					ret += " -> ";
-				}
+				
+				ret += " -> ";
+				
 				return ret;
+				
 				
 			}
 		});
