@@ -1228,4 +1228,130 @@ FINEST 02/06/2020 22:08:31 Program başlatılıyor -> FINE 02/06/2020 22:08:37 E
  -> FINEST 03/06/2020 13:22:39 Program başlatılıyor -> FINEST 03/06/2020 13:22:47 Giriş başarılı -> INFO 03/06/2020 13:23:04 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> INFO 03/06/2020 13:23:06 şu bölgede: is-emri-no şu değer: null şu değer oldu: 1 -> INFO 03/06/2020 13:23:07 şu bölgede: teklif-no şu değer: null şu değer oldu: 11 -> INFO 03/06/2020 13:23:31 şu bölgede: akim-tipi şu değer: null şu değer oldu: AC -> FINEST 03/06/2020 13:24:13 Program düzgün şekilde sonlandırıldı
  -> FINEST 03/06/2020 13:28:49 Program başlatılıyor -> FINEST 03/06/2020 13:28:52 Giriş başarılı -> INFO 03/06/2020 13:29:11 şu bölgede: akim-tipi şu değer: null şu değer oldu: DC -> INFO 03/06/2020 13:29:12 şu bölgede: akim-tipi şu değer: DC şu değer oldu: AC -> INFO 03/06/2020 13:29:14 şu bölgede: akim-tipi şu değer: AC şu değer oldu: DC -> FINEST 03/06/2020 13:29:20 Program düzgün şekilde sonlandırıldı
  -> FINEST 03/06/2020 13:30:00 Program başlatılıyor -> FINEST 03/06/2020 13:30:02 Giriş başarılı -> INFO 03/06/2020 13:30:15 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> INFO 03/06/2020 13:30:22 şu bölgede: akim-tipi şu değer: null şu değer oldu: AC -> INFO 03/06/2020 13:30:26 şu bölgede: muayene-kapsami şu değer: 100 şu değer oldu: 99 -> INFO 03/06/2020 13:30:26 şu bölgede: muayene-kapsami şu değer: 99 şu değer oldu: 98 -> INFO 03/06/2020 13:30:27 şu bölgede: is-emri-no şu değer: null şu değer oldu: 1 -> INFO 03/06/2020 13:30:29 şu bölgede: teklif-no şu değer: null şu değer oldu: 22 -> INFO 03/06/2020 13:30:36 şu bölgede: musteri-adi şu değer: TAG GEMİ şu değer oldu: DENEME MÜŞTERİSİ -> FINEST 03/06/2020 13:30:39 Program düzgün şekilde sonlandırıldı
+ -> FINEST 03/06/2020 14:06:47 Program başlatılıyor -> FINEST 03/06/2020 14:06:57 Giriş başarılı -> INFO 03/06/2020 14:07:11 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> 
+ÖNEMLİ: WARNING 03/06/2020 14:07:13 Doldurulmasi gereken seçmeli değerlerden teklif-no doldurulamadı -> FINEST 03/06/2020 14:07:16 Program düzgün şekilde sonlandırıldı
+ -> FINEST 05/06/2020 11:01:51 Program başlatılıyor -> FINEST 05/06/2020 11:01:57 Giriş başarılı -> FINEST 05/06/2020 11:02:01 Şu rastgele sayı üretildi: 56 -> FINEST 05/06/2020 11:02:01 Şu rastgele sayı üretildi: 88 -> FINEST 05/06/2020 11:02:01 Şu rastgele sayı üretildi: 13 -> FINEST 05/06/2020 11:02:01 Şu rastgele sayı üretildi: 96 -> FINEST 05/06/2020 11:02:01 Şu rastgele sayı üretildi: 86 -> FINEST 05/06/2020 11:02:01 Şu rastgele sayı üretildi: 78 -> FINEST 05/06/2020 11:02:02 Şu rastgele sayı üretildi: 74 -> FINEST 05/06/2020 11:02:02 Şu rastgele sayı üretildi: 8 -> FINEST 05/06/2020 11:02:02 Şu rastgele sayı üretildi: 95 -> FINEST 05/06/2020 11:02:02 Şu rastgele sayı üretildi: 54 -> FINEST 05/06/2020 11:02:02 Şu rastgele sayı üretildi: 98 -> FINEST 05/06/2020 11:02:02 Şu rastgele sayı üretildi: 92 -> FINEST 05/06/2020 11:02:03 Şu rastgele sayı üretildi: 52 -> FINEST 05/06/2020 11:02:03 Şu rastgele sayı üretildi: 58 -> FINEST 05/06/2020 11:02:04 Şu rastgele sayı üretildi: 76 -> FINEST 05/06/2020 11:02:04 Şu rastgele sayı üretildi: 37 -> FINEST 05/06/2020 11:02:04 Şu rastgele sayı üretildi: 21 -> FINEST 05/06/2020 11:02:04 Şu rastgele sayı üretildi: 22 -> FINEST 05/06/2020 11:02:04 Şu rastgele sayı üretildi: 43 -> FINEST 05/06/2020 11:02:04 Şu rastgele sayı üretildi: 30 -> FINEST 05/06/2020 11:02:04 Şu rastgele sayı üretildi: 15 -> FINEST 05/06/2020 11:02:05 Şu rastgele sayı üretildi: 93 -> FINEST 05/06/2020 11:02:05 Şu rastgele sayı üretildi: 77 -> FINEST 05/06/2020 11:02:05 Şu rastgele sayı üretildi: 60 -> FINEST 05/06/2020 11:02:05 Şu rastgele sayı üretildi: 94 -> FINEST 05/06/2020 11:02:05 Şu rastgele sayı üretildi: 97 -> FINEST 05/06/2020 11:02:06 Şu rastgele sayı üretildi: 32 -> FINEST 05/06/2020 11:02:06 Şu rastgele sayı üretildi: 16 -> FINEST 05/06/2020 11:02:06 Şu rastgele sayı üretildi: 90 -> FINEST 05/06/2020 11:02:06 Şu rastgele sayı üretildi: 32 -> FINEST 05/06/2020 11:02:07 Şu rastgele sayı üretildi: 56 -> FINEST 05/06/2020 11:02:07 Şu rastgele sayı üretildi: 78 -> FINEST 05/06/2020 11:02:07 Şu rastgele sayı üretildi: 48 -> FINEST 05/06/2020 11:02:08 Şu rastgele sayı üretildi: 56 -> FINEST 05/06/2020 11:02:08 Şu rastgele sayı üretildi: 6 -> FINEST 05/06/2020 11:02:08 Şu rastgele sayı üretildi: 85 -> FINEST 05/06/2020 11:02:09 Şu rastgele sayı üretildi: 57 -> FINEST 05/06/2020 11:02:09 Şu rastgele sayı üretildi: 68 -> FINEST 05/06/2020 11:02:09 Şu rastgele sayı üretildi: 43 -> FINEST 05/06/2020 11:02:09 Şu rastgele sayı üretildi: 26 -> FINEST 05/06/2020 11:02:10 Şu rastgele sayı üretildi: 62 -> FINEST 05/06/2020 11:02:10 Şu rastgele sayı üretildi: 71 -> FINEST 05/06/2020 11:02:10 Şu rastgele sayı üretildi: 34 -> FINEST 05/06/2020 11:02:10 Şu rastgele sayı üretildi: 9 -> FINEST 05/06/2020 11:02:11 Şu rastgele sayı üretildi: 85 -> FINEST 05/06/2020 11:02:11 Şu rastgele sayı üretildi: 50 -> FINEST 05/06/2020 11:02:11 Şu rastgele sayı üretildi: 15 -> FINEST 05/06/2020 11:02:11 Şu rastgele sayı üretildi: 81 -> FINEST 05/06/2020 11:02:12 Şu rastgele sayı üretildi: 26 -> FINEST 05/06/2020 11:02:12 Şu rastgele sayı üretildi: 30 -> INFO 05/06/2020 11:02:25 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> INFO 05/06/2020 11:02:26 şu bölgede: proje-adi şu değer: null şu değer oldu: DENEME PROJESİ -> INFO 05/06/2020 11:02:27 şu bölgede: test-yeri şu değer: null şu değer oldu: İZMİT/KOCAELİ -> INFO 05/06/2020 11:02:28 şu bölgede: musteri-adi şu değer: TAG GEMİ şu değer oldu: DENEME MÜŞTERİSİ -> FINEST 05/06/2020 11:02:30 Program düzgün şekilde sonlandırıldı
+ -> FINEST 05/06/2020 11:06:13 Program başlatılıyor -> FINEST 05/06/2020 11:06:18 Giriş başarılı -> FINEST 05/06/2020 11:06:21 Şu rastgele sayı üretildi: 73 -> 
+ÖNEMLİ: WARNING 05/06/2020 11:06:24 Giriş denemesi başarısız -> FINE 05/06/2020 11:06:29 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 05/06/2020 11:07:02 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 05/06/2020 11:07:04 Giriş denemesi başarısız -> FINE 05/06/2020 11:07:07 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 05/06/2020 11:07:42 Program başlatılıyor -> FINEST 05/06/2020 11:07:45 Giriş başarılı -> 
+ÖNEMLİ: SEVERE 05/06/2020 11:08:00 rapor-no bölgesindeki 20200605?f pozitif bir sayı olmalıdır tam sebep: 
+ <hata_detayi> 
+java.lang.NumberFormatException: For input string: "20200605?f"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Long.parseLong(Long.java:692)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:834)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:928)
+	at implicaspection.ReportController.lambda$5(ReportController.java:291)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$Generic.fireValueChangedEvent(ExpressionHelper.java:360)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.base/javafx.beans.property.ReadOnlyBooleanPropertyBase.fireValueChangedEvent(ReadOnlyBooleanPropertyBase.java:72)
+	at javafx.graphics/javafx.scene.Node$FocusedProperty.notifyListeners(Node.java:8154)
+	at javafx.graphics/javafx.scene.Scene$12.invalidated(Scene.java:2194)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.markInvalid(ObjectPropertyBase.java:112)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.set(ObjectPropertyBase.java:147)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.setFocusOwner(Scene.java:4058)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.requestFocus(Scene.java:4105)
+	at javafx.graphics/javafx.scene.Scene.requestFocus(Scene.java:2161)
+	at javafx.graphics/javafx.scene.Node.requestFocus(Node.java:8315)
+	at javafx.graphics/com.sun.javafx.scene.traversal.TopMostTraversalEngine.focusAndNotify(TopMostTraversalEngine.java:110)
+	at javafx.graphics/com.sun.javafx.scene.traversal.TopMostTraversalEngine.trav(TopMostTraversalEngine.java:104)
+	at javafx.graphics/javafx.scene.Scene.traverse(Scene.java:2128)
+	at javafx.graphics/javafx.scene.Node.traverse(Node.java:8329)
+	at javafx.graphics/javafx.scene.Node$1.traverse(Node.java:517)
+	at javafx.graphics/com.sun.javafx.scene.NodeHelper.traverse(NodeHelper.java:236)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.FocusTraversalInputMap.traverse(FocusTraversalInputMap.java:98)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.FocusTraversalInputMap.traverseNext(FocusTraversalInputMap.java:138)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.process(Scene.java:4098)
+	at javafx.graphics/javafx.scene.Scene.processKeyEvent(Scene.java:2157)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.keyEvent(Scene.java:2625)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:217)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$KeyEventNotification.run(GlassViewEventHandler.java:149)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleKeyEvent$1(GlassViewEventHandler.java:248)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:412)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleKeyEvent(GlassViewEventHandler.java:247)
+	at javafx.graphics/com.sun.glass.ui.View.handleKeyEvent(View.java:547)
+	at javafx.graphics/com.sun.glass.ui.View.notifyKey(View.java:971)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+</hata_detayi>
+ -> FINEST 05/06/2020 11:08:07 Program düzgün şekilde sonlandırıldı
+ -> FINEST 05/06/2020 11:09:17 Program başlatılıyor -> FINEST 05/06/2020 11:09:19 Giriş başarılı -> 
+ÖNEMLİ: SEVERE 05/06/2020 11:09:27 rapor-no bölgesindeki 20200605d? pozitif bir sayı olmalıdır tam sebep: 
+ <hata_detayi> 
+
+java.lang.NumberFormatException: For input string: "20200605d?"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Long.parseLong(Long.java:692)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:834)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:928)
+	at implicaspection.ReportController.lambda$5(ReportController.java:291)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$Generic.fireValueChangedEvent(ExpressionHelper.java:360)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.base/javafx.beans.property.ReadOnlyBooleanPropertyBase.fireValueChangedEvent(ReadOnlyBooleanPropertyBase.java:72)
+	at javafx.graphics/javafx.scene.Node$FocusedProperty.notifyListeners(Node.java:8154)
+	at javafx.graphics/javafx.scene.Scene$12.invalidated(Scene.java:2194)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.markInvalid(ObjectPropertyBase.java:112)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.set(ObjectPropertyBase.java:147)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.setFocusOwner(Scene.java:4058)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.requestFocus(Scene.java:4105)
+	at javafx.graphics/javafx.scene.Scene.requestFocus(Scene.java:2161)
+	at javafx.graphics/javafx.scene.Node.requestFocus(Node.java:8315)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ScrollPaneBehavior.mousePressed(ScrollPaneBehavior.java:154)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3890)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1885)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2618)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:409)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:299)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:447)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:412)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:446)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+</hata_detayi>
+
+ -> FINEST 05/06/2020 11:09:30 Program düzgün şekilde sonlandırıldı
  -> 

@@ -149,7 +149,7 @@ public class Model {
 		
 		StringWriter errors = new StringWriter();
 		e.printStackTrace(new PrintWriter(errors));
-		Model.log.log(Level.SEVERE,popupStr + " tam sebep: \r\n ---hata detayı--- \n\r" + errors.toString() + "---hata detayı---\r\n", e);
+		Model.log.log(Level.SEVERE,popupStr + " tam sebep: \r\n\r\n <hata_detayi> \n\r" + errors.toString() + "\r\n</hata_detayi>\r\n\r\n", e);
 		
 		Label lblStatus = new Label(popupStr);
 		Button btnClose = new Button("Geri dön");
