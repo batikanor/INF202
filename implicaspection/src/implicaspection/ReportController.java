@@ -283,7 +283,7 @@ public class ReportController extends ControllerTemplate{
 												String changeProblem;
 												if (newContent.length() != reportNoLength) {
 													contentsMap.put(fieldName, null);
-													changeProblem = fieldName + " bölgesindeki " + newValue + " 10 haneli bir pozitif sayı olmalıdır";
+													changeProblem = fieldName + " bölgesindeki " + newContent + " 10 haneli bir pozitif sayı olmalıdır";
 													Model.createPopup(rootPane, changeProblem, null, Level.WARNING);
 												} else {
 													try {
