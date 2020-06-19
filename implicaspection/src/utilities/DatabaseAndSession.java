@@ -58,7 +58,7 @@ public class DatabaseAndSession {
 		
 				if (bufflist == null) {
 					bufflist = new ArrayList<String>();
-					System.out.println("bufflist was null for: " + dependantName);
+					//System.out.println("bufflist was null for: " + dependantName);
 				} 
 				if (!bufflist.contains(dependantName)) {
 					bufflist.add(dependantName);
@@ -66,9 +66,11 @@ public class DatabaseAndSession {
 				}
 
 				// Get field content (from the map that updates every time an input changes)
+				
 				String decisiveContent = ReportController.contentsMap.get(decisiveName);
+				
 				if (decisiveContent == null) {
-					System.out.println("Bu alan için mümkün bir değer bulunmamaktadır. Lütfen önce seçenek ekleyiniz veya " + decisiveName + "alanindaki seçiminizi değiştiriniz.");
+					System.out.println( dependantName + " alani için mümkün bir değer bulunmamaktadır. Lütfen önce seçenek ekleyiniz veya " + decisiveName + " alanindaki seçiminizi değiştiriniz.");
 				}
 				
 				PreparedStatement ps2 = con.prepareStatement("SELECT DEPENDANTCONTENT FROM FIELDDEPEND WHERE DECISIVENAME = ? AND DEPENDANTNAME = ? AND DECISIVECONTENT = ?");

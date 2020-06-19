@@ -19,7 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-
+import javafx.stage.Stage;
 import utilities.DatabaseAndSession;
 
 import javafx.fxml.FXML;
@@ -37,6 +37,7 @@ import javafx.scene.layout.BorderPane;
 
 public class ReportController extends ControllerTemplate{
 
+	public boolean workbookTraversed = false;
 	String fileName;
 	private File selectedFile;
 	private XSSFWorkbook wb;
@@ -58,10 +59,11 @@ public class ReportController extends ControllerTemplate{
 
 
 	
-	private void updateDependants(String decisiveName) {
+	private int updateDependants(String decisiveName) {
+		// WHAT HAPPENS IF THE DECISIVE FIELD IS NOT PRESENT ON THE REPORT?
 
 		if (dependenceMap.keySet().contains(decisiveName)) {
-			System.out.println(decisiveName);
+			//System.out.println(decisiveName);
 			ArrayList<String> dependantNames = dependenceMap.get(decisiveName);
 			if (dependantNames != null) {
 				
@@ -83,11 +85,17 @@ public class ReportController extends ControllerTemplate{
 							newVBox.getChildren().remove(2);
 							
 							ComboBox<String> newCombo = DatabaseAndSession.returnDependantValues(dependantName);
-		
+							if (newCombo == null) {
+								// decisive doesnt exist
+								return -1;
+							}
 							
 							newVBox.getChildren().add(newCombo);
 							gridPane.add(newVBox, col, row);
-							contentsMap.put(dependantName, null);
+						
+							contentsMap.put(dependantName, newCombo.getSelectionModel().getSelectedItem());
+						
+							
 							
 							newCombo.valueProperty().addListener( (v, oldValue, newValue) -> {
 								Model.log.info("şu bölgede: " + dependantName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
@@ -98,16 +106,24 @@ public class ReportController extends ControllerTemplate{
 						}
 					}
 				}
+			} else {
+				System.out.println(decisiveName + " bolgesine bagli alan bulunamadi");
 			}
-			
+			return 1;
+		} else {
+			// decisive (independant) field is not (yet) present on the workbook
+			// if this happens before the whole workbook had been traversed, ok (dont handle the returned val).
+			return -1;
 		}
+		
+
 	}
 	public void openTemplate(ActionEvent event) throws IOException {
-	   // ColumnConstraints colConstraint = new ColumnConstraints(120);
+	   //ColumnConstraints colConstraint = new ColumnConstraints(120);
 	   //colConstraint.setHalignment(HPos.LEFT);
 
-	   // RowConstraints rowConstraints = new RowConstraints(130);
-	   // rowConstraints.setValignment(VPos.CENTER);
+	   //RowConstraints rowConstraints = new RowConstraints(130);
+	   //rowConstraints.setValignment(VPos.CENTER);
 	    
 	
 
@@ -215,7 +231,7 @@ public class ReportController extends ControllerTemplate{
 										updateDependants(fieldName);
 									} else {
 										// put null into the hash table as val, so that it is forced to change before exporting
-										contentsMap.put(fieldName, "Deneme"); ///< Deneme cuz I want to be able to export it during development		
+										contentsMap.put(fieldName, null); ///< put e.g. 'Deneme' instead of null if u want to be able to export it during development		
 									}
 									
 
@@ -236,7 +252,7 @@ public class ReportController extends ControllerTemplate{
 									celly.setUserData(fieldName);
 									
 									// Get data from DB and load them to combobox, user data of newCombo is also set to the decisiveName with the line below
-									comboContent = DatabaseAndSession.returnDependantValues(fieldName);
+									comboContent = DatabaseAndSession.returnDependantValues(fieldName); 
 									// You may need to set it to a default value in some occasions, an if check here could do it
 									
 									if (comboContent == null) {
@@ -344,7 +360,18 @@ public class ReportController extends ControllerTemplate{
 
 				
 			}
-
+			// All the fields had been traversed.. now try to update the dependant fields, they will update if the field they depend on had somehow been filled.
+			for (String decisiveName : dependenceMap.keySet()) {
+				if (!contentsMap.containsKey(decisiveName)) {
+					// Decisive field doesnt exist on the workbook, therefore it is impossible to complete
+					String errStr = "En az bir bölgenin bağlı olduğu alan " + decisiveName + " rapor şablonunda bulunamadı. Dolayısıyla export alınamaz.";
+					Model.createErrorPopup(rootPane, errStr , null, null);
+					wb.close();
+					rootPane.getScene().getWindow().hide();
+				} else if (updateDependants(decisiveName) == -1) {
+					// on DatabaseAndSession.java >//System.out.println(dependantName + " in bagli oldugu bir hucre yok, ama bagimli hucre olarak gosterilmis");
+				}
+			}
 					
 		} else {
 			System.out.println("Dosya açılamadı");
@@ -367,9 +394,15 @@ public class ReportController extends ControllerTemplate{
 			String fieldContent = entry.getValue();
 			System.out.println(fieldContent);
 			if(fieldContent == null) {
-				String warnPop = "Doldurulmasi gereken seçmeli değerlerden " + fieldName + " doldurulamadı";
-				Model.createPopup(rootPane, warnPop, null, Level.WARNING);
-				return false;
+				//String warnPop = "Doldurulmasi gereken seçmeli değerlerden " + fieldName + " doldurulamadı";
+				//Model.createPopup(rootPane, warnPop, null, Level.WARNING);
+				//return false;
+				String fieldLocation[] = locationsMap.get(fieldName).split("\\?\\?\\?");
+				int i = Integer.parseInt(fieldLocation[0]);
+				int j = Integer.parseInt(fieldLocation[1]);
+				// put the content to the cell at given location
+				sheet.getRow(i).getCell(j).setCellValue("buveonceki3satirisil");
+				continue;
 			}
 			
 			//System.out.println("field name: " + myKey + " __ field content: " + myVal);

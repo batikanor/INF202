@@ -148,7 +148,11 @@ public class Model {
 		// TODO Auto-generated method stub
 		
 		StringWriter errors = new StringWriter();
-		e.printStackTrace(new PrintWriter(errors));
+		if (e != null) {
+			e.printStackTrace(new PrintWriter(errors));
+		} else {
+			errors.append(popupStr);
+		}
 		Model.log.log(Level.SEVERE,popupStr + " tam sebep: \r\n\r\n <hata_detayi> \n\r" + errors.toString() + "\r\n</hata_detayi>\r\n\r\n", e);
 		
 		Label lblStatus = new Label(popupStr);

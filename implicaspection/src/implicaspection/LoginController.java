@@ -61,9 +61,9 @@ public void initialize() {
 			// Hide previous window
 			((Node)event.getSource()).getScene().getWindow().hide();
 //			// Alternative code to hide windows		
-//			Node thisNode = ((Node)event.getSource());
-//			Stage thisStage = (Stage)(thisNode.getScene().getWindow());
-//			thisStage.close();
+			//Node thisNode = ((Node)event.getSource());
+			//Stage thisStage = (Stage)(thisNode.getScene().getWindow());
+			//thisStage.close();
 			
 			System.out.println(UserSingleton.getSession().toString());
 		} else {
