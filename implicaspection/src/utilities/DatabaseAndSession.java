@@ -58,7 +58,7 @@ public class DatabaseAndSession {
 		
 				if (bufflist == null) {
 					bufflist = new ArrayList<String>();
-					System.out.println("bufflist was null");
+					System.out.println("bufflist was null for: " + dependantName);
 				} 
 				if (!bufflist.contains(dependantName)) {
 					bufflist.add(dependantName);
@@ -116,9 +116,7 @@ public class DatabaseAndSession {
 				buff.getItems().add(content);
 			
 			}
-			if (buff.getItems().size() == 1) {
-				buff.getSelectionModel().selectFirst();
-			}
+
 			return buff;
 		}catch (SQLException e) {
 			e.printStackTrace();

@@ -150,7 +150,7 @@ public class ReportController extends ControllerTemplate{
 								VBox celly = new VBox();
 								
 								final String fieldType = commentParts[0];
-								final String meaningStr = commentParts[1];
+								final String meaningStr = commentParts[1] + " (" + commentParts[2] + ")";
 								String fieldName = commentParts[2];
 								String fieldLocation = i + "???" + j;
 							
@@ -206,14 +206,19 @@ public class ReportController extends ControllerTemplate{
 									//celly.setUserData(fieldName);
 									// Get data from DB and load them to combobox
 									comboContent = DatabaseAndSession.returnComboBoxValues(fieldName);
+									
 									// You may need to set it to a default value in some occasions, an if check here could do it
-									boolean comboWithDefault = false;
-									if(comboWithDefault) {
-										// set initial val with default val
+									if (comboContent.getItems().size() == 1) { 
+										comboContent.getSelectionModel().selectFirst();
+										contentsMap.put(fieldName, comboContent.getSelectionModel().getSelectedItem().toString());
+										// You also need to UPDATE THEM, if there are any dependant fields in this case!!!
+										updateDependants(fieldName);
 									} else {
 										// put null into the hash table as val, so that it is forced to change before exporting
-										contentsMap.put(fieldName, "Deneme");
+										contentsMap.put(fieldName, "Deneme"); ///< Deneme cuz I want to be able to export it during development		
 									}
+									
+
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 									
@@ -235,11 +240,13 @@ public class ReportController extends ControllerTemplate{
 									// You may need to set it to a default value in some occasions, an if check here could do it
 									
 									if (comboContent == null) {
-										System.out.println("alan doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi");
+										System.out.println("alan" + fieldName + " doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi");
 										continue;
 									}
 									
 									meaning.setText(meaningStr + " --(baglidir)--> " + comboContent.getUserData() );
+									// Maybe gray it out and say 'once su alani doldurun' until theres a value on that place (u can check from hashmap)
+									
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
 
@@ -312,6 +319,7 @@ public class ReportController extends ControllerTemplate{
 										gridPane.add(celly, cellsUsedInRow , rowsUsed);
 										contentsMap.put(fieldName, dateStr);
 									}
+									//else if ()
 									
 								}
 								
@@ -322,7 +330,7 @@ public class ReportController extends ControllerTemplate{
 								// this cell has a comment that starts with "???"
 							}
 						} else {
-							// this cel doesnt have a comment
+							// this cell doesn't have a comment
 						}
 					} else {
 						// this cell is somehow null
