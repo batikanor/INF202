@@ -19,7 +19,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Stage;
 import utilities.DatabaseAndSession;
 
 import javafx.fxml.FXML;

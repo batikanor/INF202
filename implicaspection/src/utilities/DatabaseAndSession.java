@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.hsqldb.types.Types;
+
 import java.sql.Date;
 import implicaspection.Model;
 import implicaspection.ReportController;
@@ -413,6 +417,77 @@ UNIQUE (USERNAME))
 			return false;
 		}
 	
+	}
+	
+	public static String executeStatementDirectly(String st, int mode) {
+		Connection con = connect();
+		PreparedStatement ps;
+		ResultSet rs;
+		ResultSetMetaData rsmd;
+		String content = "";
+		try {
+			ps = con.prepareStatement(st);
+			
+			if(mode == 0) { //QUERY
+			
+				rs = ps.executeQuery();
+				rsmd = rs.getMetaData();
+				int colCount = rsmd.getColumnCount() + 1;
+				
+				content += "(--";
+				for (int i = 1; i < colCount; i++) {
+				
+					content += rsmd.getColumnName(i) + "--";
+				
+				}
+				content += "--)\n\n\n";
+				
+				while (rs.next()) {
+					
+					for (int i = 1; i < colCount; i++) {
+						
+						int type = rsmd.getColumnType(i);
+						// I WILL ONLY HANDLE THE TYPES THAT I USED ON MY DB, THIS SHOULD BE UPDATED IF THEY CHANGE!
+						if (type == Types.VARCHAR) {
+							content += rs.getString(i) + "\t,\t";
+							
+						} else if (type == Types.INTEGER) {
+							content += String.valueOf(rs.getInt(i))+ "\t,\t";
+							
+						} else if (type == Types.BINARY) {
+							content += "şifre (hashed)\t,\t";
+							
+						} else {
+							content += "tanımsız alan\t,\t";
+						}
+						
+					}
+				
+					content += "\n";
+				}
+				
+			} else if (mode == 1) { // UPDATE
+				content = String.valueOf(ps.executeUpdate()) + "\n";
+				con.commit();
+			} else { // OTHER
+				if (ps.execute()) {
+					content = "İşlem başarıyla tamamlandı\n";
+				} else {
+					content = "İşlem tamamlanamadi\n";
+				}
+				
+			}
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return e.getMessage();
+		}
+		
+		return content;
+
+
+		
 	}
 	
 	

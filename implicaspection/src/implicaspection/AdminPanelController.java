@@ -43,7 +43,7 @@ public class AdminPanelController extends ControllerTemplate {
 	private int personnelid = -1; // id of the personnel we`re working with
 
 	@FXML
-	private Pane paneJobFirma;
+	private Pane paneFieldVal;
 	@FXML
 	private Pane paneTemplate;
 	@FXML
@@ -53,7 +53,7 @@ public class AdminPanelController extends ControllerTemplate {
 	@FXML
 	private Button buttonRegister;
 	@FXML
-	private Button buttonJobFirma;
+	private Button buttonFieldVal;
 	@FXML
 	private Button buttonTemplate;
 	@FXML
@@ -120,6 +120,16 @@ public class AdminPanelController extends ControllerTemplate {
 	@FXML
 	private TableColumn<CodedCell, String> codeColumn;
 
+	@FXML Label lblDBOutput;
+
+	@FXML TextArea dbInput;
+
+	@FXML RadioButton stQuery;
+
+	@FXML RadioButton stUpdate;
+
+	@FXML RadioButton stOther;
+
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
@@ -132,6 +142,21 @@ public class AdminPanelController extends ControllerTemplate {
 	@FXML
 	private void updateTable() {
 		fieldsTable.setItems(getCodedCells());
+	}
+	
+	@FXML
+	private void executeStatement() {
+		// executes any kind of statement. So not just query or update...
+		int mode;
+		if (stQuery.isSelected()) {
+			mode = 0;
+		} else if (stUpdate.isSelected()) {
+			mode = 1;
+		} else {
+			mode = 2;
+		}
+		String st = dbInput.getText(); 
+		lblDBOutput.setText(DatabaseAndSession.executeStatementDirectly(st, mode));
 	}
 
 	private ObservableList<CodedCell> getCodedCells() {
@@ -388,29 +413,29 @@ public class AdminPanelController extends ControllerTemplate {
 		if (event.getSource() == buttonRegister) {
 			paneRegister.toFront();
 
-			paneJobFirma.setVisible(false);
+			paneFieldVal.setVisible(false);
 			paneDB.setVisible(false);
 			paneTemplate.setVisible(false);
 			paneRegister.setVisible(true);
-		} else if (event.getSource() == buttonJobFirma) {
-			paneJobFirma.toFront();
+		} else if (event.getSource() == buttonFieldVal) {
+			paneFieldVal.toFront();
 
 			paneDB.setVisible(false);
 			paneTemplate.setVisible(false);
 			paneRegister.setVisible(false);
-			paneJobFirma.setVisible(true);
+			paneFieldVal.setVisible(true);
 		} else if (event.getSource() == buttonDB) {
 			paneDB.toFront();
 
 			paneTemplate.setVisible(false);
 			paneRegister.setVisible(false);
-			paneJobFirma.setVisible(false);
+			paneFieldVal.setVisible(false);
 			paneDB.setVisible(true);
 		} else if (event.getSource() == buttonTemplate) {
 			paneTemplate.toFront();
 
 			paneRegister.setVisible(false);
-			paneJobFirma.setVisible(false);
+			paneFieldVal.setVisible(false);
 			paneDB.setVisible(false);
 			paneTemplate.setVisible(true);
 		}
