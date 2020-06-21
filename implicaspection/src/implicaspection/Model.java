@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-import org.apache.poi.xssf.usermodel.XSSFComment;
+
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -54,6 +54,8 @@ public class Model {
 	
 	public static Logger log = Logger.getLogger(Model.class.getPackageName());
 
+
+	
 	public static String joinCode(String[] s, String delimiter) {
 		String ret = "";
 	    if (s == null) {
@@ -119,7 +121,7 @@ public class Model {
 			
 			createErrorPopup(null, eStr, null, e);
 			
-			e.printStackTrace();
+			//e.printStackTrace();
 		
 		
 		}
@@ -157,8 +159,8 @@ public class Model {
 		Stage newStage = new Stage();
 		Parent root;
 		try {
-			
-			System.out.println("loading: " + Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
+			Model.log.info("loading: " + Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
+	
 			root = FXMLLoader.load(Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
 			Scene scene = new Scene(root, width, length);
 			newStage.setScene(scene);
@@ -167,13 +169,12 @@ public class Model {
 			newStage.show();
 			
 		} catch (IOException e) {
-			System.out.println("E001: Yüklenmeye çalışılaan pencere bulunamadı");
-			e.printStackTrace();
+			createErrorPopup(null, "E001: Yüklenmeye çalışılaan pencere bulunamadı", null, e);
 		}
 		
 	}
 	public static void createErrorPopup(Pane rootPane, String popupStr, Node otherNode, Exception e ) {
-		// TODO Auto-generated method stub
+
 		
 		StringWriter errors = new StringWriter();
 		if (e != null) {
@@ -228,7 +229,7 @@ public class Model {
 	}
 	public static boolean createPopup(Pane rootPane, String popupStr, Node otherNode, Level logLevel){
 
-		final Object lock = new Object();
+		//final Object lock = new Object();
 			
 
 		Model.log.log(logLevel, popupStr);

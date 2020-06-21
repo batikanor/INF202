@@ -116,6 +116,11 @@ public class AdminPanelController extends ControllerTemplate {
 	static XSSFWorkbook wb;
 	static XSSFSheet sheet;
 
+	private	String chosenFieldType;
+	private String chosenFieldMeaning;
+	private String chosenFieldName;
+	private String chosenDecisiveName;
+	
 	@FXML
 	ToggleGroup fieldType;
 
@@ -141,6 +146,8 @@ public class AdminPanelController extends ControllerTemplate {
 
 	@FXML AnchorPane rootPane;
 
+	@FXML Label lblFieldInfo;
+
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
@@ -150,56 +157,92 @@ public class AdminPanelController extends ControllerTemplate {
 
 	}
 	
-	
-	public static void getNewDefault(String s) {
-		System.out.println("ha " + s);
+
+	public void removeContent() {
+
+		if (listChosen.getSelectionModel().getSelectedItem() != null) {
+			Model.log.info(listChosen.getSelectionModel().getSelectedItem().toString() + " değeri siliniyor");
+			String chosenItem =  listChosen.getSelectionModel().getSelectedItem();
+			System.out.println(chosenFieldType);
+			if (chosenFieldType.contentEquals("combo")) {
+				// Remove data from combobox
+				
+				DatabaseAndSession.removeComboBoxValue(chosenFieldName, chosenItem);
+			} else if (chosenFieldType.contentEquals("depend")) {
+				// String decisiveName, String decisiveContent, String dependantName, String dependantContent
+				String decisiveContentAndDependantContent[] = chosenItem.split(Main.delimiterRegex);
+				//DatabaseAndSession.removeDependantValue(chosenDecisiveName, chosenFieldName, chosenItem, );
+			}
+		}
+	}
+	public void editContent() {
+		if (listChosen.getSelectionModel().getSelectedItem() != null) {
+			Model.log.info(listChosen.getSelectionModel().getSelectedItem().toString() + " değeri seçildi");
+			
+			if (chosenFieldType.contentEquals("combo")) {
+				
+			}
+		}
 		
 	}
+	
 	public void getCodeOfSelectedCell() {
-		
-		listChosen.getItems().clear();
-		
-		
-		TablePosition tp = fieldsTable.getFocusModel().getFocusedCell();
-		int row = tp.getRow();
-		CodedCell cc = fieldsTable.getItems().get(row);
-		String strCode = codeColumn.getCellData(cc);
-		String strS[] = strCode.split("\\?\\?\\?");
-		
-		String chosenFieldType = strS[1];
-		String chosenFieldMeaning = strS[2];
-		String chosenFieldName = strS[3];
-		
-		if (chosenFieldType.contentEquals("combo")) {
-			ComboBox<String> cb = DatabaseAndSession.returnComboBoxValues(chosenFieldName);
-			listChosen.getItems().addAll(cb.getItems());
+		lblFieldInfo.setText("-");
+		try {
+			listChosen.getItems().clear();
 			
-		} else if (chosenFieldType.contentEquals("depend")) {
-			ComboBox<String> cb = DatabaseAndSession.returnDependantValues(chosenFieldName);
-			listChosen.getItems().addAll(cb.getItems());
-		} else if (chosenFieldType.contentEquals("default")) {
-			if (strS[4] == null) {
-				//Not possible!
-			}
-			String popupStr = "Bu bölgedeki güncel default değer: " + strS[4] + " :Değiştirmek istiyorsanız yeni değeri yazınız";
-			TextField tf = new TextField(strS[4]);
-			tf.setUserData("???" + "AdminPanelDefault" + "???" + locationColumn.getCellData(row));
-			Model.createPopup(rootPane, popupStr, (Node) tf, Level.FINE);
+			
+			TablePosition tp = fieldsTable.getFocusModel().getFocusedCell();
+			int row = tp.getRow();
+			CodedCell cc = fieldsTable.getItems().get(row);
+			String strCode = codeColumn.getCellData(cc);
+			String strS[] = strCode.split(Main.delimiterRegex);
+			chosenFieldType = strS[1];
+			chosenFieldMeaning = strS[2];
+			chosenFieldName = strS[3];
+			lblFieldInfo.setText("En son seçilen bölge: " + chosenFieldMeaning + " (" + chosenFieldName + ")\n");
+			if (chosenFieldType.contentEquals("combo")) {
+				ComboBox<String> cb = DatabaseAndSession.returnComboBoxValues(chosenFieldName);
+				listChosen.getItems().addAll(cb.getItems());
+				
+			} else if (chosenFieldType.contentEquals("depend")) {
+				ComboBox<String> cb = DatabaseAndSession.returnDependantOptions(chosenFieldName);
+				chosenDecisiveName = cb.getItems().get(0);
+				cb.getItems().remove(0);
+				lblFieldInfo.setText(lblFieldInfo.getText() + "Bağlı olunan değer: " + chosenDecisiveName + "\n");
+				listChosen.getItems().addAll(cb.getItems());
+			} else if (chosenFieldType.contentEquals("default")) {
+				if (strS[4] == null) {
+					//Not possible!
+				}
+				String popupStr = "Bu bölgedeki güncel default değer: " + strS[4] + " :Değiştirmek istiyorsanız yeni değeri yazınız";
+				TextField tf = new TextField(strS[4]);
+				tf.setUserData(Main.delimiter + "AdminPanelDefault" + Main.delimiter + locationColumn.getCellData(row));
+				Model.createPopup(rootPane, popupStr, (Node) tf, Level.FINE);
 
-			//while (Model.popupFired == false) {
-				// Do nothing, i.e. wait
-				//Thread.sleep(200);
-			
-			//}
-			
-			//System.out.println(tf.getText());
+				//while (Model.popupFired == false) {
+					// Do nothing, i.e. wait
+					//Thread.sleep(200);
+				
+				//}
+				
+				//System.out.println(tf.getText());
+			}
+		} catch (Exception e) {
+			Model.createPopup(rootPane, "Lütfen geçerli bir hücre seçin!", null, Level.WARNING);
 		}
+
 		
 	}
 	
 	@FXML
 	private void updateTable() {
-		fieldsTable.setItems(getCodedCells());
+		try {
+			fieldsTable.setItems(getCodedCells());
+		} catch (Exception e) {
+			Model.createPopup(rootPane, "Henüz bir dosya seçilmemiş", null, Level.WARNING);
+		}
+		
 	
 	}
 	
@@ -232,7 +275,7 @@ public class AdminPanelController extends ControllerTemplate {
 			    System.out.println("key = " + key + " val = " + val);
 			    
 	
-			    if (val.startsWith("???")){
+			    if (val.startsWith(Main.delimiter)){
 			    	codedCellsList.add(new CodedCell(key, val));	
 			    } else {
 			    	uncodedCommentCount++;

@@ -105,53 +105,57 @@
             </Pane>
             <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="662.0" prefWidth="888.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="buttonSaveTemplate" disable="true" layoutX="659.0" layoutY="367.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="30.0" prefWidth="233.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="buttonSelectTemplate" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectTemplate" onMouseClicked="#selectTemplate" prefHeight="48.0" prefWidth="108.0" text="Dosya seç" />
-                  <Label fx:id="lblSelectedFile" layoutX="147.0" layoutY="30.0" text="Henüz hiçbir dosya seçilmedi" />
-                  <Label layoutX="12.0" layoutY="84.0" prefHeight="3.0" prefWidth="102.0" text="Dosya konumu:" />
-                  <Label layoutX="12.0" layoutY="100.0" prefHeight="3.0" prefWidth="102.0" text="Dosya boyutu" />
-                  <Label layoutX="12.0" layoutY="68.0" prefHeight="16.0" prefWidth="368.0" text="Dosya adı (aynı isimde dosya kayıtlıysa üstüne yazar):" />
-                  <Label layoutX="12.0" layoutY="116.0" prefHeight="16.0" prefWidth="412.0" text="Sayfa (Sheet) sayisi (Not: Sadece ilk sayfa kaydedilecektir!): " />
-                  <Label fx:id="lblFileName" layoutX="373.0" layoutY="68.0" prefHeight="16.0" prefWidth="704.0" text="-">
+                  <Button fx:id="buttonSaveTemplate" disable="true" layoutX="661.0" layoutY="723.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="55.0" prefWidth="263.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="buttonSelectTemplate" layoutX="15.0" layoutY="6.0" mnemonicParsing="false" onAction="#selectTemplate" onMouseClicked="#selectTemplate" prefHeight="48.0" prefWidth="108.0" text="Dosya seç" />
+                  <Label fx:id="lblSelectedFile" layoutX="130.0" layoutY="22.0" text="Henüz hiçbir dosya seçilmedi" />
+                  <Label layoutX="10.0" layoutY="71.0" prefHeight="3.0" prefWidth="102.0" text="Dosya konumu:" />
+                  <Label layoutX="462.0" layoutY="30.0" prefHeight="3.0" prefWidth="102.0" text="Dosya boyutu: " />
+                  <Label layoutX="10.0" layoutY="54.0" prefHeight="16.0" prefWidth="368.0" text="Dosya adı (aynı isimde dosya kayıtlıysa üstüne yazar):" />
+                  <Label layoutX="462.0" layoutY="14.0" prefHeight="16.0" prefWidth="398.0" text="Sayfa (Sheet) sayisi (Not: Sadece ilk sayfa kaydedilecektir!): " />
+                  <Label fx:id="lblFileName" alignment="TOP_LEFT" layoutX="367.0" layoutY="54.0" prefHeight="17.0" prefWidth="552.0" text="-" wrapText="true">
                      <font>
                         <Font name="System Bold Italic" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblFilePath" layoutX="121.0" layoutY="84.0" prefHeight="16.0" prefWidth="902.0" text="-" />
-                  <Label fx:id="lblFileSize" layoutX="111.0" layoutY="100.0" prefHeight="16.0" prefWidth="863.0" text="-" />
-                  <Label fx:id="lblSheet" layoutX="409.0" layoutY="116.0" prefHeight="16.0" prefWidth="300.0" text="-" />
-                  <TableView fx:id="fieldsTable" layoutX="14.0" layoutY="161.0" prefHeight="204.0" prefWidth="902.0">
+                  <Label fx:id="lblFilePath" alignment="TOP_LEFT" layoutX="114.0" layoutY="71.0" prefHeight="30.0" prefWidth="810.0" text="-" wrapText="true" />
+                  <Label fx:id="lblFileSize" layoutX="559.0" layoutY="30.0" prefHeight="16.0" prefWidth="114.0" text="-" />
+                  <Label fx:id="lblSheet" layoutX="865.0" layoutY="14.0" prefHeight="16.0" prefWidth="59.0" text="-" />
+                  <TableView fx:id="fieldsTable" layoutX="14.0" layoutY="127.0" onMouseClicked="#getCodeOfSelectedCell" prefHeight="252.0" prefWidth="534.0">
                     <columns>
                       <TableColumn fx:id="locationColumn" prefWidth="185.0" text="Bölge Konumu" />
-                      <TableColumn fx:id="codeColumn" minWidth="0.0" prefWidth="700.0" text="Bölge Kodu" />
+                      <TableColumn fx:id="codeColumn" minWidth="0.0" prefWidth="900.0" text="Bölge Kodu                                                                                                                             " />
                     </columns>
                   </TableView>
-                  <Label layoutX="167.0" layoutY="145.0" text="Şablonda halihazırda kayıtlı bölgeler:" />
-                  <Button disable="true" layoutX="227.0" layoutY="719.0" mnemonicParsing="false" text="Bölge(ye) ekle" />
-                  <TextField disable="true" layoutX="43.0" layoutY="568.0" prefHeight="26.0" prefWidth="474.0" promptText="bölge adı" />
-                  <TextField disable="true" layoutX="43.0" layoutY="602.0" prefHeight="30.0" prefWidth="474.0" promptText="değeri" />
-                  <TextField disable="true" layoutX="43.0" layoutY="638.0" prefHeight="30.0" prefWidth="474.0" promptText="Hücre Konumu (örneğin C5)" />
-                  <RadioButton disable="true" layoutX="38.0" layoutY="459.0" mnemonicParsing="false" selected="true" text="tek seçenekli bölge (default)" textFill="WHITE">
+                  <Label layoutX="616.0" layoutY="111.0" text="Değişim yapmak istediğiniz değeri seçiniz:" />
+                  <Button disable="true" layoutX="204.0" layoutY="761.0" mnemonicParsing="false" text="Bölge(ye) ekle" />
+                  <TextField disable="true" layoutX="20.0" layoutY="610.0" prefHeight="26.0" prefWidth="347.0" promptText="bölge adı" />
+                  <TextField disable="true" layoutX="20.0" layoutY="644.0" prefHeight="30.0" prefWidth="347.0" promptText="değeri" />
+                  <TextField disable="true" layoutX="20.0" layoutY="680.0" prefHeight="30.0" prefWidth="347.0" promptText="Hücre Konumu (örneğin C5)" />
+                  <RadioButton disable="true" layoutX="15.0" layoutY="501.0" mnemonicParsing="false" selected="true" text="tek seçenekli bölge (default)" textFill="WHITE">
                      <toggleGroup>
                         <ToggleGroup fx:id="fieldType" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton disable="true" layoutX="37.0" layoutY="518.0" mnemonicParsing="false" text="bağımlı bölge (tek veya çok seçenekli) (depend)" textFill="WHITE" toggleGroup="$fieldType" />
-                  <RadioButton disable="true" layoutX="37.0" layoutY="488.0" mnemonicParsing="false" text="çok seçenekli bölge (multi)" textFill="WHITE" toggleGroup="$fieldType" />
-                  <TextField disable="true" layoutX="43.0" layoutY="677.0" prefHeight="30.0" prefWidth="474.0" promptText="Bağımlı olduğu bölge adı (halihazırda tabloda gözüken bir isim olmalı" />
-                  <Button disable="true" layoutX="474.0" layoutY="367.0" mnemonicParsing="false" onAction="#updateTable" prefHeight="30.0" prefWidth="138.0" text="Listeyi güncelle" />
-                  <Ellipse fill="#1f93ff00" layoutX="491.0" layoutY="959.0" radiusX="324.0" radiusY="202.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0">
+                  <RadioButton disable="true" layoutX="14.0" layoutY="560.0" mnemonicParsing="false" text="bağımlı bölge (tek veya çok seçenekli) (depend)" textFill="WHITE" toggleGroup="$fieldType" />
+                  <RadioButton disable="true" layoutX="14.0" layoutY="530.0" mnemonicParsing="false" text="çok seçenekli bölge (multi)" textFill="WHITE" toggleGroup="$fieldType" />
+                  <TextField disable="true" layoutX="20.0" layoutY="719.0" prefHeight="30.0" prefWidth="347.0" promptText="Bağımlı olduğu bölge adı (halihazırda tabloda gözüken bir isim olmalı" />
+                  <Button layoutX="194.0" layoutY="382.0" mnemonicParsing="false" onAction="#updateTable" prefHeight="30.0" prefWidth="153.0" text="Listeyi güncelle" />
+                  <TitledPane layoutX="11.0" layoutY="470.0" prefHeight="321.0" prefWidth="376.0">
+                     <content>
+                        <Label prefHeight="265.0" prefWidth="362.0" text="Şu an için rapor şablonlarının dokümantasyonda belirtildiği gibi&#10;Excel yorumları olarak eklenmeleri gerekmektedir. &quot;Dependant Field&quot; Eklemesi de yapılamamaktadır.&#10;Gelecekte arkadaki fonksiyonalite de eklenecektir ve böylece yeni bölgeleri olan yeni şablonlar eksiksiz oluşturulabilir olacaktır (Kimi özel istek için yine hard-coded çözümler gerekebilir, o durumlarda proje güncellenip alıcıya tekrar yollanabilir. Ayrıca yüzdelik değer girilen alanların da şablona eklenmesi buradan sağlanabilir belki..)&#10;Henüz implemente edilmemiş bölgeleri görmek için sol üstteki üçgene basınız.&#10;&#10;" wrapText="true" />
+                     </content>
+                  </TitledPane>
+                  <ListView fx:id="listChosen" layoutX="553.0" layoutY="127.0" onMouseClicked="#editContent" prefHeight="252.0" prefWidth="368.0" />
+                  <Label fx:id="lblFieldInfo" alignment="TOP_LEFT" layoutX="559.0" layoutY="410.0" prefHeight="63.0" prefWidth="356.0" text="-" wrapText="true" />
+                  <Ellipse fill="#1f93ff00" layoutX="-176.0" layoutY="276.0" radiusX="188.0" radiusY="308.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0">
                      <effect>
                         <ColorAdjust brightness="0.44" />
                      </effect>
                   </Ellipse>
-                  <TitledPane expanded="false" layoutX="34.0" layoutY="412.0" prefHeight="280.0" prefWidth="428.0">
-                     <content>
-                        <Label prefHeight="265.0" prefWidth="376.0" text="Şu an için rapor şablonlarının dokümantasyonda belirtildiği gibi&#10;Excel yorumları olarak eklenmeleri gerekmektedir. &quot;Dependant Field&quot; Eklemesi de yapılamamaktadır.&#10;Gelecekte soldaki fonksiyonalite de eklenecektir ve böylece yeni şablonlar eksiksiz oluşturulabilir olacaktır (Kimi özel istek için yine hard-coded çözümler gerekebilir, o durumlarda proje güncellenip alıcıya tekrar yollanabilir. Ayrıca yüzdelik değer girilen alanların da şablona eklenmesi soldan sağlanabilir belki..)&#10;&#10;" wrapText="true" />
-                     </content>
-                  </TitledPane>
-                  <Button layoutX="653.0" layoutY="420.0" mnemonicParsing="false" onAction="#getCodeOfSelectedCell" prefHeight="48.0" prefWidth="233.0" text="Seçili bölgedeki değerleri listele" />
-                  <ListView fx:id="listChosen" layoutX="659.0" layoutY="476.0" prefHeight="186.0" prefWidth="222.0" />
+                  <Label layoutX="123.0" layoutY="111.0" text="Değişim yapmak istediğiniz alanı seçiniz:" />
+                  <Button layoutX="559.0" layoutY="385.0" mnemonicParsing="false" onAction="#removeContent" text="sil" />
+                  <Button layoutX="610.0" layoutY="385.0" mnemonicParsing="false" text="değiştir" />
+                  <Label layoutX="417.0" layoutY="648.0" prefHeight="132.0" prefWidth="232.0" text="Uyarı: Combo / Depend tipindeki bütün alanlar için işlemler kendiliğinden kaydolur ve bütün raporlar için geçerlidirler. Kalan bölümler seçili rapora özeldir ve kaydedilene kadar bir değişiklik yaratmazlar." wrapText="true" />
                </children>
             </Pane>
          </children>
@@ -179,7 +183,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonFieldVal" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="283.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="NOT USED" textFill="WHITE" AnchorPane.leftAnchor="28.0">
+            <Button fx:id="buttonFieldVal" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="283.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="(KULLANIMDIŞI)&#10;Ekipman ekleme kısayol vs&#10;" textFill="WHITE" AnchorPane.leftAnchor="28.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import org.hsqldb.types.Types;
 
 import java.sql.Date;
+
+import implicaspection.Main;
 import implicaspection.Model;
 import implicaspection.ReportController;
 import javafx.scene.control.ComboBox;
@@ -30,7 +32,8 @@ public class DatabaseAndSession {
     
 	public static Connection connect() {
 		try {
-			System.out.println("Veritabanı'na bağlanmaya çalışılınıyor");
+			Model.log.info("Veritabanı'na bağlanmaya çalışılınıyor");
+			
 			Class.forName(Driver);
 			Connection con = DriverManager.getConnection(url, user, pwd);
 			return con;
@@ -44,6 +47,41 @@ public class DatabaseAndSession {
 			return null;
 		}
 			
+	}
+	
+	public static ComboBox<String> returnDependantOptions(String dependantName){
+		Connection con = connect();
+		boolean first = true;
+		ComboBox<String> buff = new ComboBox<String>();
+		
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM FIELDDEPEND WHERE DEPENDANTNAME = ?");
+			ResultSet rs;
+			ps.setString(1, dependantName);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				
+				if (first) {
+					String decisiveName = rs.getString("DECISIVENAME");
+					buff.getItems().add(decisiveName); ///< So the first item will be the decisive name, handle accordingly
+					first = false;
+				}
+				
+				String dependantContent = rs.getString("DEPENDANTCONTENT");
+				
+				String decisiveContent = rs.getString("DECISIVECONTENT");
+				
+				String toAdd = decisiveContent + Main.delimiter + dependantContent;
+				buff.getItems().add(toAdd);
+				
+			}
+			return buff;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 	public static ComboBox<String> returnDependantValues(String dependantName) {
 		Connection con = connect();
@@ -103,11 +141,63 @@ public class DatabaseAndSession {
 			
 
 		}catch (SQLException e) {
+		
 			e.printStackTrace();
 			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
 			return null;
-			}
+	
+		}
+	
 	}
+	
+	public static int removeDependantValues(String decisiveName, String decisiveContent){
+		Connection con = connect();
+		int ret = 0;
+		try {
+			PreparedStatement ps = con.prepareStatement("DELETE FROM FIELDDEPEND WHERE DECISIVENAME=? AND DECISIVECONTENT=?");
+			
+			ps.setString(1, decisiveName);
+			ps.setString(2, decisiveContent);
+			ret = ps.executeUpdate();
+			con.commit();
+
+			
+		}catch (SQLException e) {
+			
+			//e.printStackTrace();
+			Model.createErrorPopup(null, "Veritabanı hatası sebebiyle işlem gerçekleştirilemedi", null, e);
+			
+			
+		}
+		return ret;
+	}
+	
+	public static int removeComboBoxValue(String fieldName, String fieldContent) {
+		Connection con = connect();
+		int ret = 0;
+		try {
+			PreparedStatement ps = con.prepareStatement("DELETE FROM FIELDMULTI WHERE FIELDNAME=? AND FIELDCONTENT=?");
+			
+			ps.setString(1, fieldName);
+			ps.setString(2, fieldContent);
+			ret = ps.executeUpdate();
+			con.commit();
+			
+			removeDependantValues(fieldName, fieldContent);
+	
+
+			
+		}catch (SQLException e) {
+			
+			//e.printStackTrace();
+			Model.createErrorPopup(null, "Veritabanı hatası sebebiyle işlem gerçekleştirilemedi", null, e);
+			
+			
+		}
+		return ret;
+		
+	}
+	
 	public static ComboBox<String> returnComboBoxValues(String fieldName) {
 		Connection con = connect();
 		try {
@@ -116,7 +206,7 @@ public class DatabaseAndSession {
 			ComboBox<String> buff = new ComboBox<String>();
 			ps.setString(1, fieldName);
 			rs = ps.executeQuery();
-			System.out.println("-----------------------------------" + fieldName + fieldName.length());
+			Model.log.info(fieldName + " bölgesinin değerleri getiriliyor");
 			while (rs.next()) {
 				String content = rs.getString("FIELDCONTENT");
 				buff.getItems().add(content);
@@ -488,6 +578,32 @@ UNIQUE (USERNAME))
 
 
 		
+	}
+
+	public static int removeDependantValue(String decisiveName, String decisiveContent, String dependantName, String dependantContent) {
+		// TODO Auto-generated method stub
+		Connection con = connect();
+		int ret = 0;
+		try {
+			PreparedStatement ps = con.prepareStatement("DELETE FROM FIELDDEPEND WHERE DECISIVENAME=? AND DECISIVECONTENT=? AND DEPENDANTNAME=? AND DEPENDANTCONTENT=?");
+			
+			ps.setString(1, decisiveName);
+			ps.setString(2, decisiveContent);
+			ps.setString(3, dependantName);
+			ps.setString(4, dependantContent);
+			
+			ret = ps.executeUpdate();
+			con.commit();
+
+			
+		}catch (SQLException e) {
+			
+			//e.printStackTrace();
+			Model.createErrorPopup(null, "Veritabanı hatası sebebiyle işlem gerçekleştirilemedi", null, e);
+			
+			
+		}
+		return ret;
 	}
 	
 	

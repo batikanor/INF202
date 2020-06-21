@@ -16,6 +16,8 @@ public class Main extends Application{
 	
 	
 	public static Stage mainStage = new Stage();
+	public static String delimiter = "???";
+	public static String delimiterRegex = "\\?\\?\\?";
 	
 	@Override
 	public void start(Stage primaryStage){
@@ -45,13 +47,6 @@ public class Main extends Application{
 		Model.initLogger();
 
 		Model.log.finest("Program başlatılıyor");
-	
-		String[] ss = new String[3];
-		ss[0] = "cc";
-		ss[1] = "aa";
-		ss[2] = "bb";
-		System.out.println(ss[1].concat(ss[2]));
-		System.out.println("HA" + Model.joinCode(ss, "???"));
 	
 		
 		launch(args);
