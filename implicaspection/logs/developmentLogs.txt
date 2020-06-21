@@ -1425,4 +1425,154 @@ FINEST 02/06/2020 22:08:31 Program başlatılıyor -> FINE 02/06/2020 22:08:37 E
  -> FINEST 20/06/2020 19:41:40 Program başlatılıyor -> FINEST 20/06/2020 19:41:42 Giriş başarılı -> FINEST 20/06/2020 19:42:25 Program düzgün şekilde sonlandırıldı
  -> FINEST 20/06/2020 19:47:54 Program başlatılıyor -> FINEST 20/06/2020 19:47:57 Giriş başarılı -> FINEST 20/06/2020 19:48:30 Program düzgün şekilde sonlandırıldı
  -> FINEST 20/06/2020 19:49:28 Program başlatılıyor -> FINEST 20/06/2020 19:49:30 Giriş başarılı -> FINEST 20/06/2020 19:52:30 Program başlatılıyor -> FINEST 20/06/2020 19:52:35 Giriş başarılı -> FINEST 20/06/2020 19:53:12 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 20:25:32 Program başlatılıyor -> FINEST 20/06/2020 20:25:57 Giriş başarılı -> FINEST 20/06/2020 20:28:10 Şu rastgele sayı üretildi: 97 -> FINEST 20/06/2020 20:28:10 Şu rastgele sayı üretildi: 20 -> FINEST 20/06/2020 20:28:10 Şu rastgele sayı üretildi: 35 -> FINEST 20/06/2020 20:28:10 Şu rastgele sayı üretildi: 47 -> FINEST 20/06/2020 20:28:10 Şu rastgele sayı üretildi: 91 -> FINEST 20/06/2020 20:28:10 Şu rastgele sayı üretildi: 87 -> FINEST 20/06/2020 20:28:11 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 20:38:40 Program başlatılıyor -> FINEST 20/06/2020 20:38:43 Giriş başarılı -> FINEST 20/06/2020 20:39:32 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 20:50:49 Program başlatılıyor -> FINEST 20/06/2020 20:50:52 Giriş başarılı -> FINEST 20/06/2020 20:55:16 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 21:06:52 Program başlatılıyor -> 
+ÖNEMLİ: WARNING 20/06/2020 21:07:02 Giriş denemesi başarısız -> FINEST 20/06/2020 21:07:09 Giriş başarılı -> FINEST 20/06/2020 21:07:11 Şu rastgele sayı üretildi: 31 -> FINEST 20/06/2020 21:07:11 Şu rastgele sayı üretildi: 64 -> FINEST 20/06/2020 21:07:11 Şu rastgele sayı üretildi: 72 -> FINEST 20/06/2020 21:07:12 Şu rastgele sayı üretildi: 65 -> INFO 20/06/2020 21:08:28 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> INFO 20/06/2020 21:08:32 şu bölgede: musteri-adi şu değer: TAG GEMİ şu değer oldu: DENEME MÜŞTERİSİ -> INFO 20/06/2020 21:08:35 şu bölgede: musteri-adi şu değer: DENEME MÜŞTERİSİ şu değer oldu: TAG GEMİ -> INFO 20/06/2020 21:08:37 şu bölgede: proje-adi şu değer: null şu değer oldu: KAYNAKÇI TESTİ -> INFO 20/06/2020 21:08:38 şu bölgede: test-yeri şu değer: null şu değer oldu: İZMİT/KOCAELİ -> INFO 20/06/2020 21:08:49 şu bölgede: ekipman-adi şu değer: null şu değer oldu: diger ekipman -> INFO 20/06/2020 21:08:51 şu bölgede: ekipman-adi şu değer: diger ekipman şu değer oldu: NAWOO Sn:1701020 -> INFO 20/06/2020 21:08:58 Doldurma işlemi başarıyla tamamlandı -> 
+ÖNEMLİ: WARNING 20/06/2020 21:09:34 rapor-no bölgesindeki 20200620k 10 haneli bir pozitif sayı olmalıdır -> 
+ÖNEMLİ: WARNING 20/06/2020 21:09:39 rapor-no bölgesindeki 202006200 10 haneli bir pozitif sayı olmalıdır -> 
+ÖNEMLİ: WARNING 20/06/2020 21:09:45 rapor-no bölgesindeki 2020062ff 10 haneli bir pozitif sayı olmalıdır -> 
+ÖNEMLİ: WARNING 20/06/2020 21:09:49 rapor-no bölgesindeki 202006222 10 haneli bir pozitif sayı olmalıdır -> INFO 20/06/2020 21:09:59 şu bölgede: rapor-no yeni değer şu değer oldu: 2020062229 -> INFO 20/06/2020 21:10:01 şu bölgede: rapor-no yeni değer şu değer oldu: 2020062229 -> INFO 20/06/2020 21:10:02 şu bölgede: is-emri-no şu değer: null şu değer oldu: 1 -> FINEST 20/06/2020 21:24:11 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 22:38:39 Program başlatılıyor -> FINEST 20/06/2020 22:38:47 Giriş başarılı -> FINEST 20/06/2020 22:38:53 Şu rastgele sayı üretildi: 42 -> FINEST 20/06/2020 22:38:53 Şu rastgele sayı üretildi: 63 -> FINEST 20/06/2020 22:38:53 Şu rastgele sayı üretildi: 87 -> FINEST 20/06/2020 22:38:53 Şu rastgele sayı üretildi: 44 -> FINEST 20/06/2020 22:38:54 Şu rastgele sayı üretildi: 59 -> INFO 20/06/2020 22:39:12 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> INFO 20/06/2020 22:39:13 şu bölgede: proje-adi şu değer: null şu değer oldu: KAYNAKÇI TESTİ -> INFO 20/06/2020 22:39:13 şu bölgede: test-yeri şu değer: null şu değer oldu: İZMİT/KOCAELİ -> INFO 20/06/2020 22:39:17 şu bölgede: ekipman-adi şu değer: null şu değer oldu: NAWOO Sn:1701020 -> INFO 20/06/2020 22:39:20 şu bölgede: ekipman-adi şu değer: NAWOO Sn:1701020 şu değer oldu: diger ekipman -> INFO 20/06/2020 22:39:21 şu bölgede: ekipman-adi şu değer: diger ekipman şu değer oldu: NAWOO Sn:1701020 -> INFO 20/06/2020 22:39:24 şu bölgede: ekipman-adi şu değer: NAWOO Sn:1701020 şu değer oldu: diger ekipman -> INFO 20/06/2020 22:41:32 şu bölgede: ekipman-adi şu değer: diger ekipman şu değer oldu: NAWOO Sn:1701020 -> INFO 20/06/2020 22:41:36 şu bölgede: ekipman-adi şu değer: NAWOO Sn:1701020 şu değer oldu: diger ekipman -> INFO 20/06/2020 22:49:05 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> INFO 20/06/2020 22:49:17 şu bölgede: proje-adi şu değer: null şu değer oldu: KAYNAKÇI TESTİ -> INFO 20/06/2020 22:49:18 şu bölgede: test-yeri şu değer: null şu değer oldu: BİRİLÇE/BİRİL -> INFO 20/06/2020 22:49:27 şu bölgede: ekipman-adi şu değer: null şu değer oldu: NAWOO Sn:1701020 -> INFO 20/06/2020 22:49:49 şu bölgede: akim-tipi şu değer: null şu değer oldu: AC -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 100 şu değer oldu: 99 -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 99 şu değer oldu: 98 -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 98 şu değer oldu: 97 -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 97 şu değer oldu: 96 -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 96 şu değer oldu: 95 -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 95 şu değer oldu: 94 -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 94 şu değer oldu: 93 -> INFO 20/06/2020 22:49:54 şu bölgede: muayene-kapsami şu değer: 93 şu değer oldu: 92 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 92 şu değer oldu: 91 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 91 şu değer oldu: 90 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 90 şu değer oldu: 89 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 89 şu değer oldu: 88 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 88 şu değer oldu: 87 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 87 şu değer oldu: 86 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 86 şu değer oldu: 85 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 85 şu değer oldu: 84 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 84 şu değer oldu: 83 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 83 şu değer oldu: 82 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 82 şu değer oldu: 81 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 81 şu değer oldu: 80 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 80 şu değer oldu: 79 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 79 şu değer oldu: 78 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 78 şu değer oldu: 77 -> INFO 20/06/2020 22:49:55 şu bölgede: muayene-kapsami şu değer: 77 şu değer oldu: 76 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 76 şu değer oldu: 75 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 75 şu değer oldu: 74 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 74 şu değer oldu: 73 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 73 şu değer oldu: 72 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 72 şu değer oldu: 71 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 71 şu değer oldu: 70 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 70 şu değer oldu: 69 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 69 şu değer oldu: 68 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 68 şu değer oldu: 67 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 67 şu değer oldu: 66 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 66 şu değer oldu: 65 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 65 şu değer oldu: 64 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 64 şu değer oldu: 63 -> INFO 20/06/2020 22:49:56 şu bölgede: muayene-kapsami şu değer: 63 şu değer oldu: 62 -> 
+ÖNEMLİ: SEVERE 20/06/2020 22:50:01 rapor-no bölgesindeki 20200620?? pozitif bir sayı olmalıdır tam sebep: 
+
+ <hata_detayi> 
+java.lang.NumberFormatException: For input string: "20200620??"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Long.parseLong(Long.java:692)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:834)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:928)
+	at implicaspection.ReportController.lambda$5(ReportController.java:313)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$Generic.fireValueChangedEvent(ExpressionHelper.java:360)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.base/javafx.beans.property.ReadOnlyBooleanPropertyBase.fireValueChangedEvent(ReadOnlyBooleanPropertyBase.java:72)
+	at javafx.graphics/javafx.scene.Node$FocusedProperty.notifyListeners(Node.java:8154)
+	at javafx.graphics/javafx.scene.Scene$12.invalidated(Scene.java:2194)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.markInvalid(ObjectPropertyBase.java:112)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.set(ObjectPropertyBase.java:147)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.setFocusOwner(Scene.java:4058)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.requestFocus(Scene.java:4105)
+	at javafx.graphics/javafx.scene.Scene.requestFocus(Scene.java:2161)
+	at javafx.graphics/javafx.scene.Node.requestFocus(Node.java:8315)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ScrollPaneBehavior.mousePressed(ScrollPaneBehavior.java:154)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3890)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1885)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2618)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:409)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:299)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:447)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:412)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:446)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+</hata_detayi>
+
+ -> INFO 20/06/2020 22:50:28 şu bölgede: rapor-no yeni değer şu değer oldu: 2020062022 -> 
+ÖNEMLİ: SEVERE 20/06/2020 22:50:31 rapor-no bölgesindeki 202006202D pozitif bir sayı olmalıdır tam sebep: 
+
+ <hata_detayi> 
+java.lang.NumberFormatException: For input string: "202006202D"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Long.parseLong(Long.java:692)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:834)
+	at java.base/java.lang.Integer.parseUnsignedInt(Integer.java:928)
+	at implicaspection.ReportController.lambda$5(ReportController.java:313)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper$Generic.fireValueChangedEvent(ExpressionHelper.java:360)
+	at javafx.base/com.sun.javafx.binding.ExpressionHelper.fireValueChangedEvent(ExpressionHelper.java:80)
+	at javafx.base/javafx.beans.property.ReadOnlyBooleanPropertyBase.fireValueChangedEvent(ReadOnlyBooleanPropertyBase.java:72)
+	at javafx.graphics/javafx.scene.Node$FocusedProperty.notifyListeners(Node.java:8154)
+	at javafx.graphics/javafx.scene.Scene$12.invalidated(Scene.java:2194)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.markInvalid(ObjectPropertyBase.java:112)
+	at javafx.base/javafx.beans.property.ObjectPropertyBase.set(ObjectPropertyBase.java:147)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.setFocusOwner(Scene.java:4058)
+	at javafx.graphics/javafx.scene.Scene$KeyHandler.requestFocus(Scene.java:4105)
+	at javafx.graphics/javafx.scene.Scene.requestFocus(Scene.java:2161)
+	at javafx.graphics/javafx.scene.Node.requestFocus(Node.java:8315)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.TextFieldBehavior.mousePressed(TextFieldBehavior.java:255)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3890)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1885)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2618)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:409)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:299)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:447)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:412)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:446)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+</hata_detayi>
+
+ -> 
+ÖNEMLİ: WARNING 20/06/2020 22:50:57 rapor-no bölgesindeki 2020062023sadaasdasdasdasd 10 haneli bir pozitif sayı olmalıdır -> FINEST 20/06/2020 22:51:06 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 23:01:42 Program başlatılıyor -> FINEST 20/06/2020 23:01:50 Giriş başarılı -> INFO 20/06/2020 23:02:02 şu bölgede: musteri-adi şu değer: null şu değer oldu: DENEME MÜŞTERİSİ -> FINEST 20/06/2020 23:04:37 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 23:11:48 Program başlatılıyor -> FINEST 20/06/2020 23:12:00 Giriş başarılı -> INFO 20/06/2020 23:17:36 şu bölgede: musteri-adi şu değer: null şu değer oldu: TAG GEMİ -> FINEST 20/06/2020 23:20:45 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 23:30:21 Program başlatılıyor -> FINEST 20/06/2020 23:30:24 Giriş başarılı -> FINEST 20/06/2020 23:31:26 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 23:31:27 Program başlatılıyor -> FINEST 20/06/2020 23:31:31 Giriş başarılı -> FINEST 20/06/2020 23:32:25 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 23:33:13 Program başlatılıyor -> FINEST 20/06/2020 23:33:16 Giriş başarılı -> FINEST 20/06/2020 23:35:22 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 23:51:29 Program başlatılıyor -> FINEST 20/06/2020 23:51:35 Giriş başarılı -> FINEST 20/06/2020 23:52:15 Program düzgün şekilde sonlandırıldı
+ -> FINEST 20/06/2020 23:55:56 Program başlatılıyor -> FINEST 20/06/2020 23:55:58 Giriş başarılı -> FINEST 20/06/2020 23:56:29 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 00:01:57 Program başlatılıyor -> FINEST 21/06/2020 00:02:02 Giriş başarılı -> FINEST 21/06/2020 00:12:54 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 00:26:17 Program başlatılıyor -> FINEST 21/06/2020 00:26:20 Giriş başarılı -> FINE 21/06/2020 00:26:33 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 00:26:57 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 00:38:11 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 00:43:32 Program başlatılıyor -> FINEST 21/06/2020 00:43:37 Giriş başarılı -> FINE 21/06/2020 00:43:49 Bu bölgedeki güncel default değer: TS EN ISO 23278 Class B :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 00:46:27 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 00:46:29 Program başlatılıyor -> FINEST 21/06/2020 00:46:31 Giriş başarılı -> FINE 21/06/2020 00:46:41 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 00:46:51 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 00:48:29 Program başlatılıyor -> FINEST 21/06/2020 00:48:37 Giriş başarılı -> FINE 21/06/2020 00:49:06 Bu bölgedeki güncel default değer: TS EN ISO 23278 Class B :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 00:51:48 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 01:03:37 Program başlatılıyor -> FINEST 21/06/2020 01:03:51 Giriş başarılı -> FINE 21/06/2020 01:04:05 Bu bölgedeki güncel default değer: 1 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:09:29 Program başlatılıyor -> FINEST 21/06/2020 01:09:31 Giriş başarılı -> FINE 21/06/2020 01:09:39 Bu bölgedeki güncel default değer: TS EN ISO 23278 Class B :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:27:00 Program başlatılıyor -> FINEST 21/06/2020 01:27:03 Giriş başarılı -> FINE 21/06/2020 01:27:11 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:27:34 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 01:28:23 Program başlatılıyor -> FINEST 21/06/2020 01:28:26 Giriş başarılı -> FINE 21/06/2020 01:28:34 Bu bölgedeki güncel default değer: TS EN ISO 23278 Class B :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:35:19 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 01:38:04 Program başlatılıyor -> FINEST 21/06/2020 01:38:20 Giriş başarılı -> FINEST 21/06/2020 01:38:33 Program başlatılıyor -> FINEST 21/06/2020 01:38:41 Giriş başarılı -> FINEST 21/06/2020 01:39:22 Program başlatılıyor -> FINEST 21/06/2020 01:39:25 Giriş başarılı -> FINEST 21/06/2020 01:40:28 Program başlatılıyor -> FINEST 21/06/2020 01:40:31 Giriş başarılı -> FINEST 21/06/2020 01:41:47 Program başlatılıyor -> FINEST 21/06/2020 01:41:51 Giriş başarılı -> FINEST 21/06/2020 01:54:35 Program başlatılıyor -> FINEST 21/06/2020 01:54:38 Giriş başarılı -> FINE 21/06/2020 01:54:46 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 01:54:53 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:55:22 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 01:55:47 Program başlatılıyor -> FINEST 21/06/2020 01:55:51 Giriş başarılı -> FINE 21/06/2020 01:56:04 Bu bölgedeki güncel default değer: - :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:56:10 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 01:57:14 Program başlatılıyor -> FINEST 21/06/2020 01:57:17 Giriş başarılı -> FINE 21/06/2020 01:57:29 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 01:57:33 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 01:57:35 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:58:36 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 01:59:10 Program başlatılıyor -> FINEST 21/06/2020 01:59:13 Giriş başarılı -> FINE 21/06/2020 01:59:22 Bu bölgedeki güncel default değer: TS EN ISO 23278 Class B :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 01:59:33 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 09:20:16 Program başlatılıyor -> FINEST 21/06/2020 09:20:27 Giriş başarılı -> FINE 21/06/2020 09:21:02 Bu bölgedeki güncel default değer: TS EN ISO 23278 Class B :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 09:21:08 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 09:27:52 Program başlatılıyor -> FINEST 21/06/2020 09:27:57 Giriş başarılı -> FINE 21/06/2020 09:28:12 Bu bölgedeki güncel default değer: - :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 09:28:30 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 09:46:08 Program başlatılıyor -> FINEST 21/06/2020 09:46:11 Giriş başarılı -> FINEST 21/06/2020 09:46:26 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 09:59:09 Program başlatılıyor -> FINEST 21/06/2020 09:59:15 Giriş başarılı -> FINE 21/06/2020 09:59:22 Bu bölgedeki güncel default değer: TS EN ISO 17638 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 09:59:38 Bu bölgedeki güncel default değer:    :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 10:00:00 Bu bölgedeki güncel default değer: 1 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 10:17:25 Program başlatılıyor -> FINEST 21/06/2020 10:17:42 Giriş başarılı -> FINEST 21/06/2020 10:17:45 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 10:18:24 Program başlatılıyor -> FINE 21/06/2020 10:18:29 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 21/06/2020 10:19:01 Program başlatılıyor -> FINE 21/06/2020 10:19:04 E003: Program optimal şekilde sonlandırılamadı
+ -> FINEST 21/06/2020 10:22:52 Program başlatılıyor -> FINEST 21/06/2020 10:48:53 Giriş başarılı -> FINEST 21/06/2020 10:48:55 Şu rastgele sayı üretildi: 2 -> FINEST 21/06/2020 10:48:55 Şu rastgele sayı üretildi: 24 -> FINEST 21/06/2020 10:48:55 Şu rastgele sayı üretildi: 29 -> FINEST 21/06/2020 10:48:55 Şu rastgele sayı üretildi: 10 -> FINEST 21/06/2020 10:48:55 Şu rastgele sayı üretildi: 33 -> FINEST 21/06/2020 10:48:55 Şu rastgele sayı üretildi: 66 -> FINEST 21/06/2020 10:48:56 Şu rastgele sayı üretildi: 87 -> FINEST 21/06/2020 10:48:56 Şu rastgele sayı üretildi: 76 -> FINE 21/06/2020 10:49:12 Bu bölgedeki güncel default değer: P-101-004 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 10:49:45 Bu bölgedeki güncel default değer: P-101-004 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINE 21/06/2020 10:49:48 Bu bölgedeki güncel default değer: P-101-004 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 10:49:58 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 10:51:37 Program başlatılıyor -> FINEST 21/06/2020 10:51:40 Giriş başarılı -> FINE 21/06/2020 10:51:53 Bu bölgedeki güncel default değer: TS EN ISO 17622 :Değiştirmek istiyorsanız yeni değeri yazınız -> FINEST 21/06/2020 10:52:02 Program düzgün şekilde sonlandırıldı
+ -> FINEST 21/06/2020 10:53:29 Program başlatılıyor -> FINEST 21/06/2020 10:53:35 Giriş başarılı -> FINEST 21/06/2020 10:53:36 Şu rastgele sayı üretildi: 49 -> FINEST 21/06/2020 10:53:37 Şu rastgele sayı üretildi: 15 -> FINEST 21/06/2020 10:53:37 Şu rastgele sayı üretildi: 11 -> FINEST 21/06/2020 10:53:37 Şu rastgele sayı üretildi: 2 -> FINEST 21/06/2020 10:59:22 Program düzgün şekilde sonlandırıldı
  -> 

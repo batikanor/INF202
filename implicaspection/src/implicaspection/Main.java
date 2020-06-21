@@ -45,6 +45,15 @@ public class Main extends Application{
 		Model.initLogger();
 
 		Model.log.finest("Program başlatılıyor");
+	
+		String[] ss = new String[3];
+		ss[0] = "cc";
+		ss[1] = "aa";
+		ss[2] = "bb";
+		System.out.println(ss[1].concat(ss[2]));
+		System.out.println("HA" + Model.joinCode(ss, "???"));
+	
+		
 		launch(args);
 		
 		Model.log.fine("E003: Program optimal şekilde sonlandırılamadı\n");

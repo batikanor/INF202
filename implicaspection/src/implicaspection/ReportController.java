@@ -89,7 +89,7 @@ public class ReportController extends ControllerTemplate{
 								return -1;
 							}
 							
-							newVBox.getChildren().add(newCombo);
+							newVBox.getChildren().add(newCombo); 
 							gridPane.add(newVBox, col, row);
 						
 							contentsMap.put(dependantName, newCombo.getSelectionModel().getSelectedItem());
@@ -178,7 +178,7 @@ public class ReportController extends ControllerTemplate{
 								TextField textContent;
 								String strContent;
 								int intContent;
-								Label cell = new Label("Sütun: " + Model.GetExcelColumnString(j + 1) + " Satır: " + (i + 1));
+								Label cell = new Label("Sütun: " + Model.getExcelColumnString(j + 1) + " Satır: " + (i + 1));
 								ComboBox<String> comboContent;
 								Spinner<Integer> percentage;
 								

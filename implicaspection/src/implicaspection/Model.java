@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Level;
@@ -22,6 +23,8 @@ import java.util.logging.Logger;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
+import org.apache.poi.xssf.usermodel.XSSFComment;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -33,6 +36,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.FlowPane;
@@ -49,9 +53,33 @@ public class Model {
 	public static HashMap<String, Stage> stages = new HashMap<String, Stage>();
 	
 	public static Logger log = Logger.getLogger(Model.class.getPackageName());
+
+	public static String joinCode(String[] s, String delimiter) {
+		String ret = "";
+	    if (s == null) {
+	    	return "";
+	    }
+	    for (String st : s) {
+	    	ret += delimiter;
+	    	ret += st;
+	    	
+	    }
+	    return ret;
+	}
+
+    public static int getExcelColumnInt(String col) {
+        int res = 0;
+        int len = col.length();
+        
+        for (int i = 0; i < len; i++) {
+        
+        	res *= 26;
+            res += col.charAt(i) - 'A' + 1;
+        }
+        return res;
+    }
 	
-	
-	public static String GetExcelColumnString(int columnNo){
+	public static String getExcelColumnString(int columnNo){
 	    int dividend = columnNo;
 	    String columnStr = "";
 	    int mod;
@@ -198,12 +226,14 @@ public class Model {
 		
 
 	}
-	public static void createPopup(Pane rootPane, String popupStr, Node otherNode, Level logLevel) {
-		// TODO Auto-generated method stub
-		
+	public static boolean createPopup(Pane rootPane, String popupStr, Node otherNode, Level logLevel){
+
+		final Object lock = new Object();
+			
+
 		Model.log.log(logLevel, popupStr);
 		Label lblStatus = new Label(popupStr);
-		Button btnClose = new Button("Geri dön");
+		Button btnClose = new Button("O.K.");
 		btnClose.setPrefHeight(50);
 		FlowPane fpPop = new FlowPane();
 		fpPop.setPadding(new Insets(30,30,30,30));
@@ -212,6 +242,7 @@ public class Model {
 		fpPop.autosize();
 		fpPop.getChildren().addAll(btnClose, lblStatus);
 		if (otherNode != null) {
+
 		fpPop.getChildren().add(otherNode);	
 		}
 		BoxBlur blur = new BoxBlur(4, 4, 4);
@@ -234,17 +265,93 @@ public class Model {
 
 			@Override
 			public void handle(ActionEvent e) {
+				// Maybe do something with the now maybe altered otherNode here
 				poppy.hide();
 				rootPane.setEffect(null);
+				if (otherNode != null) {
+					//fpPop.getChildren().get(2);
+					//synchronized(lock) {
+						//popupFired = true;
+						//lock.notifyAll();
+					//}
+					String ud = otherNode.getUserData().toString();
+					
+					if (ud.startsWith("???")) {
+						ud = ud.substring(3);
+						
+						String ss[] = ud.split("\\?\\?\\?");
+						if (ss[0].contentEquals("AdminPanelDefault")) {
+							String cellLocationExcel = ss[1]; // T7, AA5 ...
+							// Substract the string from int
+							int rowNo = 0, colNo;
+							String col = "";
+							for (int i = 0; i < cellLocationExcel.length(); i++) {
+								
+								try {
+								
+									rowNo = Integer.valueOf(cellLocationExcel.substring(i));
+								
+								} catch (NumberFormatException ex) {
+									
+									col += cellLocationExcel.charAt(i);
+									continue;
+								
+								}
+								
+								// If the catch block wasn't entered
+								break; ///< Cuz the rowNo is already done
+								
+							}
+							colNo = getExcelColumnInt(col);
+							rowNo--;
+							colNo--;
+							//System.out.println("rowno : " + String.valueOf(rowNo) + "colNo = " + String.valueOf(colNo));
 				
+							//System.out.println(AdminPanelController.sheet.getRow(rowNo).getCell(colNo).getCellComment().getString());
+							String oldComment = AdminPanelController.sheet.getRow(rowNo).getCell(colNo).getCellComment().getString().toString();
+							//System.out.println("AAACS" + oldComment);
+							oldComment = oldComment.substring(3);
+							
+							String oldParts[] = oldComment.split("\\?\\?\\?");
+							//oldParts[0] = default, ...
+							oldParts[3] = ((TextField)otherNode).getText();
+							String newComment = Model.joinCode(oldParts, "???");
 				
-				// Maybe do something with the now maybe altered otherNode here
+							AdminPanelController.wb.getSheetAt(0).getRow(rowNo).getCell(colNo).getCellComment().setString(newComment);
+							
+						}
+						
+						
+						
+					}
+
+					
+				}
+	
+				
+
+				
+
 			}
 			
 		};
 		btnClose.setOnAction(goBack);
 		poppy.getContent().add(fpPop);
 		poppy.show((Stage)(rootPane.getScene().getWindow()));
+		
+		//synchronized(lock) {
+			//while (!Model.popupFired) {
+				//try {
+				//	lock.wait();
+				//} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+				//	e1.printStackTrace();
+				//}
+			//}
+			
+		//}
+		return true;
+
 		
 		
 

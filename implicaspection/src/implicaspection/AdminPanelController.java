@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.logging.Level;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,9 +16,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import objects.CodedCell;
 import utilities.DatabaseAndSession;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
@@ -28,7 +32,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
+import org.apache.log4j.lf5.LogLevel;
+import org.apache.poi.ss.formula.functions.Choose;
 import org.apache.poi.ss.util.CellAddress;
 import org.apache.poi.xssf.usermodel.XSSFComment;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -37,6 +42,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 
 public class AdminPanelController extends ControllerTemplate {
 
@@ -106,8 +113,8 @@ public class AdminPanelController extends ControllerTemplate {
 	Label lblSheet;
 
 	private File selectedFile;
-	private XSSFWorkbook wb;
-	private XSSFSheet sheet;
+	static XSSFWorkbook wb;
+	static XSSFSheet sheet;
 
 	@FXML
 	ToggleGroup fieldType;
@@ -130,6 +137,10 @@ public class AdminPanelController extends ControllerTemplate {
 
 	@FXML RadioButton stOther;
 
+	@FXML ListView<String> listChosen;
+
+	@FXML AnchorPane rootPane;
+
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
@@ -138,10 +149,58 @@ public class AdminPanelController extends ControllerTemplate {
 		codeColumn.setCellValueFactory(new PropertyValueFactory<CodedCell, String>("cellCode"));
 
 	}
+	
+	
+	public static void getNewDefault(String s) {
+		System.out.println("ha " + s);
+		
+	}
+	public void getCodeOfSelectedCell() {
+		
+		listChosen.getItems().clear();
+		
+		
+		TablePosition tp = fieldsTable.getFocusModel().getFocusedCell();
+		int row = tp.getRow();
+		CodedCell cc = fieldsTable.getItems().get(row);
+		String strCode = codeColumn.getCellData(cc);
+		String strS[] = strCode.split("\\?\\?\\?");
+		
+		String chosenFieldType = strS[1];
+		String chosenFieldMeaning = strS[2];
+		String chosenFieldName = strS[3];
+		
+		if (chosenFieldType.contentEquals("combo")) {
+			ComboBox<String> cb = DatabaseAndSession.returnComboBoxValues(chosenFieldName);
+			listChosen.getItems().addAll(cb.getItems());
+			
+		} else if (chosenFieldType.contentEquals("depend")) {
+			ComboBox<String> cb = DatabaseAndSession.returnDependantValues(chosenFieldName);
+			listChosen.getItems().addAll(cb.getItems());
+		} else if (chosenFieldType.contentEquals("default")) {
+			if (strS[4] == null) {
+				//Not possible!
+			}
+			String popupStr = "Bu bölgedeki güncel default değer: " + strS[4] + " :Değiştirmek istiyorsanız yeni değeri yazınız";
+			TextField tf = new TextField(strS[4]);
+			tf.setUserData("???" + "AdminPanelDefault" + "???" + locationColumn.getCellData(row));
+			Model.createPopup(rootPane, popupStr, (Node) tf, Level.FINE);
 
+			//while (Model.popupFired == false) {
+				// Do nothing, i.e. wait
+				//Thread.sleep(200);
+			
+			//}
+			
+			//System.out.println(tf.getText());
+		}
+		
+	}
+	
 	@FXML
 	private void updateTable() {
 		fieldsTable.setItems(getCodedCells());
+	
 	}
 	
 	@FXML
@@ -160,7 +219,7 @@ public class AdminPanelController extends ControllerTemplate {
 	}
 
 	private ObservableList<CodedCell> getCodedCells() {
-		// ObservableList is like ArrayList, but designed specifically for gui
+		// ObservableList is like ArrayList, but designed specifically for GUI
 		ObservableList<CodedCell> codedCellsList = FXCollections.observableArrayList();
 		
 		

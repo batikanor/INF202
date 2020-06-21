@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
@@ -20,11 +22,11 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1300.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.AdminPanelController">
+<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1300.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="implicaspection.AdminPanelController">
    <children>
       <AnchorPane layoutX="356.0" layoutY="-3.0" prefHeight="652.0" prefWidth="748.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="356.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane fx:id="paneDB" prefHeight="527.0" prefWidth="663.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="paneDB" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TextArea fx:id="dbInput" layoutX="89.0" layoutY="112.0" prefHeight="266.0" prefWidth="759.0" promptText="HSQLDB Komutu Giriniz" />
                   <Button layoutX="362.0" layoutY="416.0" mnemonicParsing="false" onAction="#executeStatement" prefHeight="63.0" prefWidth="210.0" text="Komutu çalıştır" />
@@ -47,7 +49,7 @@
                   <RadioButton fx:id="stOther" layoutX="614.0" layoutY="388.0" mnemonicParsing="false" text="Diğer" textFill="WHITE" toggleGroup="$statementType" />
                   <ScrollPane layoutX="8.0" layoutY="502.0" prefHeight="280.0" prefWidth="920.0">
                      <content>
-                        <Label fx:id="lblDBOutput" alignment="TOP_LEFT" prefHeight="387.0" prefWidth="1320.0" text="Boş">
+                        <Label fx:id="lblDBOutput" alignment="TOP_LEFT" prefHeight="387.0" prefWidth="1320.0">
                            <font>
                               <Font name="System Italic" size="14.0" />
                            </font>
@@ -55,7 +57,14 @@
                      </content>
                   </ScrollPane>
                </children></Pane>
-            <Pane fx:id="paneFieldVal" layoutX="20.0" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="paneFieldVal" layoutX="20.0" prefHeight="527.0" prefWidth="663.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ScrollPane layoutX="207.0" layoutY="397.0" prefHeight="343.0" prefWidth="525.0" />
+                  <Button layoutX="92.0" layoutY="216.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="170.0" text="Combobox değeri ekle" />
+                  <RadioButton layoutX="402.0" layoutY="14.0" mnemonicParsing="false" text="Combobox&#10;(Çoktan Seçmeli)&#10;(Örnekler:&#10;Müşteri adı&#10;Ekipman adı)&#10;" textFill="WHITE" />
+                  <Label layoutX="32.0" layoutY="38.0" text="Hangi tür bir alana ekleme yapacağınızı seçiniz" />
+                  <RadioButton layoutX="561.0" layoutY="30.0" mnemonicParsing="false" text="Dependant&#10;(Değeri başka&#10;alana bağlı)" textFill="WHITE" />
+               </children></Pane>
             <Pane fx:id="paneRegister" prefHeight="652.0" prefWidth="711.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <PasswordField fx:id="passwordInput" layoutX="181.0" layoutY="114.0" promptText="şifre" />
@@ -94,9 +103,9 @@
                   <Label layoutX="79.0" layoutY="32.0" text="mod" />
                </children>
             </Pane>
-            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="662.0" prefWidth="888.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="paneTemplate" layoutX="10.0" prefHeight="662.0" prefWidth="888.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="buttonSaveTemplate" disable="true" layoutX="746.0" layoutY="382.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="48.0" prefWidth="170.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="buttonSaveTemplate" disable="true" layoutX="659.0" layoutY="367.0" mnemonicParsing="false" onAction="#saveTemplate" prefHeight="30.0" prefWidth="233.0" text="Dosyayı şablon olarak kaydet" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="buttonSelectTemplate" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#selectTemplate" onMouseClicked="#selectTemplate" prefHeight="48.0" prefWidth="108.0" text="Dosya seç" />
                   <Label fx:id="lblSelectedFile" layoutX="147.0" layoutY="30.0" text="Henüz hiçbir dosya seçilmedi" />
                   <Label layoutX="12.0" layoutY="84.0" prefHeight="3.0" prefWidth="102.0" text="Dosya konumu:" />
@@ -114,8 +123,7 @@
                   <TableView fx:id="fieldsTable" layoutX="14.0" layoutY="161.0" prefHeight="204.0" prefWidth="902.0">
                     <columns>
                       <TableColumn fx:id="locationColumn" prefWidth="185.0" text="Bölge Konumu" />
-                      <TableColumn fx:id="codeColumn" minWidth="0.0" prefWidth="394.0" text="Bölge Kodu" />
-                        <TableColumn fx:id="typeColumn" minWidth="0.0" prefWidth="394.0" text="Bölge Tipi" />
+                      <TableColumn fx:id="codeColumn" minWidth="0.0" prefWidth="700.0" text="Bölge Kodu" />
                     </columns>
                   </TableView>
                   <Label layoutX="167.0" layoutY="145.0" text="Şablonda halihazırda kayıtlı bölgeler:" />
@@ -131,13 +139,19 @@
                   <RadioButton disable="true" layoutX="37.0" layoutY="518.0" mnemonicParsing="false" text="bağımlı bölge (tek veya çok seçenekli) (depend)" textFill="WHITE" toggleGroup="$fieldType" />
                   <RadioButton disable="true" layoutX="37.0" layoutY="488.0" mnemonicParsing="false" text="çok seçenekli bölge (multi)" textFill="WHITE" toggleGroup="$fieldType" />
                   <TextField disable="true" layoutX="43.0" layoutY="677.0" prefHeight="30.0" prefWidth="474.0" promptText="Bağımlı olduğu bölge adı (halihazırda tabloda gözüken bir isim olmalı" />
-                  <Button disable="true" layoutX="597.0" layoutY="393.0" mnemonicParsing="false" onAction="#updateTable" prefHeight="26.0" prefWidth="121.0" text="Listeyi güncelle" />
-                  <Ellipse fill="#1f93ff00" layoutX="256.0" layoutY="586.0" radiusX="324.0" radiusY="202.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0">
+                  <Button disable="true" layoutX="474.0" layoutY="367.0" mnemonicParsing="false" onAction="#updateTable" prefHeight="30.0" prefWidth="138.0" text="Listeyi güncelle" />
+                  <Ellipse fill="#1f93ff00" layoutX="491.0" layoutY="959.0" radiusX="324.0" radiusY="202.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="10.0">
                      <effect>
                         <ColorAdjust brightness="0.44" />
                      </effect>
                   </Ellipse>
-                  <Label layoutX="601.0" layoutY="477.0" prefHeight="266.0" prefWidth="286.0" text="Şu an için rapor şablonlarının dokümantasyonda belirtildiği gibi&#10;Excel yorumları olarak eklenmeleri gerekmektedir. &quot;Dependant Field&quot; Eklemesi de yapılamamaktadır.&#10;Gelecekte soldaki fonksiyonalite de eklenecektir ve böylece yeni şablonlar eksiksiz oluşturulabilir olacaktır (Kimi özel istek için yine hard-coded çözümler gerekebilir, o durumlarda proje güncellenip alıcıya tekrar yollanabilir. Ayrıca yüzdelik değer girilen alanların da şablona eklenmesi soldan sağlanabilir belki..)&#10;&#10;" wrapText="true" />
+                  <TitledPane expanded="false" layoutX="34.0" layoutY="412.0" prefHeight="280.0" prefWidth="428.0">
+                     <content>
+                        <Label prefHeight="265.0" prefWidth="376.0" text="Şu an için rapor şablonlarının dokümantasyonda belirtildiği gibi&#10;Excel yorumları olarak eklenmeleri gerekmektedir. &quot;Dependant Field&quot; Eklemesi de yapılamamaktadır.&#10;Gelecekte soldaki fonksiyonalite de eklenecektir ve böylece yeni şablonlar eksiksiz oluşturulabilir olacaktır (Kimi özel istek için yine hard-coded çözümler gerekebilir, o durumlarda proje güncellenip alıcıya tekrar yollanabilir. Ayrıca yüzdelik değer girilen alanların da şablona eklenmesi soldan sağlanabilir belki..)&#10;&#10;" wrapText="true" />
+                     </content>
+                  </TitledPane>
+                  <Button layoutX="653.0" layoutY="420.0" mnemonicParsing="false" onAction="#getCodeOfSelectedCell" prefHeight="48.0" prefWidth="233.0" text="Seçili bölgedeki değerleri listele" />
+                  <ListView fx:id="listChosen" layoutX="659.0" layoutY="476.0" prefHeight="186.0" prefWidth="222.0" />
                </children>
             </Pane>
          </children>
@@ -165,7 +179,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="buttonFieldVal" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="283.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="Bölgeye Değer Ekle" textFill="WHITE" AnchorPane.leftAnchor="28.0">
+            <Button fx:id="buttonFieldVal" alignment="BASELINE_LEFT" graphicTextGap="30.0" layoutX="28.0" layoutY="283.0" mnemonicParsing="false" onAction="#changePane" prefHeight="45.0" prefWidth="300.0" text="NOT USED" textFill="WHITE" AnchorPane.leftAnchor="28.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
