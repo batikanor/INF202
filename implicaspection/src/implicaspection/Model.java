@@ -25,7 +25,6 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,6 +42,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+
 
 
 public class Model {
@@ -135,12 +135,14 @@ public class Model {
 		return hash;
 		
 	}
+	
+
 	public static void loadWindow(String toLoad, int width, int length){
 		Stage newStage = new Stage();
 		Parent root;
 		try {
 			
-			System.out.println("loading: " + Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
+			log.info("loading: " + Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
 			root = FXMLLoader.load(Model.class.getResource("/implicaspection/" + toLoad + ".fxml"));
 			Scene scene = new Scene(root, width, length);
 			newStage.setScene(scene);
@@ -150,8 +152,9 @@ public class Model {
 			//stages.add(newStage);
 			newStage.show();
 		} catch (IOException e) {
-			System.out.println("E001: Yüklenmeye çalışılan pencere bulunamadı");
-			e.printStackTrace();
+		
+			log.warning("E001: Yüklenmeye çalışılan pencere bulunamadı");
+			//e.printStackTrace();
 		}
 		
 	}
@@ -231,8 +234,10 @@ public class Model {
 
 		//final Object lock = new Object();
 			
-
-		Model.log.log(logLevel, popupStr);
+		if (logLevel != null) {
+			Model.log.log(logLevel, popupStr);
+		}
+		
 		Label lblStatus = new Label(popupStr);
 		Button btnClose = new Button("O.K.");
 		btnClose.setPrefHeight(50);
@@ -267,8 +272,7 @@ public class Model {
 			@Override
 			public void handle(ActionEvent e) {
 				// Maybe do something with the now maybe altered otherNode here
-				poppy.hide();
-				rootPane.setEffect(null);
+
 				if (otherNode != null) {
 					//fpPop.getChildren().get(2);
 					//synchronized(lock) {
@@ -281,8 +285,8 @@ public class Model {
 						ud = ud.substring(3);
 						
 						String ss[] = ud.split("\\?\\?\\?");
-						if (ss[0].contentEquals("AdminPanelDefault")) {
-							String cellLocationExcel = ss[1]; // T7, AA5 ...
+						if (ss[0].startsWith("AdminPanel")) {
+							String cellLocationExcel = ss[1]; // T7, AA5 ..."AdminPanelDefault"
 							// Substract the string from int
 							int rowNo = 0, colNo;
 							String col = "";
@@ -313,11 +317,25 @@ public class Model {
 							//System.out.println("AAACS" + oldComment);
 							oldComment = oldComment.substring(3);
 							
-							String oldParts[] = oldComment.split("\\?\\?\\?");
+							String oldParts[] = oldComment.split(Main.delimiterRegex);
 							//oldParts[0] = default, ...
 							oldParts[3] = ((TextField)otherNode).getText();
-							String newComment = Model.joinCode(oldParts, "???");
-				
+							if (ss[0].contentEquals("AdminPanelPercent")) {
+								int inta;
+								try{
+									inta = Integer.parseInt(oldParts[3]);
+								} catch (Exception exx) {
+									createPopup(rootPane, "Girdi bir sayı değil!", null, Level.WARNING);
+									return;
+								}
+								if (inta < 0 || inta > 100) {
+									createPopup(rootPane, "Girdi 0 - 100 arasi değil!", null, Level.WARNING);
+									return;
+								}
+								
+							} 
+							String newComment = Model.joinCode(oldParts, Main.delimiter);
+
 							AdminPanelController.wb.getSheetAt(0).getRow(rowNo).getCell(colNo).getCellComment().setString(newComment);
 							
 						}
@@ -328,6 +346,11 @@ public class Model {
 
 					
 				}
+				poppy.hide();
+				if (rootPane != null) {
+					rootPane.setEffect(null);
+				}
+				
 	
 				
 
@@ -338,7 +361,21 @@ public class Model {
 		};
 		btnClose.setOnAction(goBack);
 		poppy.getContent().add(fpPop);
-		poppy.show((Stage)(rootPane.getScene().getWindow()));
+		if (rootPane != null) {
+			poppy.show((Stage)(rootPane.getScene().getWindow()));
+		} else {
+			for (Stage s : Model.stages.values()) {
+				try {
+					poppy.show(s);
+					return true;
+				} catch (Exception e) {
+					// That stage wasnt being shown
+					
+				}
+			}
+			
+			
+		}
 		
 		//synchronized(lock) {
 			//while (!Model.popupFired) {
@@ -351,7 +388,7 @@ public class Model {
 			//}
 			
 		//}
-		return true;
+		return false;
 
 		
 		

@@ -52,6 +52,7 @@ public class Main extends Application{
 		launch(args);
 		
 		Model.log.fine("E003: Program optimal şekilde sonlandırılamadı\n");
+		
 	} 
 	
 	

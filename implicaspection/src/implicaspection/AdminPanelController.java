@@ -152,6 +152,7 @@ public class AdminPanelController extends ControllerTemplate {
 	public void initialize() {
 		// TODO Auto-generated method stub
 		super.initialize();
+		
 		locationColumn.setCellValueFactory(new PropertyValueFactory<CodedCell, String>("cellLocation"));
 		codeColumn.setCellValueFactory(new PropertyValueFactory<CodedCell, String>("cellCode"));
 
@@ -168,15 +169,24 @@ public class AdminPanelController extends ControllerTemplate {
 				// Remove data from combobox
 				
 				DatabaseAndSession.removeComboBoxValue(chosenFieldName, chosenItem);
+				
+				
 			} else if (chosenFieldType.contentEquals("depend")) {
+				
 				// String decisiveName, String decisiveContent, String dependantName, String dependantContent
 				String decisiveContentAndDependantContent[] = chosenItem.split(Main.delimiterRegex);
-				//DatabaseAndSession.removeDependantValue(chosenDecisiveName, chosenFieldName, chosenItem, );
+				String decCon = decisiveContentAndDependantContent[0];
+				String depCon = decisiveContentAndDependantContent[1];
+				
+				DatabaseAndSession.removeDependantValue(chosenDecisiveName, decCon, chosenFieldName, depCon);
 			}
 		}
 	}
+	
 	public void editContent() {
+	
 		if (listChosen.getSelectionModel().getSelectedItem() != null) {
+			
 			Model.log.info(listChosen.getSelectionModel().getSelectedItem().toString() + " değeri seçildi");
 			
 			if (chosenFieldType.contentEquals("combo")) {
@@ -211,6 +221,7 @@ public class AdminPanelController extends ControllerTemplate {
 				cb.getItems().remove(0);
 				lblFieldInfo.setText(lblFieldInfo.getText() + "Bağlı olunan değer: " + chosenDecisiveName + "\n");
 				listChosen.getItems().addAll(cb.getItems());
+				
 			} else if (chosenFieldType.contentEquals("default")) {
 				if (strS[4] == null) {
 					//Not possible!
@@ -227,6 +238,15 @@ public class AdminPanelController extends ControllerTemplate {
 				//}
 				
 				//System.out.println(tf.getText());
+			} else if (chosenFieldType.contentEquals("percent")) {
+				if (strS[4] == null) {
+					//Not possible!
+				}
+				String popupStr = "Bu bölgedeki güncel percent değer: " + strS[4] + " :Değiştirmek istiyorsanız yeni değeri yazınız. [0-100] arası sayı girmezseniz değişim olmaz.";
+				TextField tf = new TextField(strS[4]);
+				tf.setUserData(Main.delimiter + "AdminPanelPercent" + Main.delimiter + locationColumn.getCellData(row));
+				Model.createPopup(rootPane, popupStr, (Node) tf, Level.FINE);
+
 			}
 		} catch (Exception e) {
 			Model.createPopup(rootPane, "Lütfen geçerli bir hücre seçin!", null, Level.WARNING);

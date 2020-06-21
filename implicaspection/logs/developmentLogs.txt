@@ -1628,4 +1628,5 @@ FINEST 02/06/2020 22:08:31 Program başlatılıyor -> FINE 02/06/2020 22:08:37 E
 ÖNEMLİ: WARNING 21/06/2020 14:27:36 Lütfen geçerli bir hücre seçin! -> 
 ÖNEMLİ: WARNING 21/06/2020 14:27:38 Lütfen geçerli bir hücre seçin! -> 
 ÖNEMLİ: WARNING 21/06/2020 14:27:40 Lütfen geçerli bir hücre seçin! -> FINEST 21/06/2020 14:27:45 Program düzgün şekilde sonlandırıldı
- -> FINEST 21/06/2020 14:28:23 Program başlatılıyor -> 
+ -> FINEST 21/06/2020 14:28:23 Program başlatılıyor -> FINE 21/06/2020 15:11:46 E003: Program optimal şekilde sonlandırılamadı
+ -> 
