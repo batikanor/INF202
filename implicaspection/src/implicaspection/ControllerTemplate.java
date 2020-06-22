@@ -12,7 +12,8 @@ public class ControllerTemplate {
 		
 
 		//count++; ///< Maybe use as a part of logging in the future..
-		System.out.println(this.getClass().getSimpleName() + " ekranı yüklendi " + count);
+
+		Model.log.fine(this.getClass().getSimpleName() + " ekranı yüklendi "); ///< maybe + count
 
 	}
 

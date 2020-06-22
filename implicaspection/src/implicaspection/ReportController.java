@@ -1,8 +1,9 @@
 package implicaspection;
 
-
+import com.spire.xls.*;
 import java.io.File;
 import java.io.FileInputStream;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -16,13 +17,18 @@ import java.util.logging.Level;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+
+
 import javafx.event.ActionEvent;
+
+import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import utilities.DatabaseAndSession;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -42,6 +48,9 @@ public class ReportController extends ControllerTemplate{
 	private XSSFWorkbook wb;
 	private XSSFSheet sheet;
 	private FileOutputStream fos;
+	private String datey;
+	
+	
 	@FXML GridPane gridPane;
 	// String fieldName, String fieldContent
 	public static HashMap<String, String> contentsMap = new HashMap<String, String>();
@@ -106,7 +115,8 @@ public class ReportController extends ControllerTemplate{
 					}
 				}
 			} else {
-				System.out.println(decisiveName + " bolgesine bagli alan bulunamadi");
+				Model.log.warning(decisiveName + " bolgesine bagli alan bulunamadi");
+			
 			}
 			return 1;
 		} else {
@@ -146,28 +156,31 @@ public class ReportController extends ControllerTemplate{
 			
 			int rowCount = sheet.getLastRowNum();
 			int rowsUsed = 0;
-			
-			for (int i = 0; i - 1< rowCount; i++) {
+			int cellsUsedInRow = 0;
+			int i;
+			int j;
+			for (i = 0; i - 1< rowCount; i++) {
 				boolean rowUsed = false;
 				int cellCount = sheet.getRow(i).getLastCellNum();
-				int cellsUsedInRow = 0;
-				for (int j = 0; j - 1< cellCount; j++) {
+				cellsUsedInRow = 0;
+				for (j = 0; j - 1< cellCount; j++) {
 					if (sheet.getRow(i).getCell(j) != null) {
 						
 						if ((sheet.getRow(i).getCell(j).getCellComment() != null)){
 							String comment = sheet.getRow(i).getCell(j).getCellComment().getString().toString();
 			
 							//System.out.println(comment);
-							if (comment.startsWith("???")){
+							if (comment.startsWith(Main.delimiter)){
 								comment = comment.substring(3);
-								String commentParts[] = comment.split("\\?\\?\\?");
+								String commentParts[] = comment.split(Main.delimiterRegex);
 								// commentsParts[0] should be type of entry
 								VBox celly = new VBox();
 								
 								final String fieldType = commentParts[0];
+								System.out.println(comment);
 								final String meaningStr = commentParts[1] + " (" + commentParts[2] + ")";
 								String fieldName = commentParts[2];
-								String fieldLocation = i + "???" + j;
+								String fieldLocation = i + Main.delimiter + j;
 							
 								int len = commentParts.length;
 								commentParts[len - 1] = commentParts[len - 1].stripTrailing();
@@ -185,6 +198,7 @@ public class ReportController extends ControllerTemplate{
 								if (fieldType.contentEquals("default")) {
 									//celly = new VBox();
 									//celly.setUserData(fieldName);
+									System.out.println(comment);
 									strContent = commentParts[3];
 									textContent = new TextField(strContent);
 									contentsMap.put(fieldName, strContent);
@@ -233,6 +247,11 @@ public class ReportController extends ControllerTemplate{
 										contentsMap.put(fieldName, null); ///< put e.g. 'Deneme' instead of null if u want to be able to export it during development		
 									}
 									
+									if (fieldName.endsWith("sonuc")){ ///< Actually, yet another special case
+										comboContent.getSelectionModel().select(2);
+										contentsMap.put(fieldName, comboContent.getSelectionModel().getSelectedItem().toString());
+									}
+									
 
 									celly.getChildren().addAll(cell, meaning, comboContent);
 									gridPane.add(celly, cellsUsedInRow , rowsUsed);
@@ -255,7 +274,8 @@ public class ReportController extends ControllerTemplate{
 									// You may need to set it to a default value in some occasions, an if check here could do it
 									
 									if (comboContent == null) {
-										System.out.println("alan" + fieldName + " doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi");
+										Model.log.warning("alan" + fieldName + " doldurulamadığından export alınamayacaktı, onun yerine alan hiç eklenmedi");
+							
 										continue;
 									}
 									
@@ -324,17 +344,99 @@ public class ReportController extends ControllerTemplate{
 										});
 									}
 									
-									else if (fieldName.contentEquals("rapor-tarihi")) {
+									else if (fieldName.startsWith("rapor-tarihi")) {
 										SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/YYYY");  
 									    Date date = new Date();
 									    String dateStr = formatter.format(date);
-									    System.out.println(dateStr);
+									    datey = dateStr;
+									    
+									    //System.out.println(dateStr);
 									    Label dateLabel = new Label(dateStr);
 									    celly.getChildren().addAll(cell, meaning, dateLabel);
 										gridPane.add(celly, cellsUsedInRow , rowsUsed);
 										contentsMap.put(fieldName, dateStr);
 									}
-									//else if ()
+									else if (fieldName.startsWith("personal-adi")) {
+										
+										String b = fieldName.substring(fieldName.lastIndexOf("-"));
+										int numm = Integer.parseInt(b.substring(1));
+										comboContent = DatabaseAndSession.getPersonnelToGrid(numm);
+										meaning.setText(meaning.getText() + "id" + Main.delimiter + "isim" + Main.delimiter + "soyisim");
+
+										contentsMap.put(fieldName, null);
+
+										celly.getChildren().addAll(cell, meaning, comboContent);
+										gridPane.add(celly, cellsUsedInRow , rowsUsed);
+										
+										comboContent.valueProperty().addListener( (v, oldValue, newValue) -> {
+											boolean sad = false;
+											Model.log.info("şu bölgede: " + fieldName + " şu değer: " + oldValue +  " şu değer oldu: " + newValue);
+											String names[] = newValue.split(Main.delimiterRegex);
+											contentsMap.put(fieldName, names[1] + " " + names[2]);
+											//level yil ay gun
+											String lad = DatabaseAndSession.getPersonnelLevelAndDate(Integer.parseInt(names[0]));
+											if (lad == "-2") {
+												sad = true;
+												Model.createPopup(rootPane, "Kullanının sertifika tarihi belirsiz! (admin için kabül edilebilir?)", null, null);
+											} else {
+												String[] lyag = lad.split(Main.delimiterRegex);
+												String[] yag = lyag[1].split("-");
+												
+												// mm dd yyyy
+												String reportDate[] = datey.split("/");
+												
+												//is cert. date exp.?
+												boolean expired = true;
+												int y1 = Integer.parseInt(yag[0]);
+												int m1 = Integer.parseInt(yag[1]);
+												int d1 = Integer.parseInt(yag[2]);
+												
+												int y2 = Integer.parseInt(reportDate[2]);
+												int m2 = Integer.parseInt(reportDate[0]);
+												int d2 = Integer.parseInt(reportDate[1]);
+												if (y1 > y2) {
+													expired = false;
+												} else if (y1 == y2) {
+													if (m1 > m2) {
+														expired = false;
+													} else if (m1 == m2) {
+														if (d1 >= d2) {
+															expired = false;
+														}
+													}
+												}
+												
+												
+												if(Integer.parseInt(lyag[0]) < 2) {
+													// Level is lover than 2
+													Model.createPopup(rootPane, "Kullanicinin seviyesi 2 den düşük!! Başka seçmelisiniz", null, null);
+													sad = true;
+												}
+												if(expired) {
+													Model.createPopup(rootPane, "Kullanicinin sertifika tarihi gecmiş!! Başka seçmelisiniz", null, null);
+													sad = true;
+													
+											
+												} else {
+													
+													contentsMap.put("personal-seviye-" + (fieldName.substring(fieldName.lastIndexOf("-"))).substring(1), lyag[0]);
+													
+												}
+
+											}
+																						
+											if (sad) {
+												contentsMap.put(fieldName, null);
+											}
+											
+											
+											
+											
+											
+											
+										});									
+									
+									} 
 									
 								}
 								
@@ -359,6 +461,31 @@ public class ReportController extends ControllerTemplate{
 
 				
 			}
+			
+			Button btnXls = new Button();
+			btnXls.setText("Export Excel and PDF");
+			btnXls.setOnAction(new EventHandler<ActionEvent>() {
+			 
+
+
+				@Override
+				public void handle(ActionEvent arg0) {
+					try {
+						exportXLSX();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						Model.createErrorPopup(rootPane, e.getMessage(), null, e);
+						//e.printStackTrace();
+					}
+					
+				}
+			}); 
+			gridPane.add(btnXls, cellsUsedInRow++, rowsUsed++);
+			
+			
+
+			
+			
 			// All the fields had been traversed.. now try to update the dependant fields, they will update if the field they depend on had somehow been filled.
 			for (String decisiveName : dependenceMap.keySet()) {
 				if (!contentsMap.containsKey(decisiveName)) {
@@ -373,7 +500,8 @@ public class ReportController extends ControllerTemplate{
 			}
 					
 		} else {
-			System.out.println("Dosya açılamadı");
+			Model.createPopup(rootPane, "Dosya Açılamadı", null, Level.WARNING);
+			
 		}
 
 		
@@ -381,7 +509,7 @@ public class ReportController extends ControllerTemplate{
 	}
 
 	@FXML
-	public boolean exportXLSX() throws IOException {
+	public boolean exportXLSX() throws Exception {
 		// require import  
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd-HH:mm:ss");  
 	    Date date = new Date();
@@ -391,23 +519,25 @@ public class ReportController extends ControllerTemplate{
 		for(Map.Entry<String, String> entry : contentsMap.entrySet()) {
 			String fieldName =  entry.getKey();
 			String fieldContent = entry.getValue();
-			System.out.println(fieldContent);
+			//System.out.println(fieldContent);
 			if(fieldContent == null) {
-				//String warnPop = "Doldurulmasi gereken seçmeli değerlerden " + fieldName + " doldurulamadı";
-				//Model.createPopup(rootPane, warnPop, null, Level.WARNING);
-				//return false;
-				String fieldLocation[] = locationsMap.get(fieldName).split("\\?\\?\\?");
-				int i = Integer.parseInt(fieldLocation[0]);
-				int j = Integer.parseInt(fieldLocation[1]);
+				String warnPop = "Doldurulmasi gereken seçmeli değerlerden " + fieldName + " doldurulamadı";
+				Model.createPopup(rootPane, warnPop, null, Level.WARNING);
+				return false;
+				
+				
+				//String fieldLocation[] = locationsMap.get(fieldName).split(Main.delimiterRegex);
+				//int i = Integer.parseInt(fieldLocation[0]);
+				//int j = Integer.parseInt(fieldLocation[1]);
 				// put the content to the cell at given location
-				sheet.getRow(i).getCell(j).setCellValue("buveonceki3satirisil");
-				continue;
+				//sheet.getRow(i).getCell(j).setCellValue(""); ///< Bu ve onceki 3 satiri silersen doldurmak zorunda birakir
+				//continue;
 			}
 			
 			//System.out.println("field name: " + myKey + " __ field content: " + myVal);
 			
 			// Get location of the field
-			String fieldLocation[] = locationsMap.get(fieldName).split("\\?\\?\\?");
+			String fieldLocation[] = locationsMap.get(fieldName).split(Main.delimiterRegex);
 			int i = Integer.parseInt(fieldLocation[0]);
 			int j = Integer.parseInt(fieldLocation[1]);
 			// put the content to the cell at given location
@@ -416,17 +546,35 @@ public class ReportController extends ControllerTemplate{
 
 		}
 		
+		String fosst = "./report-exports/" + fileName.substring(0, fileName.lastIndexOf(".")) + dateStr;
 		
-		fos = new FileOutputStream("./report-exports/" + fileName.substring(0, fileName.lastIndexOf(".")) + dateStr + ".xlsx");
+		fos = new FileOutputStream(fosst + ".xlsx");
 		wb.write(fos);
 		fos.flush();
 		fos.close();
-		String infoPop = "Doldurma işlemi başarıyla tamamlandı";
+		String infoPop = "Excel Doldurma işlemi başarıyla tamamlandı";
 		Model.log.info(infoPop);
-		
+        
+        Workbook workbook = new Workbook();
+        workbook.loadFromFile(fosst + ".xlsx");
+        
+        //Fit to page
+        workbook.getConverterSetting().setSheetFitToPage(true);
+        
+        //Save as PDF document
+        workbook.saveToFile(fosst + ".pdf",FileFormat.PDF);
+        
+		///Workbook wb2 = new Workbook(fosst + ".xlsx");
+		//System.out.println(112);
+		//wb2.save(fosst + ".pdf", SaveFormat.PDF);
 
-		return false;
+		return true;
 	}
+	
+
+
+	
+	
 	public void closeEverythıng(ActionEvent event) throws IOException {
 		//exportXLSX();
 		if(wb != null) {

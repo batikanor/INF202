@@ -1,6 +1,8 @@
 package implicaspection;
 
 
+import java.util.logging.Level;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -81,9 +83,11 @@ public class MainController extends ControllerTemplate{
 	public void openAdminPanel() {
 		if(UserSingleton.getSession().getAdminID() > -1) {
 			Model.loadWindow("AdminPanel", 1300, 800);
-			System.out.println("Admin panel yükleniyor");
+			//System.out.println("Admin panel yükleniyor");
+			Model.log.fine("Admin panel yükleniyor");
 		}else {
-			System.out.println("Yalnizca adminler buraya ulaşabilir");
+			Model.createPopup(mainAnchorPane, "Yalnizca adminler buraya ulaşabilir", null, Level.WARNING);
+			//System.out.println();
 		}
 		
 	}

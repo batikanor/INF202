@@ -1,5 +1,7 @@
 package utilities;
 
+import implicaspection.Model;
+
 // ALTERNATIVE SINGLETON IMPLEMENTATIONS : STATIC HOLDER PATTERN / ENUM
 public final class UserSingleton {
 	// Singleton pattern: class can only have 1 instance
@@ -47,12 +49,13 @@ public final class UserSingleton {
             	if(onlyInstance == null){ // Check
             		onlyInstance = new UserSingleton(username, adminID);
             		if(adminID != -1) {
-            			System.out.println("Admin olarak giris yapildi");
+            			Model.log.finest("Admin olarak giris yapildi");
+  
             		}else {
-            			System.out.println("Personnel olarak giris yapildi");
+            			Model.log.finest("Personnel olarak giris yapildi");
             		}
             	}else {
-            		System.out.println("Halihazirda giris yapilmis");
+            		Model.log.warning("Halihazirda giris yapilmis");
             	}
     		}
 

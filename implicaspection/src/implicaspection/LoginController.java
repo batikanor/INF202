@@ -65,7 +65,8 @@ public void initialize() {
 			//Stage thisStage = (Stage)(thisNode.getScene().getWindow());
 			//thisStage.close();
 			
-			System.out.println(UserSingleton.getSession().toString());
+
+			Model.log.info(UserSingleton.getSession().toString());
 		} else {
 			feedback = "Giriş denemesi başarısız";
 			Model.createPopup(rootPane, feedback, null, Level.WARNING);

@@ -21,7 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
+
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
@@ -32,12 +32,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.apache.log4j.lf5.LogLevel;
-import org.apache.poi.ss.formula.functions.Choose;
+
 import org.apache.poi.ss.util.CellAddress;
 import org.apache.poi.xssf.usermodel.XSSFComment;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -120,6 +120,8 @@ public class AdminPanelController extends ControllerTemplate {
 	private String chosenFieldMeaning;
 	private String chosenFieldName;
 	private String chosenDecisiveName;
+	private String chosenDecisiveContent;
+	//private String chosenFieldContent;
 	
 	@FXML
 	ToggleGroup fieldType;
@@ -148,23 +150,125 @@ public class AdminPanelController extends ControllerTemplate {
 
 	@FXML Label lblFieldInfo;
 
+	@FXML ToggleGroup valueType;
+
+	@FXML TextField ctFieldName;
+
+	@FXML TextField ctFieldContent;
+
+	@FXML TextField ctDecisiveName;
+
+	@FXML TextField ctDecisiveContent;
+
+	@FXML RadioButton contentCombo;
+
+	@FXML RadioButton contentDepend;
+
+	@FXML Button buttonAdd;
+
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
+	
 		super.initialize();
-		
+		//Model.createPopup(null, "denemee", null, null);
 		locationColumn.setCellValueFactory(new PropertyValueFactory<CodedCell, String>("cellLocation"));
 		codeColumn.setCellValueFactory(new PropertyValueFactory<CodedCell, String>("cellCode"));
 
 	}
 	
 
+	public void updateFields() {
+
+			
+		String chosenItem;
+		if (listChosen.getSelectionModel().getSelectedItem() != null) {
+			
+			ctFieldName.setText(chosenFieldName);
+			
+			chosenItem = listChosen.getSelectionModel().getSelectedItem();
+		
+		
+			
+			// Update the fields that add values
+			if (chosenFieldType.contentEquals("combo")) {
+
+				//contentCombo.setSelected(true);
+			
+				
+				
+			} else if (chosenFieldType.contentEquals("depend")) {
+	
+				//contentDepend.setSelected(true);
+				ctDecisiveName.setText(chosenDecisiveName);
+				
+				String decisiveContentAndDependantContent[] = chosenItem.split(Main.delimiterRegex);
+				chosenDecisiveContent = decisiveContentAndDependantContent[0];
+				//chosenFieldContent = decisiveContentAndDependantContent[1];
+				
+				ctDecisiveContent.setText(chosenDecisiveContent);
+				
+			} // else do not change
+		}
+		
+		ctFieldName.setDisable(false);
+		ctFieldContent.setDisable(false);
+		
+		if (contentDepend.isSelected()) {
+		
+			ctDecisiveName.setDisable(false);
+			ctDecisiveContent.setDisable(false);
+		
+		
+		} else {
+	
+			ctDecisiveName.setDisable(true);
+			ctDecisiveContent.setDisable(true);
+	
+		}
+		buttonAdd.setDisable(false);
+		
+	
+	}
+	
+	public void couldntAdd() {
+		Model.createPopup(rootPane, "Ekleme yapılamadı!!", null, Level.WARNING);
+	}
+	
+	public void addContent() {
+		String fn = ctFieldName.getText();
+		String fc = ctFieldContent.getText();
+		String dn = ctDecisiveName.getText();
+		String dc = ctDecisiveContent.getText();
+		if (fn == null || fc == null) {
+			couldntAdd();
+			return;
+		}
+		
+		if (contentDepend.isSelected()) {
+			
+			if (dn == null || dc == null) {
+				couldntAdd();
+				return;
+			}
+			DatabaseAndSession.addDependantValue(fn, fc, dn, dc);
+			
+			
+			
+		} else {
+			// Combobox value
+			DatabaseAndSession.addComboboxValue(fn, fc);
+			
+		}
+	}
+	
+
+
 	public void removeContent() {
 
 		if (listChosen.getSelectionModel().getSelectedItem() != null) {
 			Model.log.info(listChosen.getSelectionModel().getSelectedItem().toString() + " değeri siliniyor");
 			String chosenItem =  listChosen.getSelectionModel().getSelectedItem();
-			System.out.println(chosenFieldType);
+			//System.out.println(chosenFieldType);
 			if (chosenFieldType.contentEquals("combo")) {
 				// Remove data from combobox
 				
@@ -182,6 +286,10 @@ public class AdminPanelController extends ControllerTemplate {
 			}
 		}
 	}
+
+	
+
+	/*
 	
 	public void editContent() {
 	
@@ -191,10 +299,13 @@ public class AdminPanelController extends ControllerTemplate {
 			
 			if (chosenFieldType.contentEquals("combo")) {
 				
+			} else if (chosenFieldType.contentEquals("depend")) {
+				
 			}
 		}
 		
 	}
+	*/
 	
 	public void getCodeOfSelectedCell() {
 		lblFieldInfo.setText("-");
@@ -202,8 +313,8 @@ public class AdminPanelController extends ControllerTemplate {
 			listChosen.getItems().clear();
 			
 			
-			TablePosition tp = fieldsTable.getFocusModel().getFocusedCell();
-			int row = tp.getRow();
+
+			int row = fieldsTable.getFocusModel().getFocusedCell().getRow();
 			CodedCell cc = fieldsTable.getItems().get(row);
 			String strCode = codeColumn.getCellData(cc);
 			String strS[] = strCode.split(Main.delimiterRegex);
@@ -219,7 +330,7 @@ public class AdminPanelController extends ControllerTemplate {
 				ComboBox<String> cb = DatabaseAndSession.returnDependantOptions(chosenFieldName);
 				chosenDecisiveName = cb.getItems().get(0);
 				cb.getItems().remove(0);
-				lblFieldInfo.setText(lblFieldInfo.getText() + "Bağlı olunan değer: " + chosenDecisiveName + "\n");
+				lblFieldInfo.setText(lblFieldInfo.getText() + "Bağlı olunan alan: " + chosenDecisiveName + "\n" + "(Soldaki bağlı olunan değer, sağdaki ise bağlı değerdir.)");
 				listChosen.getItems().addAll(cb.getItems());
 				
 			} else if (chosenFieldType.contentEquals("default")) {
@@ -249,7 +360,7 @@ public class AdminPanelController extends ControllerTemplate {
 
 			}
 		} catch (Exception e) {
-			Model.createPopup(rootPane, "Lütfen geçerli bir hücre seçin!", null, Level.WARNING);
+			Model.createPopup(rootPane, "Seçilen hücre değeri değiştirilemez", null, Level.WARNING);
 		}
 
 		
@@ -292,8 +403,8 @@ public class AdminPanelController extends ControllerTemplate {
 		  for (Map.Entry<CellAddress, XSSFComment> entry : map.entrySet()) {
 			    String key = entry.getKey().toString();
 			    String val = entry.getValue().getString().toString();
-			    System.out.println("key = " + key + " val = " + val);
-			    
+
+			    Model.log.info("key = " + key + " val = " + val);
 	
 			    if (val.startsWith(Main.delimiter)){
 			    	codedCellsList.add(new CodedCell(key, val));	
@@ -301,7 +412,8 @@ public class AdminPanelController extends ControllerTemplate {
 			    	uncodedCommentCount++;
 			    }
 			}
-		  System.out.println(uncodedCommentCount + " adet kodlanmamış yorum mevcut");
+		  Model.log.info(uncodedCommentCount + " adet kodlanmamış yorum mevcut");
+	
 		  
 		/*
 		 * = sheet.getCellComments(); while (it.hasNext()) { Map.Entry pair = } for
@@ -344,7 +456,8 @@ public class AdminPanelController extends ControllerTemplate {
 			updateTable();
 
 		} else {
-			System.out.println("Dosya secilemedi");
+			Model.createPopup(rootPane, "Dosya seçilemedi!", null, Level.WARNING);
+			
 		}
 
 	}
@@ -354,7 +467,7 @@ public class AdminPanelController extends ControllerTemplate {
 
 			int lastRowIndex = sheet.getLastRowNum();
 			int noRows = lastRowIndex + 1;
-			System.out.println(noRows + " tane satır içeren dosya kaydediliyor.");
+			Model.log.info(noRows + " tane satır içeren dosya kaydediliyor.");
 			// sheet.getRow(0).getCell(0).setCellValue("şablondur");
 			// Maybe add something before the file name to show that its a template
 			FileOutputStream fos = new FileOutputStream("./report-templates/" + selectedFile.getName());
@@ -364,16 +477,17 @@ public class AdminPanelController extends ControllerTemplate {
 			wb.close();
 			buttonSaveTemplate.setDisable(true);
 
-			System.out.println("Seçili dosya kaydedildi");
+			Model.log.fine("Seçili dosya kaydedildi");
 		} else {
-			System.out.println("Önce bir dosya seçiniz");
+			Model.createPopup(rootPane, "Önce bir dosya seçiniz", null, Level.WARNING);
 		}
 
 	}
 
 	public void modeRegister() {
 		rbRegister.setSelected(true);
-		System.out.println("Yeni kullanıcı kaydetme moduna geçiliyor.");
+	
+		Model.log.info("Yeni kullanıcı kaydetme moduna geçiliyor.");
 		passwordInput.setDisable(false);
 		password2Input.setDisable(false);
 		buttonRemove.setVisible(false);
@@ -389,10 +503,11 @@ public class AdminPanelController extends ControllerTemplate {
 
 	public void removePersonnel(ActionEvent event) {
 		if (DatabaseAndSession.remove(personnelid)) {
-			System.out.println("Hesap başarıyla silindi");
+			Model.createPopup(rootPane, "Hesap başarıyla silindi", null, Level.FINE);
 			areaOutput.appendText("Hesap başarıyla silindi");
 		} else {
-			System.out.println("Hesap silinirken hatayla karşılaşıldı ve silinemedi.");
+	
+			Model.createPopup(rootPane, "Hesap silinirken hatayla karşılaşıldı ve silinemedi.", null, Level.WARNING);
 			areaOutput.appendText("Hesap silinirken hatayla karşılaşıldı ve silinemedi.");
 
 		}
@@ -411,8 +526,9 @@ public class AdminPanelController extends ControllerTemplate {
 				areaOutput.appendText("\n");
 			}
 		} catch (SQLException e) {
-			System.out.println("Veritabanından alınan elemanlar sıralanamadı");
-			e.printStackTrace();
+	
+			Model.createErrorPopup(rootPane, "Veritabanından alınan elemanlar sıralanamadı", null, e);
+			//e.printStackTrace();
 		}
 	}
 
@@ -421,7 +537,7 @@ public class AdminPanelController extends ControllerTemplate {
 
 		areaOutput.setText("");
 		areaOutput.appendText("Personel bilgileri getiriliyor\n");
-		System.out.println("Personel bilgileri getiriliyor");
+		//System.out.println("Personel bilgileri getiriliyor");
 		rbChange.setSelected(true);
 		passwordInput.setDisable(true);
 		password2Input.setDisable(true);
@@ -449,8 +565,8 @@ public class AdminPanelController extends ControllerTemplate {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("Veritabanından alınan elemanlar sıralanamadı");
-			e.printStackTrace();
+			Model.createErrorPopup(rootPane, "Veritabanından alınan elemanlar sıralanamadı", null, e);
+			//e.printStackTrace();
 		}
 		buttonRemove.setVisible(true);
 	}
@@ -530,7 +646,7 @@ public class AdminPanelController extends ControllerTemplate {
 	public void changePane(ActionEvent event) {
 		count++;
 
-		// System.out.println(event.getSource().toString());
+		//System.out.println(event.getSource().toString());
 		// Button[id=buttonRegister, styleClass=button]'Personel / Admin kaydet'
 		if (event.getSource() == buttonRegister) {
 			paneRegister.toFront();

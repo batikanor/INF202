@@ -17,6 +17,7 @@ import implicaspection.Main;
 import implicaspection.Model;
 import implicaspection.ReportController;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 public class DatabaseAndSession {
 	private static final String Driver = "org.hsqldb.jdbcDriver";
@@ -39,11 +40,12 @@ public class DatabaseAndSession {
 			return con;
 			
 		}catch(ClassNotFoundException e) {
-			System.out.println("E002: Veritabanı klası bulunamadı");
+			Model.log.warning("E002: Veritabanı klası bulunamadı");
 			e.printStackTrace();
 			return null;
 		}catch(SQLException e) {
-			System.out.println("E002: Veritabanı klası bulundu, ama bağlantı kurulamadı");
+			Model.log.warning("E002: Veritabanı klası bulundu, ama bağlantı kurulamadı");
+		
 			return null;
 		}
 			
@@ -112,7 +114,7 @@ public class DatabaseAndSession {
 				String decisiveContent = ReportController.contentsMap.get(decisiveName);
 				
 				if (decisiveContent == null) {
-					System.out.println( dependantName + " alani için mümkün bir değer bulunmamaktadır. Lütfen önce seçenek ekleyiniz veya " + decisiveName + " alanindaki seçiminizi değiştiriniz.");
+					Model.log.warning(dependantName + " alani için mümkün bir değer bulunmamaktadır. Lütfen önce seçenek ekleyiniz veya " + decisiveName + " alanindaki seçiminizi değiştiriniz.");
 				}
 				
 				PreparedStatement ps2 = con.prepareStatement("SELECT DEPENDANTCONTENT FROM FIELDDEPEND WHERE DECISIVENAME = ? AND DEPENDANTNAME = ? AND DECISIVECONTENT = ?");
@@ -132,7 +134,8 @@ public class DatabaseAndSession {
 				}
 				return buff;
 			} else {
-				System.out.println(dependantName + " in bagli oldugu bir hucre yok, ama bagimli hucre olarak gosterilmis");
+				Model.log.warning(dependantName + " in bagli oldugu bir hucre yok, ama bagimli hucre olarak gosterilmis");
+			
 				// e.g. return null and control it on receiving side
 
 				return null;
@@ -143,7 +146,8 @@ public class DatabaseAndSession {
 		}catch (SQLException e) {
 		
 			e.printStackTrace();
-			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+			Model.log.warning("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+
 			return null;
 	
 		}
@@ -164,7 +168,7 @@ public class DatabaseAndSession {
 			
 		}catch (SQLException e) {
 			
-			//e.printStackTrace();
+			e.printStackTrace();
 			Model.createErrorPopup(null, "Veritabanı hatası sebebiyle işlem gerçekleştirilemedi", null, e);
 			
 			
@@ -216,10 +220,13 @@ public class DatabaseAndSession {
 			return buff;
 		}catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+			Model.log.warning("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+		
 			return null;
 			}
 	}
+	
+	
 	public static ResultSet returnAllPersonnel() {
 		Connection con = connect();
 		try {
@@ -233,7 +240,8 @@ public class DatabaseAndSession {
 			*/
 			return rs;
 		} catch (SQLException e) {
-			System.out.println("E000: Veritabanı'na gönderilen sabit komut çalışmadı");
+			Model.log.severe("E000: Veritabanı'na gönderilen sabit komut çalışmadı");
+	
 			e.printStackTrace();
 		}
 			return null;
@@ -249,7 +257,8 @@ public class DatabaseAndSession {
 			return rs;
 		}catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+			Model.log.warning("Veritabanı hatası sebebiyle işlem gerçekleştirilemedi");
+
 			return null;
 			}
 	}
@@ -300,7 +309,8 @@ public class DatabaseAndSession {
 				return true;
 				
 			}else {
-				System.out.println("Giris yapilamadi, bilgileri kontrol edin");
+				Model.log.warning("Giris yapilamadi, bilgileri kontrol edin");
+			
 				return false;
 			}
 			
@@ -311,7 +321,8 @@ public class DatabaseAndSession {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-			System.out.println("SQL Hatasi sebebiyle giris yapilamadi");
+			Model.log.warning("SQL Hatasi sebebiyle giris yapilamadi");
+			
 		}
 		
 		return false;
@@ -598,12 +609,133 @@ UNIQUE (USERNAME))
 			
 		}catch (SQLException e) {
 			
-			//e.printStackTrace();
+			e.printStackTrace();
 			Model.createErrorPopup(null, "Veritabanı hatası sebebiyle işlem gerçekleştirilemedi", null, e);
 			
 			
 		}
 		return ret;
+	}
+
+	public static int addComboboxValue(String fn, String fc) {
+		Connection con = connect();
+		int ret = 0;
+		try {
+			
+			PreparedStatement ps = con.prepareStatement("INSERT INTO FIELDMULTI(FIELDNAME, FIELDCONTENT) VALUES(?, ?)");
+			
+			ps.setString(1, fn);
+			ps.setString(2, fc);
+
+			ret = ps.executeUpdate();
+			con.commit();
+
+			
+		}catch (SQLException e) {
+			
+			e.printStackTrace();
+			Model.createErrorPopup(null, "Veritabanı hatası sebebiyle işlem gerçekleştirilemedi", null, e);
+			
+			
+		}
+		return ret;
+	}
+
+	// dependant name, dependant content, decisive name, decisive content,
+	public static int addDependantValue(String fn, String fc, String dn, String dc) {
+		
+		Connection con = connect();
+		int ret = 0;
+		
+		try {
+			
+			PreparedStatement ps = con.prepareStatement("INSERT INTO FIELDDEPEND(DECISIVENAME, DEPENDANTNAME, DECISIVECONTENT, DEPENDANTCONTENT) VALUES(?, ?, ?, ?)");
+			
+			ps.setString(1, dn);
+			ps.setString(2, fn);
+			ps.setString(3, dc);
+			ps.setString(4, fc);
+			
+			
+			ret = ps.executeUpdate();
+			con.commit();
+
+			
+		}catch (SQLException e) {
+			
+			e.printStackTrace();
+			Model.createErrorPopup(null, "Veritabanı hatası sebebiyle işlem gerçekleştirilemedi", null, e);
+			
+			
+		}
+		return ret;
+		
+	}
+	
+	public static ComboBox<String> getPersonnelToGrid(int no){
+		ComboBox<String> buff = new ComboBox<>();
+		Connection con = connect();
+		ResultSet rs;
+		
+		try {
+			
+			Statement stmt = con.createStatement();
+			
+			
+			rs = stmt.executeQuery("SELECT * FROM PERSONNEL");
+			
+			while(rs.next()) {
+				String id = String.valueOf(rs.getInt("PERSONNELID"));
+				
+				String name = rs.getString("NAME");
+				String surname = rs.getString("SURNAME");
+				buff.getItems().add(id + Main.delimiter + name + Main.delimiter + surname); 
+				
+			}
+			
+			return buff;
+		} catch (SQLException e) {
+			Model.log.severe("E000: Veritabanı'na gönderilen sabit komut çalışmadı");
+	
+			e.printStackTrace();
+		}
+			return null;
+	}
+	public static String getPersonnelLevelAndDate(int id) {
+
+		Connection con = connect();
+		ResultSet rs;
+		String ret = "";
+		try {
+			
+	
+			
+			PreparedStatement ps = con.prepareStatement("SELECT LEVEL, CERTIFICATEDATE FROM PERSONNEL WHERE PERSONNELID=?");
+			
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				String level = String.valueOf(rs.getInt("LEVEL"));
+				if (rs.getDate("CERTIFICATEDATE") == null) {
+					return "-2";
+				}
+				String date = rs.getDate("CERTIFICATEDATE").toString();
+
+				ret += level + Main.delimiter + date;
+		 
+				
+			}
+			
+	
+		} catch (SQLException e) {
+			Model.log.warning("E000: Veritabanı'na gönderilen parametreli id komut çalışmadı");
+	
+			e.printStackTrace();
+		}
+		 return ret;
+		
 	}
 	
 	

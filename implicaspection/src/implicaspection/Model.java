@@ -4,15 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.management.ManagementFactory;
-import java.lang.management.PlatformLoggingMXBean;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Random;
 
 import java.util.logging.FileHandler;
@@ -129,7 +128,8 @@ public class Model {
 		try {
 			hash = factory.generateSecret(spec).getEncoded();
 		} catch (InvalidKeySpecException e) {
-			System.out.println("E001: Şifreniz hash'lenemedi.");
+			//System.out.println();
+			log.severe("E001: Şifreniz hash'lenemedi.");
 			e.printStackTrace();
 		}
 		return hash;
@@ -154,7 +154,7 @@ public class Model {
 		} catch (IOException e) {
 		
 			log.warning("E001: Yüklenmeye çalışılan pencere bulunamadı");
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 	}
@@ -176,7 +176,8 @@ public class Model {
 		}
 		
 	}
-	public static void createErrorPopup(Pane rootPane, String popupStr, Node otherNode, Exception e ) {
+	
+	public static boolean createErrorPopup(Pane rootPane, String popupStr, Node otherNode, Exception e ) {
 
 		
 		StringWriter errors = new StringWriter();
@@ -200,7 +201,10 @@ public class Model {
 		fpPop.getChildren().add(otherNode);	
 		}
 		BoxBlur blur = new BoxBlur(4, 4, 4);
-		rootPane.setEffect(blur);
+		if (rootPane != null) {
+			rootPane.setEffect(blur);
+		}
+		
 		fpPop.setBlendMode(BlendMode.RED);
 		//fpPop.setBackground(new Background(new BackgroundFill(Color.DARKGREY, null, null)));
 		//fpPop.setBorder(new Border(new BorderStroke(Color.BLACK, 
@@ -225,7 +229,24 @@ public class Model {
 		};
 		btnClose.setOnAction(goBack);
 		poppy.getContent().add(fpPop);
-		poppy.show((Stage)(rootPane.getScene().getWindow()));
+		if (rootPane != null) {
+			poppy.show((Stage)(rootPane.getScene().getWindow()));
+			return true;
+		} else {
+			for (Stage s : Model.stages.values()) {
+				try {
+					poppy.show(s);
+					return true;
+				} catch (Exception ex) {
+					// That stage wasnt being shown
+					
+				}
+			}
+			
+			
+		}
+		return false;
+		
 		
 		
 
@@ -517,10 +538,10 @@ public class Model {
 		//com.sun.javafx.Logging.getCSSLogger().setLevel(Level.OFF);
 		//System.out.println(Logging.getCSSLogger().toString());
 	  
-		List<String> loggerNames = ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class).getLoggerNames();
-		for (String logged : loggerNames) {
-			System.out.println("loggerlerden biri : " + logged);
-		}
+		//List<String> loggerNames = ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class).getLoggerNames();
+		//for (String logged : loggerNames) {
+			//System.out.println("loggerlerden biri : " + logged); ///< Bilerek burda bıraktım, silesim gelmedi
+		//}
 	
 		//ManagementFactory.getPlatformMXBean(PlatformLoggingMXBean.class).setLoggerLevel("styling/application.css", "OFF");
 		logFile.setFormatter(new Formatter() {

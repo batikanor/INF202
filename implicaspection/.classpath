@@ -9,5 +9,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX14"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/poi-4.1.2"/>
 	<classpathentry kind="lib" path="db/hsqldb.jar"/>
+	<classpathentry kind="lib" path="spire-xls/Spire.Xls.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
